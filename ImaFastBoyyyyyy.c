@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include "AStarAlgorithm.h"
+
 #define MAX_LINE_LENGTH 1024
 #define BOOSTS_AT_START 5
 
@@ -33,7 +36,8 @@ int main()
   int accelerationX = 0, accelerationY = 0;
   int round = 0;
   int speedX = 0, speedY = 0;
-  int width, height, gaslevel, row;
+  int mapWidth, mapHeight, gaslevel, y;
+  int p2X,p2Y,p3X,p3Y;
 
 
   int boost = BOOSTS_AT_START;
@@ -45,25 +49,65 @@ int main()
   //PARTIE LECTURE DES INFOS DE LA COURSE
   fgets(line_buffer, MAX_LINE_LENGTH, stdin);      //Read gas level at Start
   fprintf(stderr, "=== >Map< ===\n");
-  sscanf(line_buffer, "%d %d %d", &width, &height, &gaslevel);
+  sscanf(line_buffer, "%d %d %d", &mapWidth, &mapHeight, &gaslevel);
 
-  for (row = 0; row < height; ++row) {        /* Read map data, line per line */
+  //=========================PATHFINDING=============================//
+  NODE * mapNodes = createNodeMap(mapWidth,mapHeight);
+  NODE * nodeEnd;
+  NODE * nodeStart;
+
+  for (y = 0; y < mapHeight; ++y) {        /* Read map data, line per line */
     fgets(line_buffer, MAX_LINE_LENGTH, stdin);
+    int x = 0;
+
+    while(line_buffer[x] !=  '\0'){
+      //fprintf(stderr, "%d = %c\n",y,line_buffer[y]);
+      if(line_buffer[x] == '.'){
+        mapNodes[y * mapWidth + x].bObstacle = TRUE;
+      }
+      if(line_buffer[x] == '='){
+        nodeEnd = &mapNodes[y * mapWidth + x];
+      }
+      x++;
+    }
+
     fputs(line_buffer, stderr);
   }
 
- //Boost mode
-  
+  fprintf(stderr, "NODE MAP %d %d\n", mapWidth, mapHeight);
+  display_node_map(mapNodes, mapWidth, mapHeight,NULL);
+
+  //=================================================================//
+
   accelerationX = 0;
   accelerationY = 0;
+
+  VECT2D ** path;
 
   fflush(stderr);
 
   while (!feof(stdin)) {
     fgets(line_buffer, MAX_LINE_LENGTH, stdin);   // Read positions of pilots
+    fprintf(stderr, "plant\n");
+    sscanf(line_buffer, "%d %d %d %d %d %d",
+           &myX, &myY, &p2X, &p2Y, &p3X, &p3Y);
+
+    if(round == 0){
+        fprintf(stderr, "START PATH FINDING\n");
+      nodeStart = &mapNodes[myY * mapWidth + myX];
+
+     
+       fprintf(stderr, "PATHSTART: %d %d\nEnd: %d %d\n", nodeStart->x, nodeStart->y, nodeEnd->x, nodeEnd->y);
+      path = get_path(mapNodes,mapWidth,mapHeight, nodeStart, nodeEnd);
+      fprintf(stderr, "PATHSTART: %d %d\nEnd: %d %d\n", nodeStart->x, nodeStart->y, nodeEnd->x, nodeEnd->y);
+        fprintf(stderr, "END PATH FINDING\n");
+      display_node_map(mapNodes,mapWidth,mapHeight,path);
+      //display_node_map(mapNodes,mapWidth,mapHeight,NULL);
+    }
+
+
     round++;
-    /*sscanf(line_buffer, "%d %d %d %d %d %d",
-           &myX, &myY, (int*)NULL, (int*)NULL, (int*)NULL, (int*)NULL);*/
+    /**/
 
     if(round == 1 || round == 2){
       accelerationX = 2;
