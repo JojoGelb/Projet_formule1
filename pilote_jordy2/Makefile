@@ -26,10 +26,6 @@ try: install
 $(DRIVERS_PATH)/$(PILOT_NAME): $(PILOT_NAME)
 	cp $(PILOT_NAME) $(DRIVERS_PATH)
 
-#$(PILOT_NAME): $(PILOT_NAME).c
-#$(CC) $(CFLAGS) -o $@ $^ $(LDLIBS)
-
-
 $(PILOT_NAME): $(PILOT_NAME).o $(MORE_FILE).o follow_line.o
 	$(CC) $(CFLAGS) $^ -o $@ $(LDLIBS)
 
