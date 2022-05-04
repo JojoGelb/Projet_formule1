@@ -8,12 +8,11 @@ NODE * createNode(){
         fprintf(stderr, "Crash during node creation\n");
         exit(-1);
     }
-    node->speedY = 4; 
-    node->speedX = 2; 
     node->vecNeighbours = (NODE**) malloc(NUMBER_OF_NEIBOURGH *sizeof(*node->vecNeighbours));
     return node;
 }
 
+// Trouve pour une vitesse sa position dans le tableau tab
 int findIndex(VECT2D* tab,char speedX, char speedY){
     for(int i = 0; i<NUMBER_OF_SPEED; i++){
         if(tab[i].x == speedX && tab[i].y == speedY){
@@ -23,6 +22,7 @@ int findIndex(VECT2D* tab,char speedX, char speedY){
     return -1;
 }
 
+// Genrere une liste avec toutes les combinaisons de vitesses possible
 VECT2D * generateListIndex(){
   VECT2D * result = (VECT2D*) malloc(NUMBER_OF_SPEED*sizeof(*result));
 
@@ -54,17 +54,8 @@ NODE*** createNodeMap(VECT2D* tab,int width, int height){
     for(int x = 0; x < width; x++){
         for(int y = 0; y < height; y++){
 
-            
-            /* 26 possible speed: norm < 5 && (x,y) < 5
-                0,0 | 0,1 | 0,2 | 0,3 | 0,4 | 0,5
-                1,0 | 1,1 | 1,2 | 1,3 | 1,4
-                2,0 | 2,1 | 2,2 | 2,3 | 2,4
-                3,0 | 3,1 | 3,2 | 3,3 | 3,4
-                4,0 | 4,1 | 4,2 | 4,3
-                5,0 | 
-            */
            int index = 0;
-
+            // UTILISER TAB PLUTOT
             for(int i=-5; i< 6; i++){
                 for(int j=-5; j< 6; j++){
                     if(sqrt(pow(i,2)+pow(j,2)) <= 5){
@@ -76,7 +67,6 @@ NODE*** createNodeMap(VECT2D* tab,int width, int height){
                         nodes[y * width + x][index]->bObstacle = FALSE; 
                         nodes[y * width + x][index]->parent = NULL; 
                         nodes[y * width + x][index]->bVisited = FALSE; 
-                        nodes[y * width + x][index]->border = FALSE; 
                         nodes[y * width + x][index]->end = FALSE; 
                         index++;
                     }
@@ -103,6 +93,7 @@ NODE*** createNodeMap(VECT2D* tab,int width, int height){
     
     */
    int findex = 0;
+
     for (int x = 0; x < width; x++){
 			for (int y = 0; y < height; y++){
                 for(int i =0; i < NUMBER_OF_SPEED; i++){
@@ -218,6 +209,9 @@ NODE*** createNodeMap(VECT2D* tab,int width, int height){
     return nodes;
 }
 
+/*
+Calcule si la voiture tape un mur lors d'un deplacement
+*/
 int hit_a_wall(NODE*** nodeMap,int width, NODE * start, NODE * stop){
 {
   InfoLine vline;
@@ -238,6 +232,8 @@ int hit_a_wall(NODE*** nodeMap,int width, NODE * start, NODE * stop){
 
 }
 
+//Affiche la map.
+// si path est != de null: affiche la route emprunté représenté par des $
 void display_node_map(NODE *** map, int width, int height,VECT2D ** path){
 
     char c = '*';
@@ -246,8 +242,9 @@ void display_node_map(NODE *** map, int width, int height,VECT2D ** path){
         for(int x = 0; x < width; x++){
             if(map[y * width + x][0]->bObstacle == TRUE){
                 fprintf(stderr, ".");
-            }
-            else{
+            }else if(map[y * width + x][0]->end == TRUE){
+                fprintf(stderr, "=");
+            }else{
                 if(path == NULL){
                     fprintf(stderr, "*");
                 }else{
@@ -273,6 +270,7 @@ void display_node_map(NODE *** map, int width, int height,VECT2D ** path){
     }
 }
 
+// Affiche position x y stocké dans path
 void display_vector(VECT2D ** path){
     fprintf(stderr, "START PATH \n");
     for(int i = 0; i < 800; i++){
@@ -284,26 +282,35 @@ void display_vector(VECT2D ** path){
     fprintf(stderr, "\nEND PATH \n");
 }
 
-void Solve_AStar(NODE *** nodes, int width, int height, NODE * nodeStart, NODE * nodeEnd){
-    
-    //fprintf(stderr, "START SOLVE ASTAR\nFIN: %d %d\nDebut: %d %d\n", nodeEnd->x, nodeEnd->y,nodeStart->x, nodeStart->y);
+/*
+* Detecte si un noeud est dans la list
+* smaller: si -1 ne regarde pas le cout, sinon return true si le coup est plus petit que celui de searched
+*/
+int contain(NODE** list,int lastIndex,NODE* searched, int smaller){
+    for(int i = 0; i < lastIndex; i++){
+        if(list[i] == searched){
+            if(smaller == -1 || searched->fLocalGoal < list[i]->fLocalGoal)
+                return 1;
+        }
+    }
+    return 0;
+}
 
+/**
+ * @brief Solve pathfinding problem
+ *
+ * @param nodes List2D de pointeur :[position x,y][vitesse]
+ * @param width largeur map
+ * @param height longueur map
+ * @param nodeStart
+ * @param nodeEnd
+ * @return carburant
+ */
+NODE* Solve_AStar(NODE *** nodes, int width, int height, NODE * nodeStart, NODE * nodeEnd, int carburant){
 
     for(int x = 0; x < width; x++){
         for(int y = 0; y < height; y++){
             
-            /*
-            //ADDON
-            if(nodes[y * width + x].end == FALSE && (
-                (x > 0 &&  nodes[y * width + x-1].bObstacle) ||
-                (x < width-1 && nodes[y * width + x+1].bObstacle ) ||
-                (y > 0 && nodes[(y-1) * width + x].bObstacle) ||
-                (y < height -1 && nodes[(y+1) * width + x].bObstacle)
-                )){
-                    nodes[y * width + x].border = TRUE;
-                }
-            //ADDON
-            */
            for(int i = 0; i < NUMBER_OF_SPEED; i++){
                 nodes[y * width + x][i]->parent = NULL; 
                 nodes[y * width + x][i]->bVisited = FALSE; 
@@ -313,83 +320,80 @@ void Solve_AStar(NODE *** nodes, int width, int height, NODE * nodeStart, NODE *
  
         }
     }
-    //display_node_map(nodes,width,height,NULL);
-
-    //fprintf(stderr, "INIT DONE\n");
 
     NODE* nodeCurrent = nodeStart;
     nodeStart->fLocalGoal = 0.0f;
     
-    nodeStart->fGlobalGoal = heuristic(nodeStart, nodeEnd);
+    nodeStart->fGlobalGoal = 0;
 
-    int lastPushList = 0;
-    int lastNotSorted = 1;
-    NODE* not_tested[40000];
-    not_tested[lastPushList] = nodeStart; 
-    lastPushList++;
+    int openLastPushIndex = 1;
+    int openLastNotSortedIndex = 1;
+    NODE* open_list[80000];
 
+    open_list[0] = nodeStart; 
 
-    while (lastPushList != 0){
-        //fprintf(stderr,"lastpush: %d\n",lastPushList);
+    while (openLastPushIndex != 0){
 
-        sort_nodes_list(not_tested,lastPushList,&lastNotSorted);
-        lastNotSorted = lastPushList;
+        sort_nodes_list(open_list,openLastPushIndex,&openLastNotSortedIndex);
+        openLastNotSortedIndex = openLastPushIndex;
 
-        while(lastPushList != 0 && not_tested[0]->bVisited == TRUE){
-            shift_left(not_tested,lastPushList);
-            lastPushList--;
-            lastNotSorted--;
+        nodeCurrent = open_list[0];
+
+        //Depilement
+        shift_left(open_list,openLastPushIndex);
+        openLastPushIndex--;
+        openLastNotSortedIndex--;
+
+        if(nodeCurrent->end == TRUE){
+            fprintf(stderr,"END: %d %d - %d %d\n", nodeCurrent->x, nodeCurrent->y, nodeCurrent->speedX, nodeCurrent->speedY);
+            return nodeCurrent;
         }
-
-        if(lastPushList == 0){
-            break;
-        }
-
-        nodeCurrent = not_tested[0];
-        nodeCurrent->bVisited = TRUE;
 
         for(int i = 0;i < nodeCurrent->numberOfNeighbours; i++){
-            if(nodeCurrent->vecNeighbours[i]->bVisited == FALSE && nodeCurrent->vecNeighbours[i]->bObstacle == FALSE && !hit_a_wall(nodes,width,nodeCurrent,nodeCurrent->vecNeighbours[i])){ // &&nodeCurrent->vecNeighbours[i]->border == FALSE 
-                not_tested[lastPushList] = nodeCurrent->vecNeighbours[i];
-                lastPushList++;
+            if(!(nodeCurrent->vecNeighbours[i]->bObstacle == TRUE  || 
+                 hit_a_wall(nodes,width,nodeCurrent,nodeCurrent->vecNeighbours[i]))
+            ){
+                int cout = nodeCurrent->fLocalGoal + distance(nodeCurrent, nodeCurrent->vecNeighbours[i]);
+                int heur = cout + heuristic(nodeCurrent->vecNeighbours[i],nodeEnd);
+
+                if(nodeCurrent->vecNeighbours[i]->fGlobalGoal > heur && contain(open_list,openLastPushIndex,nodeCurrent->vecNeighbours[i],-1)){
+                    continue;
+                }
+
+                if(nodeCurrent->vecNeighbours[i]->fGlobalGoal > heur && nodeCurrent->vecNeighbours[i]->bVisited){
+                    continue;
+                }
+
+                nodeCurrent->vecNeighbours[i]->parent = nodeCurrent;
+
+                open_list[openLastPushIndex] = nodeCurrent->vecNeighbours[i];
+                openLastPushIndex++;
+                openLastNotSortedIndex++;
+
             }
-            
-            float fPossiblyLowerGoal = nodeCurrent->fLocalGoal + distance(nodeCurrent, nodeCurrent->vecNeighbours[i]); 
-
-            if (fPossiblyLowerGoal < nodeCurrent->vecNeighbours[i]->fLocalGoal){
-					nodeCurrent->vecNeighbours[i]->parent = nodeCurrent;
-					nodeCurrent->vecNeighbours[i]->fLocalGoal = fPossiblyLowerGoal;
-
-					// The best path length to the neighbour being tested has changed, so
-					// update the neighbour's score. The heuristic is used to globally bias
-					// the path algorithm, so it knows if its getting better or worse. At some
-					// point the algo will realise this path is worse and abandon it, and then go
-					// and search along the next best path.
-					nodeCurrent->vecNeighbours[i]->fGlobalGoal = nodeCurrent->vecNeighbours[i]->fLocalGoal + heuristic(nodeCurrent->vecNeighbours[i], nodeEnd);
-			}
-
         }
-
-        
-
+        nodeCurrent->bVisited = TRUE;
     }
-    //fprintf(stderr, "END ASTAR");
+    return nodeEnd;
 
 }
 
+// Le cout d'un deplacement: pour le moment une distance
 float distance(NODE * nodeA, NODE * nodeB){
-    //return sqrtf((nodeA->x - nodeB->x + nodeB->speedX)*(nodeA->x - nodeB->x + nodeB->speedX) + ((nodeA->y - nodeB->y + nodeB->speedY)*(nodeA->y - nodeB->y + nodeB->speedY)));
-    return sqrtf((nodeA->x - nodeB->x)*(nodeA->x - nodeB->x) + ((nodeA->y - nodeB->y)*(nodeA->y - nodeB->y)));
+    //distance euclidenne avec et sans vitesse
+    // sqrtf((nodeA->x - nodeB->x + nodeB->speedX)*(nodeA->x - nodeB->x + nodeB->speedX) + ((nodeA->y - nodeB->y + nodeB->speedY)*(nodeA->y - nodeB->y + nodeB->speedY)));
+    //return sqrtf((nodeA->x - nodeB->x)*(nodeA->x - nodeB->x) + ((nodeA->y - nodeB->y)*(nodeA->y - nodeB->y)));
+    
+    //Distance de manhatan
+    return abs(2 - abs(nodeB->x - nodeA->x - nodeA->speedX) + abs(nodeB->y - nodeA->y - nodeA->speedY));
 }
 
+//Sert à influer la progression de l'algorithme
 float heuristic(NODE * nodeA, NODE * nodeB){
-    return distance(nodeA,nodeB);
+    return abs(nodeB->x - nodeA->x) + abs(nodeB->x - nodeA->x);
 }
 
-float heuristicEnd(NODE * nodeA, NODE * nodeB){
-    return sqrtf((nodeA->x - nodeB->x + nodeA->speedX)*(nodeA->x - nodeB->x + nodeA->speedX) + ((nodeA->y - nodeB->y + nodeA->speedY)*(nodeA->y - nodeB->y + nodeA->speedY)));;
-}
-
+//Tri une liste de noeuds selon le global goal
 void sort_nodes_list(NODE ** list, int last_push, int *lastBigNumber){
     int i, j;
 
@@ -411,28 +415,52 @@ void sort_nodes_list(NODE ** list, int last_push, int *lastBigNumber){
     }
 }
 
+//Depile l'element le plus à gauche d'une liste
 void shift_left(NODE ** list, int last_push){
     for(int i = 1; i < last_push; i++){
         list[i-1] = list[i];
     }
 }
 
-VECT2D ** get_path(NODE *** nodes, int width, int height, NODE * nodeStart, NODE * nodeEnd){
+/**
+ * @brief Compute the gas consumption of a requested acceleration
+ *
+ * CAUTION: Even an illegal move will result in gas consumption. Producing
+ * illegal moves should be prevented as much as possible!
+ *
+ * @param accX Acceleration x component
+ * @param accY Acceleration y component
+ * @param speedX Speed x component
+ * @param speedY Speed y component
+ * @param inSand (boolean)
+ * @return Number of gas units consumed
+ */
+int gasConsumption(int accX, int accY, int speedX, int speedY, int inSand)
+{
+  int gas = accX * accX + accY * accY;
+  gas += (int)(sqrt(speedX * speedX + speedY * speedY) * 3.0 / 2.0);
+  if (inSand) {
+    gas += 1;
+  }
+  return gas;
+}
+
+//Retourne le trajet à suivre par le pilote
+// Résoud le A star puis stocke le résultat dans un tableau de pointeur de vecteur 2d (position à suivre)
+VECT2D ** get_path(NODE *** nodes, int width, int height, NODE * nodeStart, NODE * nodeEnd, int carburant){
     VECT2D** path = malloc(800 * sizeof(VECT2D));
 	NODE *p = nodeEnd;
 
-    Solve_AStar(nodes,width,height,nodeStart,nodeEnd);
+    p = Solve_AStar(nodes,width,height,nodeStart,nodeEnd, carburant);
 
     int i = 0;
-	while (p->parent != NULL){
-
+	while (p->parent != NULL && p->parent != p){
+        fprintf(stderr, "%d %d - ",p->x,p->y);
 		path[i] = create_vector(p->x,p->y);
 		i++;
 
 		p = p->parent;
 	}
-
-    
 
     path[i]= NULL;
 
@@ -446,25 +474,8 @@ VECT2D * create_vector(int x, int y){
     return vect;
 }
 
-int findClosestPointOnTrack(VECT2D ** path, VECT2D * currentPosition){
-    int indexResult = -1;
-    int difference = abs(path[0]->x - currentPosition->x) + abs(path[0]->y - currentPosition->y);
-    int calcul;
-
-    for(int i = 0; i < 800; i++){
-        if(path[i] == NULL){
-            break;
-        }
-        calcul = abs(path[i]->x - currentPosition->x) + abs(path[i]->y - currentPosition->y);
-        if(calcul < difference){
-            indexResult = i;
-            difference = calcul;
-        }
-
-    }
-    return indexResult;
-}
-
+//Inverse le tableau de vect2d donné en parametre
+// dernier elem = premier ...
 void reversePath(VECT2D ** path)
 {
     int n;
@@ -481,14 +492,15 @@ void reversePath(VECT2D ** path)
     }
 }
 
-
+// Calcule et retourne la prochaine acceleration à prendre selon la vitesse et la position
 VECT2D nextAcceleration(VECT2D ** path, VECT2D* position, VECT2D* lastSpeed, int index){
 
     VECT2D newAcceleration;
 
-    if(path[index +1] == NULL){
+    if(path[index] == NULL){
         newAcceleration.x = 0;
         newAcceleration.y = 0;
+        fprintf(stderr,"LAST Acceleration %d %d, Speed %d %d\n", newAcceleration.x, newAcceleration.y, lastSpeed->x, lastSpeed->y);
         return newAcceleration;
     }
 
@@ -496,13 +508,10 @@ VECT2D nextAcceleration(VECT2D ** path, VECT2D* position, VECT2D* lastSpeed, int
         newAcceleration.x = (path[index]->x - position->x);
         newAcceleration.y =  path[index]->y - position->y ;
     }else{
-        //fprintf(stderr, "CALCUL: H%d %d - B%d %d - S%d %d", path[index]->x, path[index]->y, path[index-1]->x, path[index -1]->y, lastSpeed->x, lastSpeed->y);
+        fprintf(stderr, "CALCUL: H%d %d - B%d %d - S%d %d", path[index]->x, path[index]->y, path[index-1]->x, path[index -1]->y, lastSpeed->x, lastSpeed->y);
         newAcceleration.x = (path[index]->x - path[index-1]->x)  - lastSpeed->x;
         newAcceleration.y =  (path[index]->y- path[index-1]->y) - lastSpeed->y;
     }
-
-
-    
 
     lastSpeed->x += newAcceleration.x;
     lastSpeed->y += newAcceleration.y;
@@ -513,3 +522,11 @@ VECT2D nextAcceleration(VECT2D ** path, VECT2D* position, VECT2D* lastSpeed, int
     return newAcceleration;
 
 }
+/*
+void generate_heat_map(NODE *** nodesMap, int width, int height, heatPoint * heatList){
+    for(int y = 0; y < height; y++){
+        for(int x = 0; x< width; x++){
+            
+        }
+    }
+}*/

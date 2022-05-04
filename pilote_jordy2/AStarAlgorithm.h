@@ -19,6 +19,10 @@ typedef struct vect2D{
     int x,y;
 } VECT2D;
 
+typedef struct heatPoint{
+    int x,y,intensity;
+} heatPoint;
+
 typedef struct node{
     char bObstacle;
     char bVisited;
@@ -33,13 +37,16 @@ typedef struct node{
     struct node* parent;        //One element
 
     //add
-    char border;
     char end;
 } NODE;
 
+/**
+ * @brief Retourne la liste avec toutes les vitesses possible 
+ */
 VECT2D * generateListIndex();
 
 NODE * createNode();
+
 
 NODE*** createNodeMap(VECT2D* tab,int width, int height);
 
@@ -58,14 +65,18 @@ float distance(NODE * nodeA, NODE * nodeB);
 int findIndex(VECT2D* tab,char speedX, char speedY);
 
 float heuristic(NODE * nodeA, NODE * nodeB);
-float heuristicEnd(NODE * nodeA, NODE * nodeB);
+
 void reversePath(VECT2D ** path);
 
-void Solve_AStar(NODE *** nodes, int width, int height, NODE * nodeStart, NODE * nodeEnd);
+NODE* Solve_AStar(NODE *** nodes, int width, int height, NODE * nodeStart, NODE * nodeEnd, int carburant);
 
-VECT2D ** get_path(NODE *** nodes, int width, int height, NODE * nodeStart, NODE * nodeEnd);
+VECT2D ** get_path(NODE *** nodes, int width, int height, NODE * nodeStart, NODE * nodeEnd, int carburant);
 
 VECT2D nextAcceleration(VECT2D ** path, VECT2D* position,VECT2D* lastSpeed, int index);
+
+void generate_heat_map(NODE *** nodesMap, int width, int height, heatPoint * heatList);
+
+int gasConsumption(int accX, int accY, int speedX, int speedY, int inSand);
 
 #endif
 

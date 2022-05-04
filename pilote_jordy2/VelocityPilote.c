@@ -9,29 +9,6 @@
 #define MAX_LINE_LENGTH 1024
 #define BOOSTS_AT_START 5
 
-/**
- * @brief Compute the gas consumption of a requested acceleration
- *
- * CAUTION: Even an illegal move will result in gas consumption. Producing
- * illegal moves should be prevented as much as possible!
- *
- * @param accX Acceleration x component
- * @param accY Acceleration y component
- * @param speedX Speed x component
- * @param speedY Speed y component
- * @param inSand (boolean)
- * @return Number of gas units consumed
- */
-int gasConsumption(int accX, int accY, int speedX, int speedY, int inSand)
-{
-  int gas = accX * accX + accY * accY;
-  gas += (int)(sqrt(speedX * speedX + speedY * speedY) * 3.0 / 2.0);
-  if (inSand) {
-    gas += 1;
-  }
-  return -gas;
-}
-
 int main()
 {
 
@@ -70,7 +47,7 @@ int main()
   VECT2D *findex = generateListIndex();
 
 
-
+  //opti ce truc
   NODE *** mapNodes = createNodeMap(findex,mapWidth,mapHeight);
   NODE * nodeEnd = NULL;
   NODE * nodeStart = NULL;
@@ -103,7 +80,7 @@ int main()
   }
 
   //fprintf(stderr, "NODE MAP %d %d\n", mapWidth, mapHeight);
-  //display_node_map(mapNodes, mapWidth, mapHeight,NULL);
+  display_node_map(mapNodes, mapWidth, mapHeight,NULL);
 
   //=================================================================//
 
@@ -113,7 +90,7 @@ int main()
 
   while (!feof(stdin)) {
 
-     fprintf(stderr, "\nSTART ROUND %d \n",round);
+     //fprintf(stderr, "\nSTART ROUND %d \n",round);
 
     if(cpu_time_used != -1){
       start = clock();
@@ -121,7 +98,7 @@ int main()
 
       fgets(line_buffer, MAX_LINE_LENGTH, stdin);   // Read positions of pilots
 
-      fprintf(stderr, "\nAFTER GETS\n");
+      //fprintf(stderr, "\nAFTER GETS\n");
 
       sscanf(line_buffer, "%d %d %d %d %d %d",
             &player1Position.x, &player1Position.y, 
@@ -130,18 +107,18 @@ int main()
 
     if(round == 0){
         fprintf(stderr, "START PATH FINDING\n");
-      nodeStart = mapNodes[player1Position.y * mapWidth + player1Position.x][findIndex(findex,0,0)];
+        nodeStart = mapNodes[player1Position.y * mapWidth + player1Position.x][findIndex(findex,0,0)];
 
 
-      path = get_path(mapNodes,mapWidth,mapHeight, nodeStart, nodeEnd);
+        path = get_path(mapNodes,mapWidth,mapHeight, nodeStart, nodeEnd, gaslevel);
       
-        //fprintf(stderr, "END PATH FINDING\n");
-      //display_node_map(mapNodes,mapWidth,mapHeight,path);
+      fprintf(stderr, "END PATH FINDING\n");
+      display_node_map(mapNodes,mapWidth,mapHeight,path);
       //display_node_map(mapNodes,mapWidth,mapHeight,NULL);
 
       reversePath(path);
       fprintf(stderr, "END PATH FINDING\n");
-      //display_node_map(mapNodes,mapWidth,mapHeight,path);
+      display_node_map(mapNodes,mapWidth,mapHeight,path);
 
       /*LastPosition.x = 0;
       LastPosition.y = 0;*/
@@ -184,10 +161,6 @@ int main()
     fprintf(stderr, "    Action: %s   Gas remaining: %d\n\n", action, 0);
     fprintf(stderr, "\nSENT\n\n");
     fflush(stderr);
-
-  
-
-
 
   }
 
