@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'gpdriverselector.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.8
+** Created by: Qt User Interface Compiler version 5.9.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,10 +10,13 @@
 #define UI_GPDRIVERSELECTOR_H
 
 #include <QtCore/QVariant>
+#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -35,7 +38,7 @@ public:
     void setupUi(QWidget *GPDriverSelector)
     {
         if (GPDriverSelector->objectName().isEmpty())
-            GPDriverSelector->setObjectName(QString::fromUtf8("GPDriverSelector"));
+            GPDriverSelector->setObjectName(QStringLiteral("GPDriverSelector"));
         GPDriverSelector->resize(247, 96);
         QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
         sizePolicy.setHorizontalStretch(0);
@@ -43,12 +46,12 @@ public:
         sizePolicy.setHeightForWidth(GPDriverSelector->sizePolicy().hasHeightForWidth());
         GPDriverSelector->setSizePolicy(sizePolicy);
         verticalLayout = new QVBoxLayout(GPDriverSelector);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(2, 2, 2, 2);
         horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         label = new QLabel(GPDriverSelector);
-        label->setObjectName(QString::fromUtf8("label"));
+        label->setObjectName(QStringLiteral("label"));
         QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Preferred);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
@@ -58,7 +61,7 @@ public:
         horizontalLayout_2->addWidget(label);
 
         comboBox = new QComboBox(GPDriverSelector);
-        comboBox->setObjectName(QString::fromUtf8("comboBox"));
+        comboBox->setObjectName(QStringLiteral("comboBox"));
 
         horizontalLayout_2->addWidget(comboBox);
 
@@ -66,14 +69,14 @@ public:
         verticalLayout->addLayout(horizontalLayout_2);
 
         horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         cbEnable = new QCheckBox(GPDriverSelector);
-        cbEnable->setObjectName(QString::fromUtf8("cbEnable"));
+        cbEnable->setObjectName(QStringLiteral("cbEnable"));
 
         horizontalLayout->addWidget(cbEnable);
 
         debug = new QCheckBox(GPDriverSelector);
-        debug->setObjectName(QString::fromUtf8("debug"));
+        debug->setObjectName(QStringLiteral("debug"));
         QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Fixed);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
@@ -87,13 +90,13 @@ public:
         verticalLayout->addLayout(horizontalLayout);
 
         info = new QLabel(GPDriverSelector);
-        info->setObjectName(QString::fromUtf8("info"));
+        info->setObjectName(QStringLiteral("info"));
         QSizePolicy sizePolicy3(QSizePolicy::Preferred, QSizePolicy::Minimum);
         sizePolicy3.setHorizontalStretch(0);
         sizePolicy3.setVerticalStretch(0);
         sizePolicy3.setHeightForWidth(info->sizePolicy().hasHeightForWidth());
         info->setSizePolicy(sizePolicy3);
-        info->setText(QString::fromUtf8(""));
+        info->setText(QStringLiteral(""));
         info->setAlignment(Qt::AlignHCenter|Qt::AlignTop);
 
         verticalLayout->addWidget(info);
@@ -106,13 +109,13 @@ public:
 
     void retranslateUi(QWidget *GPDriverSelector)
     {
-        GPDriverSelector->setWindowTitle(QApplication::translate("GPDriverSelector", "Form", nullptr));
-        label->setText(QApplication::translate("GPDriverSelector", "TextLabel", nullptr));
-        cbEnable->setText(QApplication::translate("GPDriverSelector", "Enable", nullptr));
+        GPDriverSelector->setWindowTitle(QApplication::translate("GPDriverSelector", "Form", Q_NULLPTR));
+        label->setText(QApplication::translate("GPDriverSelector", "TextLabel", Q_NULLPTR));
+        cbEnable->setText(QApplication::translate("GPDriverSelector", "Enable", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
-        debug->setToolTip(QApplication::translate("GPDriverSelector", "Show drivers' reachable positions on the map", nullptr));
+        debug->setToolTip(QApplication::translate("GPDriverSelector", "Show drivers' reachable positions on the map", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
-        debug->setText(QApplication::translate("GPDriverSelector", "Valid moves", nullptr));
+        debug->setText(QApplication::translate("GPDriverSelector", "Valid moves", Q_NULLPTR));
     } // retranslateUi
 
 };

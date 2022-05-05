@@ -26,7 +26,7 @@ try: install
 $(DRIVERS_PATH)/$(PILOT_NAME): $(PILOT_NAME)
 	cp $(PILOT_NAME) $(DRIVERS_PATH)
 
-$(PILOT_NAME): $(PILOT_NAME).o $(MORE_FILE).o follow_line.o
+$(PILOT_NAME): $(PILOT_NAME).o $(MORE_FILE).o follow_line.o Queue.o
 	$(CC) $(CFLAGS) $^ -o $@ $(LDLIBS)
 
 #VelocityPilote
@@ -39,6 +39,10 @@ follow_line.o: ../follow_line/follow_line.c ../follow_line/follow_line.h
 
 #AStarAlgorithm
 $(MORE_FILE).o: $(MORE_FILE).c ./$(MORE_FILE).h
+	$(CC) $(CFLAGS) -I ./ $< -c -o $@
+
+#Queue
+Queue.o: Queue.c ./Queue.h
 	$(CC) $(CFLAGS) -I ./ $< -c -o $@
 
 
