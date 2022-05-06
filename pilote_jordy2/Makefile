@@ -1,53 +1,42 @@
-
+FOLDER = pilote_jordy2
 PILOT_NAME = VelocityPilote
-
 MORE_FILE = AStarAlgorithm
-
+OBJ = ./obj/
+SRC = ./src/
+HEADER = ./include/
+BIN = ./bin/
 CC = gcc
-CFLAGS = -Wall -Wextra -pedantic -Wpedantic -g -O3
+CFLAGS = -Wall -Wextra -pedantic -Wpedantic -g -O3 -I $(HEADER)
 LDLIBS = -lm
-
-SANITIZE=off
-ifeq ($(SANITIZE),on)
-CFLAGS += -fsanitize=address
-endif
-
-.PHONY: all clean distclean install try
-
 DRIVERS_PATH = ../drivers
 
-all: $(PILOT_NAME)
+.PHONY: all install clean
+
+all: $(BIN)$(PILOT_NAME) install clean
 
 install: $(DRIVERS_PATH)/$(PILOT_NAME)
 
-try: install
-	cd .. ; ./GrandPrix
+$(DRIVERS_PATH)/$(PILOT_NAME): $(BIN)$(PILOT_NAME)
+	mv $(BIN)$(PILOT_NAME) $(DRIVERS_PATH)
 
-$(DRIVERS_PATH)/$(PILOT_NAME): $(PILOT_NAME)
-	cp $(PILOT_NAME) $(DRIVERS_PATH)
-
-$(PILOT_NAME): $(PILOT_NAME).o $(MORE_FILE).o follow_line.o Queue.o
+$(BIN)$(PILOT_NAME): $(OBJ)$(PILOT_NAME).o $(OBJ)$(MORE_FILE).o $(OBJ)follow_line.o $(OBJ)Queue.o
 	$(CC) $(CFLAGS) $^ -o $@ $(LDLIBS)
 
 #VelocityPilote
-$(PILOT_NAME).o: $(PILOT_NAME).c
+$(OBJ)$(PILOT_NAME).o: $(SRC)$(PILOT_NAME).c
 	$(CC) $(CFLAGS) -I . $< -c -o $@
 
 #follow_line
-follow_line.o: ../follow_line/follow_line.c ../follow_line/follow_line.h
+$(OBJ)follow_line.o: ../follow_line/follow_line.c ../follow_line/follow_line.h
 	$(CC) $(CFLAGS) -I ../follow_line $< -c -o $@
 
 #AStarAlgorithm
-$(MORE_FILE).o: $(MORE_FILE).c ./$(MORE_FILE).h
+$(OBJ)$(MORE_FILE).o: $(SRC)$(MORE_FILE).c $(HEADER)$(MORE_FILE).h
 	$(CC) $(CFLAGS) -I ./ $< -c -o $@
 
 #Queue
-Queue.o: Queue.c ./Queue.h
+$(OBJ)Queue.o: $(SRC)Queue.c $(HEADER)Queue.h
 	$(CC) $(CFLAGS) -I ./ $< -c -o $@
 
-
-distclean: clean
-	rm -f $(PILOT_NAME)
-
 clean:
-	rm -f ./*~ ./*.o
+	rm $(OBJ)*
