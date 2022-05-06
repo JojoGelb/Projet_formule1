@@ -105,9 +105,9 @@ int main() {
         // fprintf(stderr, "\nAFTER GETS\n");
 
         sscanf(line_buffer, "%d %d %d %d %d %d",
-               &player1Position.x, &player1Position.y,
-               &player2Position.x, &player2Position.y,
-               &player3Position.x, &player3Position.y);
+                &player1Position.x, &player1Position.y,
+                &player2Position.x, &player2Position.y,
+                &player3Position.x, &player3Position.y);
 
         if (round == 0) {
             fprintf(stderr, "START PATH FINDING\n");
@@ -130,8 +130,8 @@ int main() {
 
         // Error on the game we took a full stop and speed reset
         /*if(LastPosition.x == player1Position.x && LastPosition.y == player1Position.y){
-          speed.x = 0;
-          speed.y = 0;
+            speed.x = 0;
+            speed.y = 0;
         }
       */
         // fprintf(stderr, "acceleration: Position joueur: %d %d\n", player1Position.x, player1Position.y);

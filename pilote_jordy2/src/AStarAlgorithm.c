@@ -41,16 +41,15 @@ VECT2D *generateListIndex() {
 }
 
 NODE ***createNodeMap(VECT2D *tab, int width, int height) {
-
+    //on alloue toute la table
     NODE ***nodes = (NODE ***)malloc(width * height * sizeof(NODE **));
-    // fprintf(stderr,"MALLOAC DONE\n");
     for (int x = 0; x < width; x++) {
         for (int y = 0; y < height; y++) {
             nodes[y * width + x] = (NODE **)malloc(NUMBER_OF_SPEED * sizeof(*nodes[y * width + x]));
         }
     }
-    // fprintf(stderr,"TAB DONE\n");
 
+    //on alloue toutes les vitesses (81) associées à chaque noeud
     for (int x = 0; x < width; x++) {
         for (int y = 0; y < height; y++) {
             // UTILISER TAB PLUTOT
@@ -84,7 +83,6 @@ NODE ***createNodeMap(VECT2D *tab, int width, int height) {
     0 1 2
     3 4 5
     6 7 8
-
     */
     int findex = 0;
 
@@ -338,7 +336,7 @@ NODE *Solve_AStar(NODE ***nodes, int width, int height, NODE *nodeStart, NODE *n
 
         for (int i = 0; i < nodeCurrent->numberOfNeighbours; i++) {
             if (!(nodeCurrent->vecNeighbours[i]->bObstacle == TRUE ||
-                  hit_a_wall(nodes, width, nodeCurrent, nodeCurrent->vecNeighbours[i]))) {
+                    hit_a_wall(nodes, width, nodeCurrent, nodeCurrent->vecNeighbours[i]))) {
                 int cout = nodeCurrent->fLocalGoal + distance(nodeCurrent, nodeCurrent->vecNeighbours[i]);
                 int heur = cout + heuristic(nodeCurrent->vecNeighbours[i], nodeEnd);
 
