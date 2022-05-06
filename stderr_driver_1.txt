@@ -250,7 +250,7 @@ START PATH
 END PATH 
 Acceleration 1 -1, Speed 1 -1
 
-Temps utilisé: 0.175905 
+Temps utilisé: 0.155162 
 
     Action: 1 -1   Gas remaining: 0
 
@@ -259,7 +259,7 @@ SENT
 
 CALCUL: H16 11 - B14 13 - S1 -1Acceleration 1 -1, Speed 2 -2
 
-Temps utilisé: 0.000124 
+Temps utilisé: 0.000129 
 
     Action: 1 -1   Gas remaining: 0
 
@@ -268,7 +268,7 @@ SENT
 
 CALCUL: H19 8 - B16 11 - S2 -2Acceleration 1 -1, Speed 3 -3
 
-Temps utilisé: 0.000131 
+Temps utilisé: 0.000124 
 
     Action: 1 -1   Gas remaining: 0
 
@@ -277,7 +277,7 @@ SENT
 
 CALCUL: H23 6 - B19 8 - S3 -3Acceleration 1 1, Speed 4 -2
 
-Temps utilisé: 0.000131 
+Temps utilisé: 0.000121 
 
     Action: 1 1   Gas remaining: 0
 
@@ -295,7 +295,7 @@ SENT
 
 CALCUL: H32 5 - B27 5 - S4 -1Acceleration 1 1, Speed 5 0
 
-Temps utilisé: 0.000132 
+Temps utilisé: 0.000115 
 
     Action: 1 1   Gas remaining: 0
 
@@ -313,7 +313,7 @@ SENT
 
 CALCUL: H40 7 - B36 6 - S4 1Acceleration 0 0, Speed 4 1
 
-Temps utilisé: 0.000128 
+Temps utilisé: 0.000165 
 
     Action: 0 0   Gas remaining: 0
 
@@ -322,7 +322,7 @@ SENT
 
 CALCUL: H43 9 - B40 7 - S4 1Acceleration -1 1, Speed 3 2
 
-Temps utilisé: 0.000129 
+Temps utilisé: 0.000119 
 
     Action: -1 1   Gas remaining: 0
 
@@ -331,7 +331,7 @@ SENT
 
 CALCUL: H45 12 - B43 9 - S3 2Acceleration -1 1, Speed 2 3
 
-Temps utilisé: 0.000126 
+Temps utilisé: 0.000122 
 
     Action: -1 1   Gas remaining: 0
 
@@ -340,7 +340,7 @@ SENT
 
 CALCUL: H46 16 - B45 12 - S2 3Acceleration -1 1, Speed 1 4
 
-Temps utilisé: 0.000132 
+Temps utilisé: 0.000122 
 
     Action: -1 1   Gas remaining: 0
 
@@ -349,7 +349,7 @@ SENT
 
 CALCUL: H46 21 - B46 16 - S1 4Acceleration -1 1, Speed 0 5
 
-Temps utilisé: 0.000132 
+Temps utilisé: 0.000059 
 
     Action: -1 1   Gas remaining: 0
 
@@ -358,7 +358,7 @@ SENT
 
 CALCUL: H45 25 - B46 21 - S0 5Acceleration -1 -1, Speed -1 4
 
-Temps utilisé: 0.000125 
+Temps utilisé: 0.000128 
 
     Action: -1 -1   Gas remaining: 0
 
@@ -367,7 +367,7 @@ SENT
 
 CALCUL: H43 28 - B45 25 - S-1 4Acceleration -1 -1, Speed -2 3
 
-Temps utilisé: 0.000116 
+Temps utilisé: 0.000129 
 
     Action: -1 -1   Gas remaining: 0
 
@@ -376,7 +376,7 @@ SENT
 
 CALCUL: H40 30 - B43 28 - S-2 3Acceleration -1 -1, Speed -3 2
 
-Temps utilisé: 0.000133 
+Temps utilisé: 0.000132 
 
     Action: -1 -1   Gas remaining: 0
 
@@ -385,7 +385,7 @@ SENT
 
 CALCUL: H36 31 - B40 30 - S-3 2Acceleration -1 -1, Speed -4 1
 
-Temps utilisé: 0.000132 
+Temps utilisé: 0.000134 
 
     Action: -1 -1   Gas remaining: 0
 
@@ -394,7 +394,7 @@ SENT
 
 CALCUL: H31 31 - B36 31 - S-4 1Acceleration -1 -1, Speed -5 0
 
-Temps utilisé: 0.000133 
+Temps utilisé: 0.000116 
 
     Action: -1 -1   Gas remaining: 0
 
@@ -403,7 +403,7 @@ SENT
 
 CALCUL: H27 30 - B31 31 - S-5 0Acceleration 1 -1, Speed -4 -1
 
-Temps utilisé: 0.000142 
+Temps utilisé: 0.000134 
 
     Action: 1 -1   Gas remaining: 0
 
@@ -412,7 +412,7 @@ SENT
 
 CALCUL: H23 29 - B27 30 - S-4 -1Acceleration 0 0, Speed -4 -1
 
-Temps utilisé: 0.000132 
+Temps utilisé: 0.000129 
 
     Action: 0 0   Gas remaining: 0
 
@@ -421,7 +421,7 @@ SENT
 
 CALCUL: H19 29 - B23 29 - S-4 -1Acceleration 0 1, Speed -4 0
 
-Temps utilisé: 0.000122 
+Temps utilisé: 0.000121 
 
     Action: 0 1   Gas remaining: 0
 
@@ -430,7 +430,7 @@ SENT
 
 CALCUL: H16 30 - B19 29 - S-4 0Acceleration 1 1, Speed -3 1
 
-Temps utilisé: 0.000124 
+Temps utilisé: 0.000126 
 
     Action: 1 1   Gas remaining: 0
 
@@ -439,7 +439,7 @@ SENT
 
 CALCUL: H13 32 - B16 30 - S-3 1Acceleration 0 1, Speed -3 2
 
-Temps utilisé: 0.000130 
+Temps utilisé: 0.000132 
 
     Action: 0 1   Gas remaining: 0
 
@@ -448,7 +448,7 @@ SENT
 
 CALCUL: H11 35 - B13 32 - S-3 2Acceleration 1 1, Speed -2 3
 
-Temps utilisé: 0.000131 
+Temps utilisé: 0.000129 
 
     Action: 1 1   Gas remaining: 0
 
@@ -457,7 +457,7 @@ SENT
 
 CALCUL: H10 39 - B11 35 - S-2 3Acceleration 1 1, Speed -1 4
 
-Temps utilisé: 0.000141 
+Temps utilisé: 0.000130 
 
     Action: 1 1   Gas remaining: 0
 
@@ -466,7 +466,7 @@ SENT
 
 CALCUL: H10 43 - B10 39 - S-1 4Acceleration 1 0, Speed 0 4
 
-Temps utilisé: 0.000136 
+Temps utilisé: 0.000128 
 
     Action: 1 0   Gas remaining: 0
 
@@ -475,7 +475,7 @@ SENT
 
 CALCUL: H11 46 - B10 43 - S0 4Acceleration 1 -1, Speed 1 3
 
-Temps utilisé: 0.000131 
+Temps utilisé: 0.000126 
 
     Action: 1 -1   Gas remaining: 0
 
@@ -484,7 +484,7 @@ SENT
 
 CALCUL: H13 48 - B11 46 - S1 3Acceleration 1 -1, Speed 2 2
 
-Temps utilisé: 0.000131 
+Temps utilisé: 0.000125 
 
     Action: 1 -1   Gas remaining: 0
 
@@ -493,7 +493,7 @@ SENT
 
 CALCUL: H16 49 - B13 48 - S2 2Acceleration 1 -1, Speed 3 1
 
-Temps utilisé: 0.000130 
+Temps utilisé: 0.000138 
 
     Action: 1 -1   Gas remaining: 0
 
@@ -502,7 +502,7 @@ SENT
 
 CALCUL: H20 50 - B16 49 - S3 1Acceleration 1 0, Speed 4 1
 
-Temps utilisé: 0.000132 
+Temps utilisé: 0.000125 
 
     Action: 1 0   Gas remaining: 0
 
@@ -511,7 +511,7 @@ SENT
 
 CALCUL: H25 50 - B20 50 - S4 1Acceleration 1 -1, Speed 5 0
 
-Temps utilisé: 0.000139 
+Temps utilisé: 0.000122 
 
     Action: 1 -1   Gas remaining: 0
 
@@ -520,7 +520,7 @@ SENT
 
 CALCUL: H30 50 - B25 50 - S5 0Acceleration 0 0, Speed 5 0
 
-Temps utilisé: 0.000131 
+Temps utilisé: 0.000137 
 
     Action: 0 0   Gas remaining: 0
 
@@ -529,7 +529,7 @@ SENT
 
 CALCUL: H35 50 - B30 50 - S5 0Acceleration 0 0, Speed 5 0
 
-Temps utilisé: 0.000130 
+Temps utilisé: 0.000134 
 
     Action: 0 0   Gas remaining: 0
 
@@ -538,7 +538,7 @@ SENT
 
 CALCUL: H39 49 - B35 50 - S5 0Acceleration -1 -1, Speed 4 -1
 
-Temps utilisé: 0.000133 
+Temps utilisé: 0.000131 
 
     Action: -1 -1   Gas remaining: 0
 
@@ -547,7 +547,7 @@ SENT
 
 CALCUL: H43 47 - B39 49 - S4 -1Acceleration 0 -1, Speed 4 -2
 
-Temps utilisé: 0.000132 
+Temps utilisé: 0.000128 
 
     Action: 0 -1   Gas remaining: 0
 
@@ -556,7 +556,7 @@ SENT
 
 CALCUL: H47 44 - B43 47 - S4 -2Acceleration 0 -1, Speed 4 -3
 
-Temps utilisé: 0.000135 
+Temps utilisé: 0.000134 
 
     Action: 0 -1   Gas remaining: 0
 

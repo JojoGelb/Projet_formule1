@@ -26,7 +26,7 @@ int findIndex(VECT2D* tab,char speedX, char speedY){
 VECT2D * generateListIndex(){
   VECT2D * result = (VECT2D*) malloc(NUMBER_OF_SPEED*sizeof(*result));
 
-  int index = 0;
+    int index = 0;
     for(int i=-5; i< 6; i++){
         for(int j=-5; j< 6; j++){
             if(sqrt(pow(i,2)+pow(j,2)) <= 5){
@@ -36,44 +36,36 @@ VECT2D * generateListIndex(){
             }
         }
     }
-  return result;
+    return result;
 }
 
 NODE*** createNodeMap(VECT2D* tab,int width, int height){
 
+    /*alloue la place à tous les node*/
     NODE*** nodes = (NODE***) malloc(width * height *sizeof(NODE**));
-    //fprintf(stderr,"MALLOAC DONE\n");
     for(int x = 0; x < width; x++){
         for(int y = 0; y < height; y++){
-            nodes[y * width + x] = (NODE**) malloc(width * height *sizeof(*nodes[y * width + x]));
+            nodes[y * width + x] = (NODE**) malloc(NUMBER_OF_SPEED *sizeof(*nodes[y * width + x]));
         }
     }
-    //fprintf(stderr,"TAB DONE\n");
 
-
+    /*initialise la vitesse à chacun des noeuds*/
     for(int x = 0; x < width; x++){
         for(int y = 0; y < height; y++){
-
-           int index = 0;
-            // UTILISER TAB PLUTOT
-            for(int i=-5; i< 6; i++){
-                for(int j=-5; j< 6; j++){
-                    if(sqrt(pow(i,2)+pow(j,2)) <= 5){
-                        nodes[y * width + x][index] = createNode();
-                        nodes[y * width + x][index]->speedX = i; 
-                        nodes[y * width + x][index]->speedY = j; 
-                        nodes[y * width + x][index]->x = x; 
-                        nodes[y * width + x][index]->y = y; 
-                        nodes[y * width + x][index]->bObstacle = FALSE; 
-                        nodes[y * width + x][index]->parent = NULL; 
-                        nodes[y * width + x][index]->bVisited = FALSE; 
-                        nodes[y * width + x][index]->end = FALSE; 
-                        index++;
-                    }
-                }
+            for(int i=0; i<NUMBER_OF_SPEED; i++){
+                nodes[y * width + x][i] = createNode();
+                nodes[y * width + x][i]->speedX = tab[i].x; 
+                nodes[y * width + x][i]->speedY = tab[i].y; 
+                nodes[y * width + x][i]->x = x; 
+                nodes[y * width + x][i]->y = y; 
+                nodes[y * width + x][i]->bObstacle = FALSE; 
+                nodes[y * width + x][i]->parent = NULL; 
+                nodes[y * width + x][i]->bVisited = FALSE; 
+                nodes[y * width + x][i]->end = FALSE;                
             }
         }
     }
+
 
     //FAIRE EN SORTE DE RENSEIGNER OBSTACLE EN AVANCE ICI
 
@@ -92,117 +84,117 @@ NODE*** createNodeMap(VECT2D* tab,int width, int height){
     6 7 8
     
     */
-   int findex = 0;
-
+    int findex = 0;
+    /*on set la liste les voisins*/
     for (int x = 0; x < width; x++){
-			for (int y = 0; y < height; y++){
-                for(int i =0; i < NUMBER_OF_SPEED; i++){
-                    int y_prime = y + nodes[y*width + x][i]->speedY;
-                    int x_prime = x + nodes[y*width + x][i]->speedX;
+        for (int y = 0; y < height; y++){
+            for(int i =0; i < NUMBER_OF_SPEED; i++){
+                int y_prime = y + nodes[y*width + x][i]->speedY;
+                int x_prime = x + nodes[y*width + x][i]->speedX;
 
-                    //fprintf(stderr,"\n==============\ni = %d\n Position : %d %d\nSpeed: %d %d\nPrime = %d %d\n\n",i,x,y, nodes[y*width + x][i]->speedX, nodes[y*width + x][i]->speedY, x_prime, y_prime);
+                //fprintf(stderr,"\n==============\ni = %d\n Position : %d %d\nSpeed: %d %d\nPrime = %d %d\n\n",i,x,y, nodes[y*width + x][i]->speedX, nodes[y*width + x][i]->speedY, x_prime, y_prime);
 
-                    bool_t x_in, y_in;
+                bool_t x_in, y_in;
 
-                    x_in = (x_prime >= 0 && x_prime < width);
-                    y_in = (y_prime >= 0 && y_prime < height);
-
-
-                    // 4
-                    if(x_in && y_in){
-                        //fprintf(stderr,"in 4\n");
-                        
-                            nodes[y*width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime) * width + (x_prime)][i];
-                            num_neigh++;
-                        
-                        
-                    }
-
-                    // 1
-                    if(y_prime>0 && y_prime <= height && x_in){
-                        findex = findIndex(tab,nodes[y*width + x][i]->speedX,nodes[y*width + x][i]->speedY-1);
-                        //fprintf(stderr,"in 1: %d\n", findex);
-                        if(findex != -1){
-                            nodes[y*width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime - 1) * width + (x_prime + 0)][findex];
-                            num_neigh++;
-                        }
-                    }
-
-                    // 7
-				    if(y_prime<height-1 && y_prime > -1 && x_in){
-                        findex = findIndex(tab,nodes[y*width + x][i]->speedX,nodes[y*width + x][i]->speedY+1);
-                        //fprintf(stderr,"in 7 : index = %d\n",findex);
-                        if(findex != -1){
-                            nodes[y*width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 1) * width + (x_prime + 0)][findex];
-                            num_neigh++;
-                        }
-                    }
-
-                    // 3
-				    if (x_prime>0 && x_prime <= width && y_in){
-                        findex = findIndex(tab,nodes[y*width + x][i]->speedX-1,nodes[y*width + x][i]->speedY);
-                        //fprintf(stderr,"in 3\n");
-                        if(findex != -1){
-                            nodes[y*width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 0) * width + (x_prime - 1)][findex];
-                            num_neigh++;
-                        }
-                    }
-
-                    // 5
-				    if(x_prime<width-1 && x_prime>=-1 && y_in){
-                        findex = findIndex(tab,nodes[y*width + x][i]->speedX+1,nodes[y*width + x][i]->speedY);
-                        //fprintf(stderr,"in 5\n");
-                        if(findex != -1){
-                            nodes[y*width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 0) * width + (x_prime + 1)][findex];
-                            num_neigh++;
-                        }
-                    }
-                     // 0 carefull not to be out of the map 
-				    if (y_prime>0 && x_prime>0 && x_prime <= width && y_prime <= height){
-                        findex = findIndex(tab,nodes[y*width + x][i]->speedX-1,nodes[y*width + x][i]->speedY-1);
-                        //fprintf(stderr,"in 0\n");
-                        if(findex != -1){
-				    	    nodes[y*width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime - 1) * width + (x_prime - 1)][findex];
-                            num_neigh++;
-                        }
-                    }
-
-                    // 6
-                    if (y_prime<height-1 && x_prime>0 && y_prime >= -1 && x_prime <= width){
-                        findex = findIndex(tab,nodes[y*width + x][i]->speedX-1,nodes[y*width + x][i]->speedY+1);
-                        //fprintf(stderr,"in 6\n");
-                        if(findex != -1){
-				    	    nodes[y*width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 1) * width + (x_prime - 1)][findex];
-                            num_neigh++;
-                        }
-                    }
-
-                    // 2
-                    if (y_prime>0 && x_prime<width-1  && y_prime <= height && x_prime >= -1){
-                        findex = findIndex(tab,nodes[y*width + x][i]->speedX+1,nodes[y*width + x][i]->speedY-1);
-                        //fprintf(stderr,"in 2\n");
-                        if(findex != -1){
-				    	    nodes[y*width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime - 1) * width + (x_prime + 1)][findex];
-                            num_neigh++;
-                        }
-                    }
-
-                    // 8
-                    if (y_prime<height - 1 && x_prime<width-1 && y_prime >= -1 && x_prime >= -1){
-                        findex = findIndex(tab,nodes[y*width + x][i]->speedX+1,nodes[y*width + x][i]->speedY+1);
-                        //fprintf(stderr,"in 8\n");
-                        if(findex != -1){
-				    	    nodes[y*width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 1) * width + (x_prime + 1)][findex];
-                            num_neigh++;
-                        }
-                    }
-
-                    nodes[y*width + x][i]->numberOfNeighbours = num_neigh;
+                x_in = (x_prime >= 0 && x_prime < width);
+                y_in = (y_prime >= 0 && y_prime < height);
 
 
-                    num_neigh = 0;
+                // 4
+                if(x_in && y_in){
+                    //fprintf(stderr,"in 4\n");
+                    
+                        nodes[y*width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime) * width + (x_prime)][i];
+                        num_neigh++;
+                    
+                    
                 }
-			}
+
+                // 1
+                if(y_prime>0 && y_prime <= height && x_in){
+                    findex = findIndex(tab,nodes[y*width + x][i]->speedX,nodes[y*width + x][i]->speedY-1);
+                    //fprintf(stderr,"in 1: %d\n", findex);
+                    if(findex != -1){
+                        nodes[y*width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime - 1) * width + (x_prime + 0)][findex];
+                        num_neigh++;
+                    }
+                }
+
+                // 7
+                if(y_prime<height-1 && y_prime > -1 && x_in){
+                    findex = findIndex(tab,nodes[y*width + x][i]->speedX,nodes[y*width + x][i]->speedY+1);
+                    //fprintf(stderr,"in 7 : index = %d\n",findex);
+                    if(findex != -1){
+                        nodes[y*width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 1) * width + (x_prime + 0)][findex];
+                        num_neigh++;
+                    }
+                }
+
+                // 3
+                if (x_prime>0 && x_prime <= width && y_in){
+                    findex = findIndex(tab,nodes[y*width + x][i]->speedX-1,nodes[y*width + x][i]->speedY);
+                    //fprintf(stderr,"in 3\n");
+                    if(findex != -1){
+                        nodes[y*width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 0) * width + (x_prime - 1)][findex];
+                        num_neigh++;
+                    }
+                }
+
+                // 5
+                if(x_prime<width-1 && x_prime>=-1 && y_in){
+                    findex = findIndex(tab,nodes[y*width + x][i]->speedX+1,nodes[y*width + x][i]->speedY);
+                    //fprintf(stderr,"in 5\n");
+                    if(findex != -1){
+                        nodes[y*width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 0) * width + (x_prime + 1)][findex];
+                        num_neigh++;
+                    }
+                }
+                    // 0 carefull not to be out of the map 
+                if (y_prime>0 && x_prime>0 && x_prime <= width && y_prime <= height){
+                    findex = findIndex(tab,nodes[y*width + x][i]->speedX-1,nodes[y*width + x][i]->speedY-1);
+                    //fprintf(stderr,"in 0\n");
+                    if(findex != -1){
+                        nodes[y*width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime - 1) * width + (x_prime - 1)][findex];
+                        num_neigh++;
+                    }
+                }
+
+                // 6
+                if (y_prime<height-1 && x_prime>0 && y_prime >= -1 && x_prime <= width){
+                    findex = findIndex(tab,nodes[y*width + x][i]->speedX-1,nodes[y*width + x][i]->speedY+1);
+                    //fprintf(stderr,"in 6\n");
+                    if(findex != -1){
+                        nodes[y*width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 1) * width + (x_prime - 1)][findex];
+                        num_neigh++;
+                    }
+                }
+
+                // 2
+                if (y_prime>0 && x_prime<width-1  && y_prime <= height && x_prime >= -1){
+                    findex = findIndex(tab,nodes[y*width + x][i]->speedX+1,nodes[y*width + x][i]->speedY-1);
+                    //fprintf(stderr,"in 2\n");
+                    if(findex != -1){
+                        nodes[y*width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime - 1) * width + (x_prime + 1)][findex];
+                        num_neigh++;
+                    }
+                }
+
+                // 8
+                if (y_prime<height - 1 && x_prime<width-1 && y_prime >= -1 && x_prime >= -1){
+                    findex = findIndex(tab,nodes[y*width + x][i]->speedX+1,nodes[y*width + x][i]->speedY+1);
+                    //fprintf(stderr,"in 8\n");
+                    if(findex != -1){
+                        nodes[y*width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 1) * width + (x_prime + 1)][findex];
+                        num_neigh++;
+                    }
+                }
+
+                nodes[y*width + x][i]->numberOfNeighbours = num_neigh;
+
+
+                num_neigh = 0;
+            }
+        }
 			
     }
 
