@@ -25,6 +25,7 @@ typedef struct heatPoint{
 
 typedef struct node{
     char bObstacle;
+    char sable;
     char bVisited;
     float fGlobalGoal;
     float fLocalGoal;
@@ -37,6 +38,7 @@ typedef struct node{
     struct node* parent;        //One element
 
     //add
+    int distanceToEnd;
     char end;
 } NODE;
 
@@ -74,10 +76,12 @@ VECT2D ** get_path(NODE *** nodes, int width, int height, NODE * nodeStart, NODE
 
 VECT2D nextAcceleration(VECT2D ** path, VECT2D* position,VECT2D* lastSpeed, int index);
 
-void generate_heat_map(NODE *** nodesMap, int width, int height, heatPoint * heatList);
+void generate_heat_map(NODE *** nodesMap, int width, int height, NODE * start, NODE* end);
 
 int gasConsumption(int accX, int accY, int speedX, int speedY, int inSand);
 
+void display_heat_map(NODE *** map, int width, int height);
+
+void sort_heat_list(NODE ** list, int last_push);
+
 #endif
-
-

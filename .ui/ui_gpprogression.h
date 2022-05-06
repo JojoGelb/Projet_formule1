@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'gpprogression.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.8
+** Created by: Qt User Interface Compiler version 5.9.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,9 +10,12 @@
 #define UI_GPPROGRESSION_H
 
 #include <QtCore/QVariant>
+#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QWidget>
@@ -30,7 +33,7 @@ public:
     void setupUi(QWidget *GPProgression)
     {
         if (GPProgression->objectName().isEmpty())
-            GPProgression->setObjectName(QString::fromUtf8("GPProgression"));
+            GPProgression->setObjectName(QStringLiteral("GPProgression"));
         GPProgression->resize(429, 54);
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
@@ -38,16 +41,16 @@ public:
         sizePolicy.setHeightForWidth(GPProgression->sizePolicy().hasHeightForWidth());
         GPProgression->setSizePolicy(sizePolicy);
         gridLayout = new QGridLayout(GPProgression);
-        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
         horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         label = new QLabel(GPProgression);
-        label->setObjectName(QString::fromUtf8("label"));
+        label->setObjectName(QStringLiteral("label"));
 
         horizontalLayout->addWidget(label);
 
         progressBar = new QProgressBar(GPProgression);
-        progressBar->setObjectName(QString::fromUtf8("progressBar"));
+        progressBar->setObjectName(QStringLiteral("progressBar"));
         progressBar->setValue(24);
 
         horizontalLayout->addWidget(progressBar);
@@ -63,8 +66,8 @@ public:
 
     void retranslateUi(QWidget *GPProgression)
     {
-        GPProgression->setWindowTitle(QApplication::translate("GPProgression", "Form", nullptr));
-        label->setText(QApplication::translate("GPProgression", "TextLabel", nullptr));
+        GPProgression->setWindowTitle(QApplication::translate("GPProgression", "Form", Q_NULLPTR));
+        label->setText(QApplication::translate("GPProgression", "TextLabel", Q_NULLPTR));
     } // retranslateUi
 
 };
