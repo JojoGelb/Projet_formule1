@@ -24,7 +24,6 @@ typedef struct heatPoint{
 } heatPoint;
 
 typedef struct node{
-    char bObstacle;
     char sable;
     char bVisited;
     float fGlobalGoal;
@@ -58,7 +57,9 @@ void allocationSpeedForSandNode(NODE ***nodes, VECT2D *tab, int width, int x, in
 
 void allocationSpeedForEndNode(NODE ***nodes, VECT2D *tab, int width, int x, int y);
 
-void findNeighbourForNode(NODE ***nodes, VECT2D *tab, int width, int height, int x, int y);
+void findNeighbourForNormalNode(NODE ***nodes, VECT2D *tab, int width, int height, int x, int y);
+
+void findNeighbourForSandNode(NODE ***nodes, VECT2D *tab, int width, int height, int x, int y);
 
 VECT2D * create_vector(int x, int y);
 

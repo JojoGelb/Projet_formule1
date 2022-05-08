@@ -58,15 +58,11 @@ int main() {
         while (line_buffer[x] != '\0') {
             // IL faut allouer les noeud et leur mettre leur vitesse
             if (line_buffer[x] == '.' || line_buffer[x] == '~') {
-                /*if (line_buffer[x] == '~') {
+                if (line_buffer[x] == '~') {
                     allocationSpeedForSandNode(mapNodes, findex, mapWidth, x, y);
-                    findNeighbourForNode(mapNodes, findex, mapWidth, mapHeight, x, y);
-                    //mapNodes[y * mapWidth + x][i]->bObstacle = TRUE;
-                    
                 } else {
                     mapNodes[y * mapWidth + x] = NULL;
-                }*/
-                mapNodes[y * mapWidth + x] = NULL;
+                }
             }
             else if (line_buffer[x] == '=') {
                 allocationSpeedForEndNode(mapNodes, findex, mapWidth, x, y);
@@ -79,16 +75,20 @@ int main() {
         }
         fputs(line_buffer, stderr);
     }
-    fprintf(stderr, "\nall nodes finished\n");
+    fprintf(stderr, "\nall nodes allocated\n");
 
     for(y=0; y<mapHeight; y++){
         for(x=0; x<mapWidth; x++){
             if(mapNodes[y * mapWidth + x] != NULL){
-                findNeighbourForNode(mapNodes, findex, mapWidth, mapHeight, x, y);
+                if(!mapNodes[y * mapWidth + x][0]->sable){
+                    findNeighbourForNormalNode(mapNodes, findex, mapWidth, mapHeight, x, y);
+                } else {
+                    findNeighbourForSandNode(mapNodes, findex, mapWidth, mapHeight, x, y);
+                }
             }
         }
     }
-    fprintf(stderr, "\nall nodes voisins\n");
+    fprintf(stderr, "\nall nodes have their neigbhourg set\n");
 
     // fprintf(stderr, "NODE MAP %d %d\n", mapWidth, mapHeight);
     //display_node_map(mapNodes, mapWidth, mapHeight, NULL);
@@ -104,7 +104,7 @@ int main() {
 
         // fprintf(stderr, "\nSTART ROUND %d \n",round);
         
-        fprintf(stderr, "\n1\n");
+        //fprintf(stderr, "\n1\n");
         if (cpu_time_used != -1) {
             start = clock();
         }
@@ -112,7 +112,7 @@ int main() {
         fgets(line_buffer, MAX_LINE_LENGTH, stdin); // Read positions of pilots
 
         // fprintf(stderr, "\nAFTER GETS\n");
-        fprintf(stderr, "\n2\n");
+        //fprintf(stderr, "\n2\n");
 
         sscanf(line_buffer, "%d %d %d %d %d %d",
                 &player1Position.x, &player1Position.y,
@@ -123,7 +123,7 @@ int main() {
             fprintf(stderr, "START PATH FINDING\n");
             nodeStart = mapNodes[player1Position.y * mapWidth + player1Position.x][findIndex(findex, 0, 0)];
             generate_heat_map(mapNodes, mapWidth, mapHeight, nodeEnd, nodeStart);
-            
+
             fprintf(stderr, "HEAT_MAP_GENERATED\n");
             path = get_path(mapNodes, mapWidth, mapHeight, nodeStart, nodeEnd, gaslevel);
 

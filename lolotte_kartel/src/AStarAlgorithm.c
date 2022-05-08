@@ -63,7 +63,6 @@ void allocationSpeedForNormalNode(NODE ***nodes, VECT2D *tab, int width, int x, 
         nodes[y * width + x][i]->speedY = tab[i].y;
         nodes[y * width + x][i]->x = x;
         nodes[y * width + x][i]->y = y;
-        nodes[y * width + x][i]->bObstacle = FALSE;
         nodes[y * width + x][i]->parent = NULL;
         nodes[y * width + x][i]->bVisited = FALSE;
         nodes[y * width + x][i]->sable = FALSE;
@@ -80,7 +79,6 @@ void allocationSpeedForSandNode(NODE ***nodes, VECT2D *tab, int width, int x, in
         nodes[y * width + x][i]->speedY = tab[i].y;
         nodes[y * width + x][i]->x = x;
         nodes[y * width + x][i]->y = y;
-        nodes[y * width + x][i]->bObstacle = FALSE;
         nodes[y * width + x][i]->parent = NULL;
         nodes[y * width + x][i]->bVisited = FALSE;
         nodes[y * width + x][i]->sable = TRUE;
@@ -97,7 +95,6 @@ void allocationSpeedForEndNode(NODE ***nodes, VECT2D *tab, int width, int x, int
         nodes[y * width + x][i]->speedY = tab[i].y;
         nodes[y * width + x][i]->x = x;
         nodes[y * width + x][i]->y = y;
-        nodes[y * width + x][i]->bObstacle = FALSE;
         nodes[y * width + x][i]->parent = NULL;
         nodes[y * width + x][i]->bVisited = FALSE;
         nodes[y * width + x][i]->sable = FALSE;
@@ -106,10 +103,127 @@ void allocationSpeedForEndNode(NODE ***nodes, VECT2D *tab, int width, int x, int
 }
 
 /** 
+ * @brief trouve tous les voisins d'un noeud ensablé
+ * @TODO on peut facilement simplifier l'algo
+ */ 
+void findNeighbourForSandNode(NODE ***nodes, VECT2D *tab, int width, int height, int x, int y){
+
+    int speedForSand[9] = {31,40,41,42,51}; //les seules posibilitées de vitesses pour le sable
+    int num_neigh = 0;
+    bool_t x_in, y_in;
+    int findex = 0;
+    int y_prime, x_prime;
+    int i,j;
+
+    for (int j = 0; j < 5; j++) {
+        i = speedForSand[j];
+        y_prime = y + nodes[y * width + x][i]->speedY;
+        x_prime = x + nodes[y * width + x][i]->speedX;
+
+        //fprintf(stderr,"\n==============\ni = %d\n Position : %d %d\nSpeed: %d %d\nPrime = %d %d\n\n",i,x,y, nodes[y*width + x][i]->speedX, nodes[y*width + x][i]->speedY, x_prime, y_prime);
+
+        x_in = (x_prime >= 0 && x_prime < width);
+        y_in = (y_prime >= 0 && y_prime < height);
+
+        // 4
+        if (x_in && y_in && nodes[(y_prime)*width + (x_prime)] != NULL) {
+            //fprintf(stderr,"in 4\n");
+
+            nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime)*width + (x_prime)][i];
+            num_neigh++;
+        }
+
+        // 1
+        if (y_prime > 0 && y_prime <= height && x_in && nodes[(y_prime - 1) * width + (x_prime + 0)] != NULL) {
+            findex = findIndex(tab, nodes[y * width + x][i]->speedX, nodes[y * width + x][i]->speedY - 1);
+            //fprintf(stderr,"in 1: %d\n", findex);
+            if (findex != -1) {
+                nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime - 1) * width + (x_prime + 0)][findex];
+                num_neigh++;
+            }
+        }
+
+        // 7
+        if (y_prime < height - 1 && y_prime > -1 && x_in && nodes[(y_prime + 1) * width + (x_prime + 0)] != NULL) {
+            findex = findIndex(tab, nodes[y * width + x][i]->speedX, nodes[y * width + x][i]->speedY + 1);
+            //fprintf(stderr,"in 7 : index = %d\n",findex);
+            if (findex != -1) {
+                nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 1) * width + (x_prime + 0)][findex];
+                num_neigh++;
+            }
+        }
+
+        // 3
+        if (x_prime > 0 && x_prime <= width && y_in && nodes[(y_prime + 0) * width + (x_prime - 1)] != NULL) {
+            findex = findIndex(tab, nodes[y * width + x][i]->speedX - 1, nodes[y * width + x][i]->speedY);
+            //fprintf(stderr,"in 3\n");
+            if (findex != -1) {
+                nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 0) * width + (x_prime - 1)][findex];
+                num_neigh++;
+            }
+        }
+
+        // 5
+        if (x_prime < width - 1 && x_prime >= -1 && y_in && nodes[(y_prime + 0) * width + (x_prime + 1)] != NULL) {
+            findex = findIndex(tab, nodes[y * width + x][i]->speedX + 1, nodes[y * width + x][i]->speedY);
+            //fprintf(stderr,"in 5\n");
+            if (findex != -1) {
+                nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 0) * width + (x_prime + 1)][findex];
+                num_neigh++;
+            }
+        }
+        // 0 carefull not to be out of the map
+        if (y_prime > 0 && x_prime > 0 && x_prime <= width && y_prime <= height && nodes[(y_prime - 1) * width + (x_prime - 1)] != NULL) {
+            findex = findIndex(tab, nodes[y * width + x][i]->speedX - 1, nodes[y * width + x][i]->speedY - 1);
+            //fprintf(stderr,"in 0\n");
+            if (findex != -1) {
+                nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime - 1) * width + (x_prime - 1)][findex];
+                num_neigh++;
+            }
+        }
+
+        // 6
+        if (y_prime < height - 1 && x_prime > 0 && y_prime >= -1 && x_prime <= width && nodes[(y_prime + 1) * width + (x_prime - 1)]!= NULL) {
+            findex = findIndex(tab, nodes[y * width + x][i]->speedX - 1, nodes[y * width + x][i]->speedY + 1);
+            //fprintf(stderr,"in 6\n");
+            if (findex != -1) {
+                nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 1) * width + (x_prime - 1)][findex];
+                num_neigh++;
+            }
+        }
+
+        // 2
+        if (y_prime > 0 && x_prime < width - 1 && y_prime <= height && x_prime >= -1 && nodes[(y_prime - 1) * width + (x_prime + 1)]!= NULL) {
+            findex = findIndex(tab, nodes[y * width + x][i]->speedX + 1, nodes[y * width + x][i]->speedY - 1);
+            //fprintf(stderr,"in 2\n");
+            if (findex != -1) {
+                nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime - 1) * width + (x_prime + 1)][findex];
+                num_neigh++;
+            }
+        }
+
+        // 8
+        if (y_prime < height - 1 && x_prime < width - 1 && y_prime >= -1 && x_prime >= -1 && nodes[(y_prime + 1) * width + (x_prime + 1)] != NULL ) {
+            findex = findIndex(tab, nodes[y * width + x][i]->speedX + 1, nodes[y * width + x][i]->speedY + 1);
+            //fprintf(stderr,"in 8\n");
+            if (findex != -1) {
+                nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 1) * width + (x_prime + 1)][findex];
+                num_neigh++;
+            }
+        }
+
+        nodes[y * width + x][i]->numberOfNeighbours = num_neigh;
+
+        num_neigh = 0;
+    }
+}
+
+
+/** 
  * @brief trouve tous les voisins d'un noeud
  * @TODO on peut facilement simplifier l'algo
  */ 
-void findNeighbourForNode(NODE ***nodes, VECT2D *tab, int width, int height, int x, int y){
+void findNeighbourForNormalNode(NODE ***nodes, VECT2D *tab, int width, int height, int x, int y){
 
     int num_neigh = 0;
     bool_t x_in, y_in;
@@ -231,7 +345,7 @@ int hit_a_wall(NODE ***nodeMap, int width, NODE *start, NODE *stop) {
                 /* We suppose that the start position is not worth visiting! */
                 continue;
             }
-            if (nodeMap[p.y * width + p.x]==NULL ) {
+            if (nodeMap[p.y * width + p.x]==NULL) {
                 return 1;
             }
         }
@@ -356,7 +470,8 @@ NODE *Solve_AStar(NODE ***nodes, int width, int height, NODE *nodeStart, NODE *n
         }
 
         for (int i = 0; i < nodeCurrent->numberOfNeighbours; i++) {
-            if (!(nodeCurrent->vecNeighbours[i] == NULL || hit_a_wall(nodes, width, nodeCurrent, nodeCurrent->vecNeighbours[i]))) {
+            // si le hastar plante, vérifier si on doit changer les if (cas où l'on vérifie ->sable sur un noeud null)
+            if (!(nodeCurrent->vecNeighbours[i] == NULL || nodeCurrent->vecNeighbours[i]->sable || hit_a_wall(nodes, width, nodeCurrent, nodeCurrent->vecNeighbours[i]))) {
                 int cout = nodeCurrent->fLocalGoal + distance(nodeCurrent, nodeCurrent->vecNeighbours[i]);
                 int heur = cout + heuristic(nodeCurrent->vecNeighbours[i], nodeEnd);
 
@@ -452,7 +567,6 @@ VECT2D **get_path(NODE ***nodes, int width, int height, NODE *nodeStart, NODE *n
     NODE *p = nodeEnd;
 
     p = Solve_AStar(nodes, width, height, nodeStart, nodeEnd, carburant);
-    fprintf(stderr, "HASTAT_SOLVED");
     int i = 0;
     while (p->parent != NULL && p->parent != p) {
         fprintf(stderr, "%d %d - ", p->x, p->y);
