@@ -64,6 +64,9 @@ int main()
             myX, myY, secondX, secondY, thirdX, thirdY);
     fflush(stderr);
     /* Gas consumption cannot be accurate here. */
+    if(speedX == 2){
+      accelerationX = 0;
+    }
     gasLevel += gasConsumption(accelerationX, accelerationY, speedX, speedY, 0);
     speedX += accelerationX;
     speedY += accelerationY;

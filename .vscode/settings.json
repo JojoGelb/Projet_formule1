@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.ts": "bat",
+        "astaralgorithm.h": "c",
+        "cstdlib": "c"
+    }
+}

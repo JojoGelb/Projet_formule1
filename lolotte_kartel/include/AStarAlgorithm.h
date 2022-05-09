@@ -75,7 +75,7 @@ float distance(NODE * nodeA, NODE * nodeB);
 
 int findIndex(VECT2D* tab,char speedX, char speedY);
 
-float heuristic(NODE * nodeA, NODE * nodeB);
+float heuristic(NODE * nodeA);
 
 void reversePath(VECT2D ** path);
 
@@ -85,7 +85,7 @@ VECT2D ** get_path(NODE *** nodes, int width, int height, NODE * nodeStart, NODE
 
 VECT2D nextAcceleration(VECT2D ** path, VECT2D* position,VECT2D* lastSpeed, int index);
 
-void generate_heat_map(NODE *** nodesMap, int width, int height, NODE * start, NODE* end);
+void generate_heat_map(NODE *** nodesMap, int width, int height, NODE * start);
 
 int gasConsumption(int accX, int accY, int speedX, int speedY, int inSand);
 

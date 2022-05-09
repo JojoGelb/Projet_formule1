@@ -122,7 +122,7 @@ int main() {
         if (round == 0) {
             fprintf(stderr, "START PATH FINDING\n");
             nodeStart = mapNodes[player1Position.y * mapWidth + player1Position.x][findIndex(findex, 0, 0)];
-            generate_heat_map(mapNodes, mapWidth, mapHeight, nodeEnd, nodeStart);
+            generate_heat_map(mapNodes, mapWidth, mapHeight, nodeEnd);
 
             fprintf(stderr, "HEAT_MAP_GENERATED\n");
             path = get_path(mapNodes, mapWidth, mapHeight, nodeStart, nodeEnd, gaslevel);

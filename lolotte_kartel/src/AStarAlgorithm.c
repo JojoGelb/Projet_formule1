@@ -42,7 +42,7 @@ VECT2D *generateListIndex() {
 
 /** alloue la place pour toute la map */
 NODE ***createNodeMap(VECT2D *tab, int width, int height) {
-    //on alloue toute la table
+    // on alloue toute la table
     NODE ***nodes = (NODE ***)malloc(width * height * sizeof(NODE **));
     for (int x = 0; x < width; x++) {
         for (int y = 0; y < height; y++) {
@@ -54,8 +54,8 @@ NODE ***createNodeMap(VECT2D *tab, int width, int height) {
 }
 
 /**alloue les 81 vitesses possibles pour un Node normal*/
-void allocationSpeedForNormalNode(NODE ***nodes, VECT2D *tab, int width, int x, int y){
-    //on alloue toutes les vitesses (81) associées à chaque noeud
+void allocationSpeedForNormalNode(NODE ***nodes, VECT2D *tab, int width, int x, int y) {
+    // on alloue toutes les vitesses (81) associées à chaque noeud
 
     for (int i = 0; i < NUMBER_OF_SPEED; i++) {
         nodes[y * width + x][i] = createNode();
@@ -70,8 +70,8 @@ void allocationSpeedForNormalNode(NODE ***nodes, VECT2D *tab, int width, int x, 
     }
 }
 
-void allocationSpeedForSandNode(NODE ***nodes, VECT2D *tab, int width, int x, int y){
-    //on alloue toutes les vitesses (81) associées à chaque noeud
+void allocationSpeedForSandNode(NODE ***nodes, VECT2D *tab, int width, int x, int y) {
+    // on alloue toutes les vitesses (81) associées à chaque noeud
 
     for (int i = 0; i < NUMBER_OF_SPEED; i++) {
         nodes[y * width + x][i] = createNode();
@@ -86,8 +86,8 @@ void allocationSpeedForSandNode(NODE ***nodes, VECT2D *tab, int width, int x, in
     }
 }
 
-void allocationSpeedForEndNode(NODE ***nodes, VECT2D *tab, int width, int x, int y){
-    //on alloue toutes les vitesses (81) associées à chaque noeud
+void allocationSpeedForEndNode(NODE ***nodes, VECT2D *tab, int width, int x, int y) {
+    // on alloue toutes les vitesses (81) associées à chaque noeud
 
     for (int i = 0; i < NUMBER_OF_SPEED; i++) {
         nodes[y * width + x][i] = createNode();
@@ -102,128 +102,161 @@ void allocationSpeedForEndNode(NODE ***nodes, VECT2D *tab, int width, int x, int
     }
 }
 
-/** 
+/**
  * @brief trouve tous les voisins d'un noeud ensablé
  * @TODO on peut facilement simplifier l'algo
- */ 
-void findNeighbourForSandNode(NODE ***nodes, VECT2D *tab, int width, int height, int x, int y){
+ */
+void findNeighbourForSandNode(NODE ***nodes, VECT2D *tab, int width, int height, int x, int y) {
 
-    int speedForSand[9] = {31,40,41,42,51}; //les seules posibilitées de vitesses pour le sable
-    int num_neigh = 0;
-    bool_t x_in, y_in;
-    int findex = 0;
-    int y_prime, x_prime;
-    int i,j;
+    int findex;
+    int num_neigh;
+    int x_prime;
+    int y_prime;
+    int i;
+    int norm;
 
-    for (int j = 0; j < 5; j++) {
-        i = speedForSand[j];
-        y_prime = y + nodes[y * width + x][i]->speedY;
-        x_prime = x + nodes[y * width + x][i]->speedX;
+    for (i = 0; i < NUMBER_OF_SPEED; i++) {
 
-        //fprintf(stderr,"\n==============\ni = %d\n Position : %d %d\nSpeed: %d %d\nPrime = %d %d\n\n",i,x,y, nodes[y*width + x][i]->speedX, nodes[y*width + x][i]->speedY, x_prime, y_prime);
+        x_prime = nodes[y * width + x][i]->x + nodes[y * width + x][i]->speedX;
+        y_prime = nodes[y * width + x][i]->y + nodes[y * width + x][i]->speedY;
 
-        x_in = (x_prime >= 0 && x_prime < width);
-        y_in = (y_prime >= 0 && y_prime < height);
+        num_neigh = 0;
 
-        // 4
-        if (x_in && y_in && nodes[(y_prime)*width + (x_prime)] != NULL) {
-            //fprintf(stderr,"in 4\n");
+        norm = abs(nodes[y * width + x][i]->speedX) + abs(nodes[y * width + x][i]->speedY);
 
-            nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime)*width + (x_prime)][i];
+        //Speed == 0
+        if (norm == 0) {
+            // UP
+            if (y_prime > 0 && nodes[(y_prime - 1) * width + (x_prime + 0)] != NULL) {
+                findex = findIndex(tab, nodes[y * width + x][i]->speedX, nodes[y * width + x][i]->speedY - 1);
+                if (findex != -1) {
+                    nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime - 1) * width + (x_prime + 0)][findex];
+                    num_neigh++;
+                }
+            }
+
+            // DOWN
+            if (y_prime < height - 1 && nodes[(y_prime + 1) * width + (x_prime)] != NULL) {
+                findex = findIndex(tab, nodes[y * width + x][i]->speedX, nodes[y * width + x][i]->speedY + 1);
+                if (findex != -1) {
+                    nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 1) * width + (x_prime)][findex];
+                    num_neigh++;
+                }
+            }
+
+            // LEFT
+            if (x_prime > 0 && nodes[(y_prime)*width + (x_prime - 1)] != NULL) {
+                findex = findIndex(tab, nodes[y * width + x][i]->speedX - 1, nodes[y * width + x][i]->speedY);
+                if (findex != -1) {
+                    nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime)*width + (x_prime - 1)][findex];
+                    num_neigh++;
+                }
+            }
+
+            // RIGHT
+            if (x_prime < width - 1 && nodes[(y_prime)*width + (x_prime + 1)] != NULL) {
+                findex = findIndex(tab, nodes[y * width + x][i]->speedX + 1, nodes[y * width + x][i]->speedY);
+                if (findex != -1) {
+                    nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime)*width + (x_prime + 1)][findex];
+                    num_neigh++;
+                }
+            }
+        } else if (norm == 1) { // Speed x = 1 or -1 || Speed y = -1 or 1
+            // Slow down on every sides: CENTER POSITION
+            nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[y * width + x][findIndex(tab, 0, 0)];
+            num_neigh++;
+            
+            if (nodes[y * width + x][i]->speedX == 1) {
+                // NO MOOVE : RIGHT
+                if (x < width - 1 && nodes[y * width + (x + 1)] != NULL) {
+                    nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[y * width + (x + 1)][i];
+                    num_neigh++;
+                }
+                // TOP
+                if (nodes[(y - 1) * width + x] != NULL) {
+                    findex = findIndex(tab, 0, -1);
+                    nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y - 1) * width + x][findex];
+                    num_neigh++;
+                }
+
+                // Bottom
+                if (nodes[(y + 1) * width + x] != NULL) {
+                    findex = findIndex(tab, 0, 1);
+                    nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y + 1) * width + x][findex];
+                    num_neigh++;
+                }
+
+            } else if (nodes[y * width + x][i]->speedX == -1) {
+                // NO MOOVE : LEFT
+                if (x > 0 && nodes[y * width + (x - 1)] != NULL) {
+                    nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[y * width + (x - 1)][i];
+                    num_neigh++;
+                }
+                // TOP
+                if (nodes[(y - 1) * width + x] != NULL) {
+                    findex = findIndex(tab, 0, -1);
+                    nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y - 1) * width + x][findex];
+                    num_neigh++;
+                }
+
+                // Bottom
+                if (nodes[(y + 1) * width + x] != NULL) {
+                    findex = findIndex(tab, 0, 1);
+                    nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y + 1) * width + x][findex];
+                    num_neigh++;
+                }
+            } else if (nodes[y * width + x][i]->speedY == 1) {
+                // NO MOOVE : BOTTOM
+                if (y < height - 1 && nodes[(y + 1) * width + x] != NULL) {
+                    nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y + 1) * width + x][i];
+                    num_neigh++;
+                }
+                // LEFT
+                if (nodes[y * width + (x - 1)] != NULL) {
+                    findex = findIndex(tab, -1, 0);
+                    nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[y * width + (x - 1)][findex];
+                    num_neigh++;
+                }
+
+                // RIGHT
+                if (nodes[y * width + (x+1)] != NULL) {
+                    findex = findIndex(tab, 1, 0);
+                    nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[y * width + (x + 1)][findex];
+                    num_neigh++;
+                }
+            } else if (nodes[y * width + x][i]->speedY == -1) {
+                // NO MOOVE : TOP
+                if (y > 0 && nodes[(y - 1) * width + x] != NULL) {
+                    nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y-1) * width + x][i];
+                    num_neigh++;
+                }
+                // LEFT
+                if (nodes[y * width + (x - 1)] != NULL) {
+                    findex = findIndex(tab, -1, 0);
+                    nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[y * width + (x - 1)][findex];
+                    num_neigh++;
+                }
+                // RIGHT
+                if (nodes[y * width + (x+1)] != NULL) {
+                    findex = findIndex(tab, 1, 0);
+                    nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[y * width + (x + 1)][findex];
+                    num_neigh++;
+                }
+            }
+        } else { //Too fast to slow down: crash next round = speed 0,0
+            nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[y * width + x][findIndex(tab, 0, 0)];
             num_neigh++;
         }
 
-        // 1
-        if (y_prime > 0 && y_prime <= height && x_in && nodes[(y_prime - 1) * width + (x_prime + 0)] != NULL) {
-            findex = findIndex(tab, nodes[y * width + x][i]->speedX, nodes[y * width + x][i]->speedY - 1);
-            //fprintf(stderr,"in 1: %d\n", findex);
-            if (findex != -1) {
-                nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime - 1) * width + (x_prime + 0)][findex];
-                num_neigh++;
-            }
-        }
-
-        // 7
-        if (y_prime < height - 1 && y_prime > -1 && x_in && nodes[(y_prime + 1) * width + (x_prime + 0)] != NULL) {
-            findex = findIndex(tab, nodes[y * width + x][i]->speedX, nodes[y * width + x][i]->speedY + 1);
-            //fprintf(stderr,"in 7 : index = %d\n",findex);
-            if (findex != -1) {
-                nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 1) * width + (x_prime + 0)][findex];
-                num_neigh++;
-            }
-        }
-
-        // 3
-        if (x_prime > 0 && x_prime <= width && y_in && nodes[(y_prime + 0) * width + (x_prime - 1)] != NULL) {
-            findex = findIndex(tab, nodes[y * width + x][i]->speedX - 1, nodes[y * width + x][i]->speedY);
-            //fprintf(stderr,"in 3\n");
-            if (findex != -1) {
-                nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 0) * width + (x_prime - 1)][findex];
-                num_neigh++;
-            }
-        }
-
-        // 5
-        if (x_prime < width - 1 && x_prime >= -1 && y_in && nodes[(y_prime + 0) * width + (x_prime + 1)] != NULL) {
-            findex = findIndex(tab, nodes[y * width + x][i]->speedX + 1, nodes[y * width + x][i]->speedY);
-            //fprintf(stderr,"in 5\n");
-            if (findex != -1) {
-                nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 0) * width + (x_prime + 1)][findex];
-                num_neigh++;
-            }
-        }
-        // 0 carefull not to be out of the map
-        if (y_prime > 0 && x_prime > 0 && x_prime <= width && y_prime <= height && nodes[(y_prime - 1) * width + (x_prime - 1)] != NULL) {
-            findex = findIndex(tab, nodes[y * width + x][i]->speedX - 1, nodes[y * width + x][i]->speedY - 1);
-            //fprintf(stderr,"in 0\n");
-            if (findex != -1) {
-                nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime - 1) * width + (x_prime - 1)][findex];
-                num_neigh++;
-            }
-        }
-
-        // 6
-        if (y_prime < height - 1 && x_prime > 0 && y_prime >= -1 && x_prime <= width && nodes[(y_prime + 1) * width + (x_prime - 1)]!= NULL) {
-            findex = findIndex(tab, nodes[y * width + x][i]->speedX - 1, nodes[y * width + x][i]->speedY + 1);
-            //fprintf(stderr,"in 6\n");
-            if (findex != -1) {
-                nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 1) * width + (x_prime - 1)][findex];
-                num_neigh++;
-            }
-        }
-
-        // 2
-        if (y_prime > 0 && x_prime < width - 1 && y_prime <= height && x_prime >= -1 && nodes[(y_prime - 1) * width + (x_prime + 1)]!= NULL) {
-            findex = findIndex(tab, nodes[y * width + x][i]->speedX + 1, nodes[y * width + x][i]->speedY - 1);
-            //fprintf(stderr,"in 2\n");
-            if (findex != -1) {
-                nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime - 1) * width + (x_prime + 1)][findex];
-                num_neigh++;
-            }
-        }
-
-        // 8
-        if (y_prime < height - 1 && x_prime < width - 1 && y_prime >= -1 && x_prime >= -1 && nodes[(y_prime + 1) * width + (x_prime + 1)] != NULL ) {
-            findex = findIndex(tab, nodes[y * width + x][i]->speedX + 1, nodes[y * width + x][i]->speedY + 1);
-            //fprintf(stderr,"in 8\n");
-            if (findex != -1) {
-                nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 1) * width + (x_prime + 1)][findex];
-                num_neigh++;
-            }
-        }
-
         nodes[y * width + x][i]->numberOfNeighbours = num_neigh;
-
-        num_neigh = 0;
     }
 }
 
-
-/** 
+/**
  * @brief trouve tous les voisins d'un noeud
  * @TODO on peut facilement simplifier l'algo
- */ 
-void findNeighbourForNormalNode(NODE ***nodes, VECT2D *tab, int width, int height, int x, int y){
+ */
+void findNeighbourForNormalNode(NODE ***nodes, VECT2D *tab, int width, int height, int x, int y) {
 
     int num_neigh = 0;
     bool_t x_in, y_in;
@@ -234,14 +267,14 @@ void findNeighbourForNormalNode(NODE ***nodes, VECT2D *tab, int width, int heigh
         y_prime = y + nodes[y * width + x][i]->speedY;
         x_prime = x + nodes[y * width + x][i]->speedX;
 
-        //fprintf(stderr,"\n==============\ni = %d\n Position : %d %d\nSpeed: %d %d\nPrime = %d %d\n\n",i,x,y, nodes[y*width + x][i]->speedX, nodes[y*width + x][i]->speedY, x_prime, y_prime);
+        // fprintf(stderr,"\n==============\ni = %d\n Position : %d %d\nSpeed: %d %d\nPrime = %d %d\n\n",i,x,y, nodes[y*width + x][i]->speedX, nodes[y*width + x][i]->speedY, x_prime, y_prime);
 
         x_in = (x_prime >= 0 && x_prime < width);
         y_in = (y_prime >= 0 && y_prime < height);
 
         // 4
         if (x_in && y_in && nodes[(y_prime)*width + (x_prime)] != NULL) {
-            //fprintf(stderr,"in 4\n");
+            // fprintf(stderr,"in 4\n");
 
             nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime)*width + (x_prime)][i];
             num_neigh++;
@@ -250,7 +283,7 @@ void findNeighbourForNormalNode(NODE ***nodes, VECT2D *tab, int width, int heigh
         // 1
         if (y_prime > 0 && y_prime <= height && x_in && nodes[(y_prime - 1) * width + (x_prime + 0)] != NULL) {
             findex = findIndex(tab, nodes[y * width + x][i]->speedX, nodes[y * width + x][i]->speedY - 1);
-            //fprintf(stderr,"in 1: %d\n", findex);
+            // fprintf(stderr,"in 1: %d\n", findex);
             if (findex != -1) {
                 nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime - 1) * width + (x_prime + 0)][findex];
                 num_neigh++;
@@ -260,7 +293,7 @@ void findNeighbourForNormalNode(NODE ***nodes, VECT2D *tab, int width, int heigh
         // 7
         if (y_prime < height - 1 && y_prime > -1 && x_in && nodes[(y_prime + 1) * width + (x_prime + 0)] != NULL) {
             findex = findIndex(tab, nodes[y * width + x][i]->speedX, nodes[y * width + x][i]->speedY + 1);
-            //fprintf(stderr,"in 7 : index = %d\n",findex);
+            // fprintf(stderr,"in 7 : index = %d\n",findex);
             if (findex != -1) {
                 nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 1) * width + (x_prime + 0)][findex];
                 num_neigh++;
@@ -270,7 +303,7 @@ void findNeighbourForNormalNode(NODE ***nodes, VECT2D *tab, int width, int heigh
         // 3
         if (x_prime > 0 && x_prime <= width && y_in && nodes[(y_prime + 0) * width + (x_prime - 1)] != NULL) {
             findex = findIndex(tab, nodes[y * width + x][i]->speedX - 1, nodes[y * width + x][i]->speedY);
-            //fprintf(stderr,"in 3\n");
+            // fprintf(stderr,"in 3\n");
             if (findex != -1) {
                 nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 0) * width + (x_prime - 1)][findex];
                 num_neigh++;
@@ -280,7 +313,7 @@ void findNeighbourForNormalNode(NODE ***nodes, VECT2D *tab, int width, int heigh
         // 5
         if (x_prime < width - 1 && x_prime >= -1 && y_in && nodes[(y_prime + 0) * width + (x_prime + 1)] != NULL) {
             findex = findIndex(tab, nodes[y * width + x][i]->speedX + 1, nodes[y * width + x][i]->speedY);
-            //fprintf(stderr,"in 5\n");
+            // fprintf(stderr,"in 5\n");
             if (findex != -1) {
                 nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 0) * width + (x_prime + 1)][findex];
                 num_neigh++;
@@ -289,7 +322,7 @@ void findNeighbourForNormalNode(NODE ***nodes, VECT2D *tab, int width, int heigh
         // 0 carefull not to be out of the map
         if (y_prime > 0 && x_prime > 0 && x_prime <= width && y_prime <= height && nodes[(y_prime - 1) * width + (x_prime - 1)] != NULL) {
             findex = findIndex(tab, nodes[y * width + x][i]->speedX - 1, nodes[y * width + x][i]->speedY - 1);
-            //fprintf(stderr,"in 0\n");
+            // fprintf(stderr,"in 0\n");
             if (findex != -1) {
                 nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime - 1) * width + (x_prime - 1)][findex];
                 num_neigh++;
@@ -297,9 +330,9 @@ void findNeighbourForNormalNode(NODE ***nodes, VECT2D *tab, int width, int heigh
         }
 
         // 6
-        if (y_prime < height - 1 && x_prime > 0 && y_prime >= -1 && x_prime <= width && nodes[(y_prime + 1) * width + (x_prime - 1)]!= NULL) {
+        if (y_prime < height - 1 && x_prime > 0 && y_prime >= -1 && x_prime <= width && nodes[(y_prime + 1) * width + (x_prime - 1)] != NULL) {
             findex = findIndex(tab, nodes[y * width + x][i]->speedX - 1, nodes[y * width + x][i]->speedY + 1);
-            //fprintf(stderr,"in 6\n");
+            // fprintf(stderr,"in 6\n");
             if (findex != -1) {
                 nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 1) * width + (x_prime - 1)][findex];
                 num_neigh++;
@@ -307,9 +340,9 @@ void findNeighbourForNormalNode(NODE ***nodes, VECT2D *tab, int width, int heigh
         }
 
         // 2
-        if (y_prime > 0 && x_prime < width - 1 && y_prime <= height && x_prime >= -1 && nodes[(y_prime - 1) * width + (x_prime + 1)]!= NULL) {
+        if (y_prime > 0 && x_prime < width - 1 && y_prime <= height && x_prime >= -1 && nodes[(y_prime - 1) * width + (x_prime + 1)] != NULL) {
             findex = findIndex(tab, nodes[y * width + x][i]->speedX + 1, nodes[y * width + x][i]->speedY - 1);
-            //fprintf(stderr,"in 2\n");
+            // fprintf(stderr,"in 2\n");
             if (findex != -1) {
                 nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime - 1) * width + (x_prime + 1)][findex];
                 num_neigh++;
@@ -317,9 +350,9 @@ void findNeighbourForNormalNode(NODE ***nodes, VECT2D *tab, int width, int heigh
         }
 
         // 8
-        if (y_prime < height - 1 && x_prime < width - 1 && y_prime >= -1 && x_prime >= -1 && nodes[(y_prime + 1) * width + (x_prime + 1)] != NULL ) {
+        if (y_prime < height - 1 && x_prime < width - 1 && y_prime >= -1 && x_prime >= -1 && nodes[(y_prime + 1) * width + (x_prime + 1)] != NULL) {
             findex = findIndex(tab, nodes[y * width + x][i]->speedX + 1, nodes[y * width + x][i]->speedY + 1);
-            //fprintf(stderr,"in 8\n");
+            // fprintf(stderr,"in 8\n");
             if (findex != -1) {
                 nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[(y_prime + 1) * width + (x_prime + 1)][findex];
                 num_neigh++;
@@ -345,7 +378,7 @@ int hit_a_wall(NODE ***nodeMap, int width, NODE *start, NODE *stop) {
                 /* We suppose that the start position is not worth visiting! */
                 continue;
             }
-            if (nodeMap[p.y * width + p.x]==NULL) {
+            if (nodeMap[p.y * width + p.x] == NULL) {
                 return 1;
             }
         }
@@ -430,7 +463,7 @@ NODE *Solve_AStar(NODE ***nodes, int width, int height, NODE *nodeStart, NODE *n
 
     for (int x = 0; x < width; x++) {
         for (int y = 0; y < height; y++) {
-            if(nodes[y * width + x] != NULL){
+            if (nodes[y * width + x] != NULL) {
                 for (int i = 0; i < NUMBER_OF_SPEED; i++) {
                     nodes[y * width + x][i]->parent = NULL;
                     nodes[y * width + x][i]->bVisited = FALSE;
@@ -471,9 +504,9 @@ NODE *Solve_AStar(NODE ***nodes, int width, int height, NODE *nodeStart, NODE *n
 
         for (int i = 0; i < nodeCurrent->numberOfNeighbours; i++) {
             // si le hastar plante, vérifier si on doit changer les if (cas où l'on vérifie ->sable sur un noeud null)
-            if (!(nodeCurrent->vecNeighbours[i] == NULL || nodeCurrent->vecNeighbours[i]->sable || hit_a_wall(nodes, width, nodeCurrent, nodeCurrent->vecNeighbours[i]))) {
+            if (!(nodeCurrent->vecNeighbours[i] == NULL /*|| nodeCurrent->vecNeighbours[i]->sable*/ || hit_a_wall(nodes, width, nodeCurrent, nodeCurrent->vecNeighbours[i]))) {
                 int cout = nodeCurrent->fLocalGoal + distance(nodeCurrent, nodeCurrent->vecNeighbours[i]);
-                int heur = cout + heuristic(nodeCurrent->vecNeighbours[i], nodeEnd);
+                int heur = cout + heuristic(nodeCurrent->vecNeighbours[i] /*nodeEnd*/);
 
                 if (nodeCurrent->vecNeighbours[i]->fGlobalGoal > heur && contain(open_list, openLastPushIndex, nodeCurrent->vecNeighbours[i], -1)) {
                     continue;
@@ -502,12 +535,12 @@ float distance(NODE *nodeA, NODE *nodeB) {
     // return sqrtf((nodeA->x - nodeB->x)*(nodeA->x - nodeB->x) + ((nodeA->y - nodeB->y)*(nodeA->y - nodeB->y)));
 
     // Distance de manhatan
-    return abs(2 - abs(nodeB->x - nodeA->x - nodeA->speedX) + abs(nodeB->y - nodeA->y - nodeA->speedY));
+    return abs(abs(nodeB->x - nodeA->x - nodeA->speedX) + abs(nodeB->y - nodeA->y - nodeA->speedY));
 }
 
 // Sert à influer la progression de l'algorithme
-float heuristic(NODE *nodeA, NODE *nodeB) {
-    return nodeB->distanceToEnd;//abs(nodeB->x - nodeA->x) + abs(nodeB->x - nodeA->x);
+float heuristic(NODE *nodeA) {
+    return nodeA->distanceToEnd; // abs(nodeB->x - nodeA->x) + abs(nodeB->x - nodeA->x);
 }
 
 // Tri une liste de noeuds selon le global goal
@@ -633,12 +666,13 @@ VECT2D nextAcceleration(VECT2D **path, VECT2D *position, VECT2D *lastSpeed, int 
     return newAcceleration;
 }
 
-void generate_heat_map(NODE ***nodes, int width, int height, NODE *start, NODE *end) {
+void generate_heat_map(NODE ***nodes, int width, int height, NODE *start) {
 
     int lastChange = 1;
+    int poids_sable = 5;
     QUEUE *q = create_queue();
 
-    //Init la QUEUE trié par distance au start
+    // Init la QUEUE trié par distance au start
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
             if (nodes[y * width + x] != NULL) {
@@ -649,7 +683,7 @@ void generate_heat_map(NODE ***nodes, int width, int height, NODE *start, NODE *
                 nodes[y * width + x][0]->fLocalGoal = INT_MAX;
                 nodes[y * width + x][0]->fGlobalGoal = INT_MAX;
 
-                //start first in the list
+                // start first in the list
                 if (x == start->x && y == start->y) {
                     nodes[y * width + x][0]->distanceToEnd = 0;
                     q->tail->next = q->head->next;
@@ -669,7 +703,7 @@ void generate_heat_map(NODE ***nodes, int width, int height, NODE *start, NODE *
     }
 
     QNODE *current = NULL;
-    
+
     while (current != q->tail) {
 
         current = q->head;
@@ -680,87 +714,129 @@ void generate_heat_map(NODE ***nodes, int width, int height, NODE *start, NODE *
         }
 
         if (current->value->distanceToEnd == INT_MAX) {
-            fprintf(stderr,"WEIRD came out too soon of the heat map algorithm\n");
-            //je ne sais pas pk mais tout les algos qui regardent la map finissent par sortir des limites après le dernier point
+            fprintf(stderr, "WEIRD came out too soon of the heat map algorithm\n");
+            // je ne sais pas pk mais tout les algos qui regardent la map finissent par sortir des limites après le dernier point
             break;
         }
 
         lastChange--;
 
-        
         /* check 8 neighbour
         0 1 2
         3 4 5
         6 7 8
         */
-        //display(q);
-        fprintf(stderr, "START NEIGH\n0\n");
-        fprintf(stderr, "%d %d\n", current->value->y, current->value->x);
-        if (current->value->y > 0 && current->value->x > 0 && nodes[(current->value->y - 1) * width + current->value->x - 1] != NULL &&
+        // display(q);
+        // fprintf(stderr, "START NEIGH\n0\n");
+        // fprintf(stderr, "%d %d\n", current->value->y, current->value->x);
+        if (current->value->y > 0 && current->value->x > 0 && current->value->sable == FALSE && nodes[(current->value->y - 1) * width + current->value->x - 1] != NULL &&
             nodes[(current->value->y - 1) * width + current->value->x - 1][0]->distanceToEnd > current->value->distanceToEnd) {
             nodes[(current->value->y - 1) * width + current->value->x - 1][0]->distanceToEnd = current->value->distanceToEnd + 1;
+
+            if (nodes[(current->value->y - 1) * width + current->value->x - 1][0]->sable == TRUE) {
+                nodes[(current->value->y - 1) * width + current->value->x - 1][0]->distanceToEnd = current->value->distanceToEnd + poids_sable;
+            }
+
             nodes[(current->value->y - 1) * width + current->value->x - 1][0]->parent = current->value;
             trierElem(find(nodes[(current->value->y - 1) * width + current->value->x - 1][0], q), q, lastChange);
 
             lastChange++;
         }
-        fprintf(stderr, "1\n");
+        // fprintf(stderr, "1\n");
         if (current->value->y > 0 && nodes[(current->value->y - 1) * width + current->value->x] != NULL &&
             nodes[(current->value->y - 1) * width + current->value->x][0]->distanceToEnd > current->value->distanceToEnd) {
             nodes[(current->value->y - 1) * width + current->value->x][0]->distanceToEnd = current->value->distanceToEnd + 1;
+
+            if (nodes[(current->value->y - 1) * width + current->value->x][0]->sable == TRUE) {
+                nodes[(current->value->y - 1) * width + current->value->x][0]->distanceToEnd = current->value->distanceToEnd + poids_sable;
+            }
+
             nodes[(current->value->y - 1) * width + current->value->x][0]->parent = current->value;
             trierElem(find(nodes[(current->value->y - 1) * width + current->value->x][0], q), q, lastChange);
             lastChange++;
         }
-        fprintf(stderr, "2\n");
-        if (current->value->y > 0 && current->value->x < width - 1 && nodes[(current->value->y - 1) * width + current->value->x + 1] != NULL &&
+        // fprintf(stderr, "2\n");
+        if (current->value->y > 0 && current->value->x < width - 1 && current->value->sable == FALSE &&
+            nodes[(current->value->y - 1) * width + current->value->x + 1] != NULL &&
             nodes[(current->value->y - 1) * width + current->value->x + 1][0]->distanceToEnd > current->value->distanceToEnd) {
             nodes[(current->value->y - 1) * width + current->value->x + 1][0]->distanceToEnd = current->value->distanceToEnd + 1;
+
+            if (nodes[(current->value->y - 1) * width + current->value->x + 1][0]->sable == TRUE) {
+                nodes[(current->value->y - 1) * width + current->value->x + 1][0]->distanceToEnd = current->value->distanceToEnd + poids_sable;
+            }
+
             nodes[(current->value->y - 1) * width + current->value->x + 1][0]->parent = current->value;
             trierElem(find(nodes[(current->value->y - 1) * width + current->value->x + 1][0], q), q, lastChange);
             lastChange++;
         }
 
-        fprintf(stderr, "3\n");
+        // fprintf(stderr, "3\n");
         if (current->value->x > 0 && nodes[current->value->y * width + current->value->x - 1] != NULL &&
             nodes[current->value->y * width + current->value->x - 1][0]->distanceToEnd > current->value->distanceToEnd) {
             nodes[current->value->y * width + current->value->x - 1][0]->distanceToEnd = current->value->distanceToEnd + 1;
+
+            if (nodes[(current->value->y) * width + current->value->x - 1][0]->sable == TRUE) {
+                nodes[(current->value->y) * width + current->value->x - 1][0]->distanceToEnd = current->value->distanceToEnd + poids_sable;
+            }
+
             nodes[current->value->y * width + current->value->x - 1][0]->parent = current->value;
             trierElem(find(nodes[(current->value->y) * width + current->value->x - 1][0], q), q, lastChange);
             lastChange++;
         }
-        fprintf(stderr, "5\n");
+        // fprintf(stderr, "5\n");
         if (current->value->x < width - 1 && nodes[current->value->y * width + current->value->x + 1] != NULL &&
             nodes[current->value->y * width + current->value->x + 1][0]->distanceToEnd > current->value->distanceToEnd) {
             nodes[current->value->y * width + current->value->x + 1][0]->distanceToEnd = current->value->distanceToEnd + 1;
+
+            if (nodes[(current->value->y) * width + current->value->x + 1][0]->sable == TRUE) {
+                nodes[(current->value->y) * width + current->value->x + 1][0]->distanceToEnd = current->value->distanceToEnd + poids_sable;
+            }
+
             nodes[current->value->y * width + current->value->x + 1][0]->parent = current->value;
             trierElem(find(nodes[(current->value->y) * width + current->value->x + 1][0], q), q, lastChange);
             lastChange++;
         }
 
-        fprintf(stderr, "6\n");
-        if (current->value->y < height - 1 && current->value->x > 0 && nodes[(current->value->y + 1) * width + current->value->x - 1] != NULL &&
+        // fprintf(stderr, "6\n");
+        if (current->value->y < height - 1 && current->value->x > 0 && current->value->sable == FALSE &&
+            nodes[(current->value->y + 1) * width + current->value->x - 1] != NULL &&
             nodes[(current->value->y + 1) * width + current->value->x - 1][0]->distanceToEnd > current->value->distanceToEnd) {
             nodes[(current->value->y + 1) * width + current->value->x - 1][0]->distanceToEnd = current->value->distanceToEnd + 1;
+
+            if (nodes[(current->value->y + 1) * width + current->value->x - 1][0]->sable == TRUE) {
+                nodes[(current->value->y + 1) * width + current->value->x - 1][0]->distanceToEnd = current->value->distanceToEnd + poids_sable;
+            }
+
             nodes[(current->value->y + 1) * width + current->value->x - 1][0]->parent = current->value;
-            QNODE* test = find(nodes[(current->value->y + 1) * width + current->value->x - 1][0], q);
-            //fprintf(stderr, "CRASH %d %d %d %d %d %d\n", test->value->x, test->value->y, q->head->value->x,q->head->value->y,q->tail->value->x,q->tail->value->y);
+            QNODE *test = find(nodes[(current->value->y + 1) * width + current->value->x - 1][0], q);
+            // fprintf(stderr, "CRASH %d %d %d %d %d %d\n", test->value->x, test->value->y, q->head->value->x,q->head->value->y,q->tail->value->x,q->tail->value->y);
 
             trierElem(test, q, lastChange);
             lastChange++;
         }
-        fprintf(stderr, "7\n");
+        // fprintf(stderr, "7\n");
         if (current->value->y < height - 1 && nodes[(current->value->y + 1) * width + current->value->x] != NULL &&
             nodes[(current->value->y + 1) * width + current->value->x][0]->distanceToEnd > current->value->distanceToEnd) {
             nodes[(current->value->y + 1) * width + current->value->x][0]->distanceToEnd = current->value->distanceToEnd + 1;
+
+            if (nodes[(current->value->y + 1) * width + current->value->x][0]->sable == TRUE) {
+                nodes[(current->value->y + 1) * width + current->value->x][0]->distanceToEnd = current->value->distanceToEnd + poids_sable;
+            }
+
             nodes[(current->value->y + 1) * width + current->value->x][0]->parent = current->value;
             trierElem(find(nodes[(current->value->y + 1) * width + current->value->x][0], q), q, lastChange);
             lastChange++;
         }
-        fprintf(stderr, "8\n");
-        if (current->value->y < height - 1 && current->value->x < width - 1 && nodes[(current->value->y + 1) * width + current->value->x + 1] != NULL &&
+        // fprintf(stderr, "8\n");
+        if (current->value->y < height - 1 && current->value->x < width - 1 && current->value->sable == FALSE &&
+            nodes[(current->value->y + 1) * width + current->value->x + 1] != NULL &&
             nodes[(current->value->y + 1) * width + current->value->x + 1][0]->distanceToEnd > current->value->distanceToEnd) {
             nodes[(current->value->y + 1) * width + current->value->x + 1][0]->distanceToEnd = current->value->distanceToEnd + 1;
+
+            if (nodes[(current->value->y + 1) * width + current->value->x + 1][0]->sable == TRUE) {
+                nodes[(current->value->y + 1) * width + current->value->x + 1][0]->distanceToEnd = current->value->distanceToEnd + poids_sable;
+            }
+
             nodes[(current->value->y + 1) * width + current->value->x + 1][0]->parent = current->value;
             trierElem(find(nodes[(current->value->y + 1) * width + current->value->x + 1][0], q), q, lastChange);
             lastChange++;
@@ -770,6 +846,7 @@ void generate_heat_map(NODE ***nodes, int width, int height, NODE *start, NODE *
 
     free(q);
 
+    fprintf(stderr, "DISPLAY HEAT MAP\n");
     display_heat_map(nodes, width, height);
 }
 
@@ -795,11 +872,10 @@ void display_heat_map(NODE ***map, int width, int height) {
             if (map[y * width + x] == NULL) {
                 fprintf(stderr, ".");
             } else {
-                //fprintf(stderr, "%d", map[y * width + x][0]->distanceToEnd);
-                fprintf(stderr, "#");
+                fprintf(stderr, "%d", map[y * width + x][0]->distanceToEnd);
+                // fprintf(stderr, "#");
             }
         }
         fprintf(stderr, "\n");
     }
 }
-

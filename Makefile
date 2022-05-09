@@ -35,11 +35,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = GrandPrix1.0.0
-<<<<<<< HEAD
 DISTDIR = /cygdrive/c/Users/jordy/OneDrive/Documents/Cours/Caen/Semestre_2/Projet_formule1/.obj/GrandPrix1.0.0
-=======
-DISTDIR = /cygdrive/c/Users/ellio/Documents/KartelDeFormoula/Projet_formule1/.obj/GrandPrix1.0.0
->>>>>>> 7c77c7ebb772c5074cbe34df3505165f6e9dcd8c
 LINK          = g++
 LFLAGS        = 
 LIBS          = $(SUBLIBS) -lQt5Widgets -lQt5Gui -lQt5Core -lopengl32 -lpthread 
@@ -107,7 +103,6 @@ DIST          = /usr/lib/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt5/mkspecs/common/gcc-base.conf \
 		/usr/lib/qt5/mkspecs/common/g++-base.conf \
 		/usr/lib/qt5/mkspecs/qconfig.pri \
-<<<<<<< HEAD
 		/usr/lib/qt5/mkspecs/modules/qt_lib_3danimation.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_3danimation_private.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_3dcore.pri \
@@ -132,8 +127,6 @@ DIST          = /usr/lib/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_3dquickscene2d_private.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_3drender.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_3drender_private.pri \
-=======
->>>>>>> 7c77c7ebb772c5074cbe34df3505165f6e9dcd8c
 		/usr/lib/qt5/mkspecs/modules/qt_lib_accessibility_support_private.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_bootstrap_private.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_concurrent.pri \
@@ -156,7 +149,6 @@ DIST          = /usr/lib/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_opengl_private.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_openglextensions.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_openglextensions_private.pri \
-<<<<<<< HEAD
 		/usr/lib/qt5/mkspecs/modules/qt_lib_packetprotocol_private.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_printsupport.pri \
@@ -172,11 +164,6 @@ DIST          = /usr/lib/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_quickparticles_private.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_quickwidgets.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_quickwidgets_private.pri \
-=======
-		/usr/lib/qt5/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
-		/usr/lib/qt5/mkspecs/modules/qt_lib_printsupport.pri \
-		/usr/lib/qt5/mkspecs/modules/qt_lib_printsupport_private.pri \
->>>>>>> 7c77c7ebb772c5074cbe34df3505165f6e9dcd8c
 		/usr/lib/qt5/mkspecs/modules/qt_lib_service_support_private.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_sql.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_sql_private.pri \
@@ -254,7 +241,6 @@ Makefile: GrandPrix.pro /usr/lib/qt5/mkspecs/cygwin-g++/qmake.conf /usr/lib/qt5/
 		/usr/lib/qt5/mkspecs/common/gcc-base.conf \
 		/usr/lib/qt5/mkspecs/common/g++-base.conf \
 		/usr/lib/qt5/mkspecs/qconfig.pri \
-<<<<<<< HEAD
 		/usr/lib/qt5/mkspecs/modules/qt_lib_3danimation.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_3danimation_private.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_3dcore.pri \
@@ -279,8 +265,6 @@ Makefile: GrandPrix.pro /usr/lib/qt5/mkspecs/cygwin-g++/qmake.conf /usr/lib/qt5/
 		/usr/lib/qt5/mkspecs/modules/qt_lib_3dquickscene2d_private.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_3drender.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_3drender_private.pri \
-=======
->>>>>>> 7c77c7ebb772c5074cbe34df3505165f6e9dcd8c
 		/usr/lib/qt5/mkspecs/modules/qt_lib_accessibility_support_private.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_bootstrap_private.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_concurrent.pri \
@@ -303,7 +287,6 @@ Makefile: GrandPrix.pro /usr/lib/qt5/mkspecs/cygwin-g++/qmake.conf /usr/lib/qt5/
 		/usr/lib/qt5/mkspecs/modules/qt_lib_opengl_private.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_openglextensions.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_openglextensions_private.pri \
-<<<<<<< HEAD
 		/usr/lib/qt5/mkspecs/modules/qt_lib_packetprotocol_private.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_printsupport.pri \
@@ -319,11 +302,6 @@ Makefile: GrandPrix.pro /usr/lib/qt5/mkspecs/cygwin-g++/qmake.conf /usr/lib/qt5/
 		/usr/lib/qt5/mkspecs/modules/qt_lib_quickparticles_private.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_quickwidgets.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_quickwidgets_private.pri \
-=======
-		/usr/lib/qt5/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
-		/usr/lib/qt5/mkspecs/modules/qt_lib_printsupport.pri \
-		/usr/lib/qt5/mkspecs/modules/qt_lib_printsupport_private.pri \
->>>>>>> 7c77c7ebb772c5074cbe34df3505165f6e9dcd8c
 		/usr/lib/qt5/mkspecs/modules/qt_lib_service_support_private.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_sql.pri \
 		/usr/lib/qt5/mkspecs/modules/qt_lib_sql_private.pri \
@@ -369,7 +347,6 @@ Makefile: GrandPrix.pro /usr/lib/qt5/mkspecs/cygwin-g++/qmake.conf /usr/lib/qt5/
 /usr/lib/qt5/mkspecs/common/gcc-base.conf:
 /usr/lib/qt5/mkspecs/common/g++-base.conf:
 /usr/lib/qt5/mkspecs/qconfig.pri:
-<<<<<<< HEAD
 /usr/lib/qt5/mkspecs/modules/qt_lib_3danimation.pri:
 /usr/lib/qt5/mkspecs/modules/qt_lib_3danimation_private.pri:
 /usr/lib/qt5/mkspecs/modules/qt_lib_3dcore.pri:
@@ -394,8 +371,6 @@ Makefile: GrandPrix.pro /usr/lib/qt5/mkspecs/cygwin-g++/qmake.conf /usr/lib/qt5/
 /usr/lib/qt5/mkspecs/modules/qt_lib_3dquickscene2d_private.pri:
 /usr/lib/qt5/mkspecs/modules/qt_lib_3drender.pri:
 /usr/lib/qt5/mkspecs/modules/qt_lib_3drender_private.pri:
-=======
->>>>>>> 7c77c7ebb772c5074cbe34df3505165f6e9dcd8c
 /usr/lib/qt5/mkspecs/modules/qt_lib_accessibility_support_private.pri:
 /usr/lib/qt5/mkspecs/modules/qt_lib_bootstrap_private.pri:
 /usr/lib/qt5/mkspecs/modules/qt_lib_concurrent.pri:
@@ -418,7 +393,6 @@ Makefile: GrandPrix.pro /usr/lib/qt5/mkspecs/cygwin-g++/qmake.conf /usr/lib/qt5/
 /usr/lib/qt5/mkspecs/modules/qt_lib_opengl_private.pri:
 /usr/lib/qt5/mkspecs/modules/qt_lib_openglextensions.pri:
 /usr/lib/qt5/mkspecs/modules/qt_lib_openglextensions_private.pri:
-<<<<<<< HEAD
 /usr/lib/qt5/mkspecs/modules/qt_lib_packetprotocol_private.pri:
 /usr/lib/qt5/mkspecs/modules/qt_lib_platformcompositor_support_private.pri:
 /usr/lib/qt5/mkspecs/modules/qt_lib_printsupport.pri:
@@ -434,11 +408,6 @@ Makefile: GrandPrix.pro /usr/lib/qt5/mkspecs/cygwin-g++/qmake.conf /usr/lib/qt5/
 /usr/lib/qt5/mkspecs/modules/qt_lib_quickparticles_private.pri:
 /usr/lib/qt5/mkspecs/modules/qt_lib_quickwidgets.pri:
 /usr/lib/qt5/mkspecs/modules/qt_lib_quickwidgets_private.pri:
-=======
-/usr/lib/qt5/mkspecs/modules/qt_lib_platformcompositor_support_private.pri:
-/usr/lib/qt5/mkspecs/modules/qt_lib_printsupport.pri:
-/usr/lib/qt5/mkspecs/modules/qt_lib_printsupport_private.pri:
->>>>>>> 7c77c7ebb772c5074cbe34df3505165f6e9dcd8c
 /usr/lib/qt5/mkspecs/modules/qt_lib_service_support_private.pri:
 /usr/lib/qt5/mkspecs/modules/qt_lib_sql.pri:
 /usr/lib/qt5/mkspecs/modules/qt_lib_sql_private.pri:
@@ -557,11 +526,7 @@ compiler_moc_header_clean:
 		include/grandprix.h \
 		.moc/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-<<<<<<< HEAD
 	/usr/lib/qt5/bin/moc $(DEFINES) --include .moc/moc_predefs.h -I/usr/lib/qt5/mkspecs/cygwin-g++ -I/cygdrive/c/Users/jordy/OneDrive/Documents/Cours/Caen/Semestre_2/Projet_formule1 -I/cygdrive/c/Users/jordy/OneDrive/Documents/Cours/Caen/Semestre_2/Projet_formule1/include -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include include/grandprix.h -o .moc/moc_grandprix.cpp
-=======
-	/usr/lib/qt5/bin/moc $(DEFINES) --include .moc/moc_predefs.h -I/usr/lib/qt5/mkspecs/cygwin-g++ -I/cygdrive/c/Users/ellio/Documents/KartelDeFormoula/Projet_formule1 -I/cygdrive/c/Users/ellio/Documents/KartelDeFormoula/Projet_formule1/include -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include include/grandprix.h -o .moc/moc_grandprix.cpp
->>>>>>> 7c77c7ebb772c5074cbe34df3505165f6e9dcd8c
 
 .moc/moc_gpcontrolview.cpp: include/gpcontrol.h \
 		include/car.h \
@@ -570,88 +535,52 @@ compiler_moc_header_clean:
 		include/gpcontrolview.h \
 		.moc/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-<<<<<<< HEAD
 	/usr/lib/qt5/bin/moc $(DEFINES) --include .moc/moc_predefs.h -I/usr/lib/qt5/mkspecs/cygwin-g++ -I/cygdrive/c/Users/jordy/OneDrive/Documents/Cours/Caen/Semestre_2/Projet_formule1 -I/cygdrive/c/Users/jordy/OneDrive/Documents/Cours/Caen/Semestre_2/Projet_formule1/include -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include include/gpcontrolview.h -o .moc/moc_gpcontrolview.cpp
-=======
-	/usr/lib/qt5/bin/moc $(DEFINES) --include .moc/moc_predefs.h -I/usr/lib/qt5/mkspecs/cygwin-g++ -I/cygdrive/c/Users/ellio/Documents/KartelDeFormoula/Projet_formule1 -I/cygdrive/c/Users/ellio/Documents/KartelDeFormoula/Projet_formule1/include -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include include/gpcontrolview.h -o .moc/moc_gpcontrolview.cpp
->>>>>>> 7c77c7ebb772c5074cbe34df3505165f6e9dcd8c
 
 .moc/moc_gpmapview.cpp: include/gpcontrol.h \
 		include/car.h \
 		include/gpmapview.h \
 		.moc/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-<<<<<<< HEAD
 	/usr/lib/qt5/bin/moc $(DEFINES) --include .moc/moc_predefs.h -I/usr/lib/qt5/mkspecs/cygwin-g++ -I/cygdrive/c/Users/jordy/OneDrive/Documents/Cours/Caen/Semestre_2/Projet_formule1 -I/cygdrive/c/Users/jordy/OneDrive/Documents/Cours/Caen/Semestre_2/Projet_formule1/include -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include include/gpmapview.h -o .moc/moc_gpmapview.cpp
-=======
-	/usr/lib/qt5/bin/moc $(DEFINES) --include .moc/moc_predefs.h -I/usr/lib/qt5/mkspecs/cygwin-g++ -I/cygdrive/c/Users/ellio/Documents/KartelDeFormoula/Projet_formule1 -I/cygdrive/c/Users/ellio/Documents/KartelDeFormoula/Projet_formule1/include -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include include/gpmapview.h -o .moc/moc_gpmapview.cpp
->>>>>>> 7c77c7ebb772c5074cbe34df3505165f6e9dcd8c
 
 .moc/moc_gpmapselector.cpp: include/gpmapselector.h \
 		.moc/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-<<<<<<< HEAD
 	/usr/lib/qt5/bin/moc $(DEFINES) --include .moc/moc_predefs.h -I/usr/lib/qt5/mkspecs/cygwin-g++ -I/cygdrive/c/Users/jordy/OneDrive/Documents/Cours/Caen/Semestre_2/Projet_formule1 -I/cygdrive/c/Users/jordy/OneDrive/Documents/Cours/Caen/Semestre_2/Projet_formule1/include -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include include/gpmapselector.h -o .moc/moc_gpmapselector.cpp
-=======
-	/usr/lib/qt5/bin/moc $(DEFINES) --include .moc/moc_predefs.h -I/usr/lib/qt5/mkspecs/cygwin-g++ -I/cygdrive/c/Users/ellio/Documents/KartelDeFormoula/Projet_formule1 -I/cygdrive/c/Users/ellio/Documents/KartelDeFormoula/Projet_formule1/include -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include include/gpmapselector.h -o .moc/moc_gpmapselector.cpp
->>>>>>> 7c77c7ebb772c5074cbe34df3505165f6e9dcd8c
 
 .moc/moc_gpcontrol.cpp: include/car.h \
 		include/gpcontrol.h \
 		.moc/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-<<<<<<< HEAD
 	/usr/lib/qt5/bin/moc $(DEFINES) --include .moc/moc_predefs.h -I/usr/lib/qt5/mkspecs/cygwin-g++ -I/cygdrive/c/Users/jordy/OneDrive/Documents/Cours/Caen/Semestre_2/Projet_formule1 -I/cygdrive/c/Users/jordy/OneDrive/Documents/Cours/Caen/Semestre_2/Projet_formule1/include -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include include/gpcontrol.h -o .moc/moc_gpcontrol.cpp
-=======
-	/usr/lib/qt5/bin/moc $(DEFINES) --include .moc/moc_predefs.h -I/usr/lib/qt5/mkspecs/cygwin-g++ -I/cygdrive/c/Users/ellio/Documents/KartelDeFormoula/Projet_formule1 -I/cygdrive/c/Users/ellio/Documents/KartelDeFormoula/Projet_formule1/include -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include include/gpcontrol.h -o .moc/moc_gpcontrol.cpp
->>>>>>> 7c77c7ebb772c5074cbe34df3505165f6e9dcd8c
 
 .moc/moc_gpdriverselector.cpp: include/gpdriverselector.h \
 		.moc/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-<<<<<<< HEAD
 	/usr/lib/qt5/bin/moc $(DEFINES) --include .moc/moc_predefs.h -I/usr/lib/qt5/mkspecs/cygwin-g++ -I/cygdrive/c/Users/jordy/OneDrive/Documents/Cours/Caen/Semestre_2/Projet_formule1 -I/cygdrive/c/Users/jordy/OneDrive/Documents/Cours/Caen/Semestre_2/Projet_formule1/include -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include include/gpdriverselector.h -o .moc/moc_gpdriverselector.cpp
-=======
-	/usr/lib/qt5/bin/moc $(DEFINES) --include .moc/moc_predefs.h -I/usr/lib/qt5/mkspecs/cygwin-g++ -I/cygdrive/c/Users/ellio/Documents/KartelDeFormoula/Projet_formule1 -I/cygdrive/c/Users/ellio/Documents/KartelDeFormoula/Projet_formule1/include -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include include/gpdriverselector.h -o .moc/moc_gpdriverselector.cpp
->>>>>>> 7c77c7ebb772c5074cbe34df3505165f6e9dcd8c
 
 .moc/moc_finishdialog.cpp: include/finishdialog.h \
 		.moc/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-<<<<<<< HEAD
 	/usr/lib/qt5/bin/moc $(DEFINES) --include .moc/moc_predefs.h -I/usr/lib/qt5/mkspecs/cygwin-g++ -I/cygdrive/c/Users/jordy/OneDrive/Documents/Cours/Caen/Semestre_2/Projet_formule1 -I/cygdrive/c/Users/jordy/OneDrive/Documents/Cours/Caen/Semestre_2/Projet_formule1/include -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include include/finishdialog.h -o .moc/moc_finishdialog.cpp
-=======
-	/usr/lib/qt5/bin/moc $(DEFINES) --include .moc/moc_predefs.h -I/usr/lib/qt5/mkspecs/cygwin-g++ -I/cygdrive/c/Users/ellio/Documents/KartelDeFormoula/Projet_formule1 -I/cygdrive/c/Users/ellio/Documents/KartelDeFormoula/Projet_formule1/include -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include include/finishdialog.h -o .moc/moc_finishdialog.cpp
->>>>>>> 7c77c7ebb772c5074cbe34df3505165f6e9dcd8c
 
 .moc/moc_gpprogression.cpp: include/gpprogression.h \
 		.moc/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-<<<<<<< HEAD
 	/usr/lib/qt5/bin/moc $(DEFINES) --include .moc/moc_predefs.h -I/usr/lib/qt5/mkspecs/cygwin-g++ -I/cygdrive/c/Users/jordy/OneDrive/Documents/Cours/Caen/Semestre_2/Projet_formule1 -I/cygdrive/c/Users/jordy/OneDrive/Documents/Cours/Caen/Semestre_2/Projet_formule1/include -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include include/gpprogression.h -o .moc/moc_gpprogression.cpp
-=======
-	/usr/lib/qt5/bin/moc $(DEFINES) --include .moc/moc_predefs.h -I/usr/lib/qt5/mkspecs/cygwin-g++ -I/cygdrive/c/Users/ellio/Documents/KartelDeFormoula/Projet_formule1 -I/cygdrive/c/Users/ellio/Documents/KartelDeFormoula/Projet_formule1/include -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include include/gpprogression.h -o .moc/moc_gpprogression.cpp
->>>>>>> 7c77c7ebb772c5074cbe34df3505165f6e9dcd8c
 
 .moc/moc_headless.cpp: include/gpcontrol.h \
 		include/car.h \
 		include/headless.h \
 		.moc/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-<<<<<<< HEAD
 	/usr/lib/qt5/bin/moc $(DEFINES) --include .moc/moc_predefs.h -I/usr/lib/qt5/mkspecs/cygwin-g++ -I/cygdrive/c/Users/jordy/OneDrive/Documents/Cours/Caen/Semestre_2/Projet_formule1 -I/cygdrive/c/Users/jordy/OneDrive/Documents/Cours/Caen/Semestre_2/Projet_formule1/include -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include include/headless.h -o .moc/moc_headless.cpp
-=======
-	/usr/lib/qt5/bin/moc $(DEFINES) --include .moc/moc_predefs.h -I/usr/lib/qt5/mkspecs/cygwin-g++ -I/cygdrive/c/Users/ellio/Documents/KartelDeFormoula/Projet_formule1 -I/cygdrive/c/Users/ellio/Documents/KartelDeFormoula/Projet_formule1/include -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include include/headless.h -o .moc/moc_headless.cpp
->>>>>>> 7c77c7ebb772c5074cbe34df3505165f6e9dcd8c
 
 .moc/moc_stderrview.cpp: include/stderrview.h \
 		.moc/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-<<<<<<< HEAD
 	/usr/lib/qt5/bin/moc $(DEFINES) --include .moc/moc_predefs.h -I/usr/lib/qt5/mkspecs/cygwin-g++ -I/cygdrive/c/Users/jordy/OneDrive/Documents/Cours/Caen/Semestre_2/Projet_formule1 -I/cygdrive/c/Users/jordy/OneDrive/Documents/Cours/Caen/Semestre_2/Projet_formule1/include -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include include/stderrview.h -o .moc/moc_stderrview.cpp
-=======
-	/usr/lib/qt5/bin/moc $(DEFINES) --include .moc/moc_predefs.h -I/usr/lib/qt5/mkspecs/cygwin-g++ -I/cygdrive/c/Users/ellio/Documents/KartelDeFormoula/Projet_formule1 -I/cygdrive/c/Users/ellio/Documents/KartelDeFormoula/Projet_formule1/include -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include include/stderrview.h -o .moc/moc_stderrview.cpp
->>>>>>> 7c77c7ebb772c5074cbe34df3505165f6e9dcd8c
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
