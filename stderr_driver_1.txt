@@ -5045,7 +5045,7 @@ START PATH
 END PATH 
 Acceleration 1 -1, Speed 1 -1
 
-Temps utilisé: 0.064273 
+Temps utilisé: 0.094000 
 
     Action: 1 -1   Gas remaining: 0
 
@@ -5054,7 +5054,7 @@ SENT
 
 CALCUL: H38 20 - B36 21 - S1 -1Acceleration 1 0, Speed 2 -1
 
-Temps utilisé: 0.000118 
+Temps utilisé: 0.000000 
 
     Action: 1 0   Gas remaining: 0
 
@@ -5063,7 +5063,7 @@ SENT
 
 CALCUL: H40 18 - B38 20 - S2 -1Acceleration 0 -1, Speed 2 -2
 
-Temps utilisé: 0.000104 
+Temps utilisé: 0.000000 
 
     Action: 0 -1   Gas remaining: 0
 
@@ -5072,7 +5072,7 @@ SENT
 
 CALCUL: H42 15 - B40 18 - S2 -2Acceleration 0 -1, Speed 2 -3
 
-Temps utilisé: 0.000128 
+Temps utilisé: 0.000000 
 
     Action: 0 -1   Gas remaining: 0
 
@@ -5081,7 +5081,7 @@ SENT
 
 CALCUL: H43 11 - B42 15 - S2 -3Acceleration -1 -1, Speed 1 -4
 
-Temps utilisé: 0.000118 
+Temps utilisé: 0.000000 
 
     Action: -1 -1   Gas remaining: 0
 
@@ -5090,7 +5090,7 @@ SENT
 
 CALCUL: H43 6 - B43 11 - S1 -4Acceleration -1 -1, Speed 0 -5
 
-Temps utilisé: 0.000111 
+Temps utilisé: 0.000000 
 
     Action: -1 -1   Gas remaining: 0
 
@@ -5099,7 +5099,7 @@ SENT
 
 CALCUL: H42 2 - B43 6 - S0 -5Acceleration -1 1, Speed -1 -4
 
-Temps utilisé: 0.000108 
+Temps utilisé: 0.000000 
 
     Action: -1 1   Gas remaining: 0
 

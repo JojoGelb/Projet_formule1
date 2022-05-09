@@ -1,0 +1,4 @@
+stderr_driver_1.txt
+*.exe
+Makefile
+!.gitignore
