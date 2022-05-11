@@ -75,7 +75,6 @@ int main() {
         }
         fputs(line_buffer, stderr);
     }
-    fprintf(stderr, "\nall nodes allocated\n");
 
     for(y=0; y<mapHeight; y++){
         for(x=0; x<mapWidth; x++){
@@ -88,31 +87,22 @@ int main() {
             }
         }
     }
-    fprintf(stderr, "\nall nodes have their neigbhourg set\n");
-
-    // fprintf(stderr, "NODE MAP %d %d\n", mapWidth, mapHeight);
-    //display_node_map(mapNodes, mapWidth, mapHeight, NULL);
-    fprintf(stderr, "\n1\n");
 
     //==================================================================================================================//
 
-    VECT2D **path;
+    NODE **path;
+    NODE **pathEssence = NULL;
 
     fflush(stderr);
 
     while (!feof(stdin)) {
 
-        // fprintf(stderr, "\nSTART ROUND %d \n",round);
-        
-        //fprintf(stderr, "\n1\n");
         if (cpu_time_used != -1) {
             start = clock();
         }
 
         fgets(line_buffer, MAX_LINE_LENGTH, stdin); // Read positions of pilots
 
-        // fprintf(stderr, "\nAFTER GETS\n");
-        //fprintf(stderr, "\n2\n");
 
         sscanf(line_buffer, "%d %d %d %d %d %d",
                 &player1Position.x, &player1Position.y,
@@ -124,46 +114,46 @@ int main() {
             nodeStart = mapNodes[player1Position.y * mapWidth + player1Position.x][findIndex(findex, 0, 0)];
             generate_heat_map(mapNodes, mapWidth, mapHeight, nodeEnd);
 
-            fprintf(stderr, "HEAT_MAP_GENERATED\n");
-            path = get_path(mapNodes, mapWidth, mapHeight, nodeStart, nodeEnd, gaslevel);
-
-            fprintf(stderr, "END PATH FINDING\n");
-            display_node_map(mapNodes, mapWidth, mapHeight, path);
-            // display_node_map(mapNodes,mapWidth,mapHeight,NULL);
+            path = get_path(mapNodes, mapWidth, mapHeight, nodeStart, nodeEnd);
 
             reversePath(path);
             fprintf(stderr, "END PATH FINDING\n");
             display_node_map(mapNodes, mapWidth, mapHeight, path);
-
-            /*LastPosition.x = 0;
-            LastPosition.y = 0;*/
         }
         fprintf(stderr, "\n3\n");
 
-        // Error on the game we took a full stop and speed reset
-        /*if(LastPosition.x == player1Position.x && LastPosition.y == player1Position.y){
-            speed.x = 0;
-            speed.y = 0;
+        //Split to avoid timeout
+        if(round != 0 && pathEssence == NULL){
+            int i = 0;
+            while (path[i] != NULL) {
+                i++;
+            }
+            int conso = 150000;
+
+            i--;
+            int autreConso = calculConsommationEssenceSurTrajet(path,i) + gasConsumption(path[0]->x - nodeStart->x,path[0]->y - nodeStart->y,0,0,nodeStart->sable);
+            while(gaslevel - autreConso - conso < 1){
+                pathEssence = get_path_essence( mapNodes, mapWidth, mapHeight, 
+                                                path[i], 
+                                                nodeEnd,findex, &conso);
+
+                autreConso = calculConsommationEssenceSurTrajet(path,i+1) + gasConsumption(path[0]->x - nodeStart->x,path[0]->y - nodeStart->y,0,0,nodeStart->sable);
+                i--;
+            }
+            reversePath(pathEssence);
+            display_node_map(mapNodes,mapWidth,mapHeight,pathEssence);
         }
-      */
-        // fprintf(stderr, "acceleration: Position joueur: %d %d\n", player1Position.x, player1Position.y);
-        if (round == 0) {
-            acceleration = nextAcceleration(path, &player1Position, &speed, round);
-        } else {
-            acceleration = nextAcceleration(path, NULL, &speed, round);
+
+        //Swap path
+        if(pathEssence != NULL && player1Position.x == pathEssence[0]->x && player1Position.y == pathEssence[0]->y){
+            round = 0;
+            path = pathEssence;
         }
+
+        acceleration = nextAcceleration(path, NULL, &speed, round+1);
+
         round++;
-        fprintf(stderr, "\n4\n");
 
-        /*
-        fprintf(stderr, "acceleration: %d %d\n", acceleration.x, acceleration.y);
-
-        speed.x += acceleration.x;
-        speed.y += acceleration.y;
-
-        LastPosition = player1Position;*/
-
-        // fprintf(stderr, "=== ROUND %d\n", round);
         fflush(stderr);
 
         end = clock();

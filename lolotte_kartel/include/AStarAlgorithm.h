@@ -26,8 +26,8 @@ typedef struct heatPoint{
 typedef struct node{
     char sable;
     char bVisited;
-    float fGlobalGoal;
-    float fLocalGoal;
+    double fGlobalGoal;
+    double fLocalGoal;
     int x;
     int y;
     int speedX;
@@ -63,9 +63,9 @@ void findNeighbourForSandNode(NODE ***nodes, VECT2D *tab, int width, int height,
 
 VECT2D * create_vector(int x, int y);
 
-void display_vector(VECT2D ** path);
+void display_vector(NODE ** path);
 
-void display_node_map(NODE *** map, int width, int height, VECT2D** path);
+void display_node_map(NODE *** map, int width, int height, NODE** path);
 
 void sort_nodes_list(NODE ** list, int last_push, int* lastBigNumber);
 
@@ -77,13 +77,17 @@ int findIndex(VECT2D* tab,char speedX, char speedY);
 
 float heuristic(NODE * nodeA);
 
-void reversePath(VECT2D ** path);
+void reversePath(NODE ** path);
 
-NODE* Solve_AStar(NODE *** nodes, int width, int height, NODE * nodeStart, NODE * nodeEnd, int carburant);
+NODE* Solve_AStar(NODE *** nodes, int width, int height, NODE * nodeStart, NODE * nodeEnd);
 
-VECT2D ** get_path(NODE *** nodes, int width, int height, NODE * nodeStart, NODE * nodeEnd, int carburant);
+NODE ** get_path(NODE *** nodes, int width, int height, NODE * nodeStart, NODE * nodeEnd);
 
-VECT2D nextAcceleration(VECT2D ** path, VECT2D* position,VECT2D* lastSpeed, int index);
+NODE **get_path_essence(NODE ***nodes, int width, int height, NODE *nodeStart, NODE *nodeEnd, VECT2D *tab, int * carburant);
+
+NODE *Solve_AStar_Essence(NODE ***nodes, int width, int height, NODE *nodeStart, NODE *nodeEnd, VECT2D *tab);
+
+VECT2D nextAcceleration(NODE ** path, VECT2D* lastPosition, VECT2D* lastSpeed, int index);
 
 void generate_heat_map(NODE *** nodesMap, int width, int height, NODE * start);
 
@@ -92,5 +96,7 @@ int gasConsumption(int accX, int accY, int speedX, int speedY, int inSand);
 void display_heat_map(NODE *** map, int width, int height);
 
 void sort_heat_list(NODE ** list, int last_push);
+
+int calculConsommationEssenceSurTrajet(NODE ** path,int indexFin);
 
 #endif

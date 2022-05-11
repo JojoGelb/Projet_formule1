@@ -48,7 +48,7 @@ void dequeue(QUEUE * f);
  * Display every elements of a QUEUE.
  * @param f the targeted QUEUE.
  */
-void display(const QUEUE * f);
+void display_distance(const QUEUE * f);
 
 /**
  * Return the memory size of every element in a QUEUE
@@ -65,20 +65,17 @@ int memory_size(const QUEUE * f);
 void concat(QUEUE * q1, QUEUE * q2);
 
 /**
- * Return a deep copy of a QUEUE
- * @param q1 the targeted QUEUE.
- * @return QUEUE: A reference to a copy of the QUEUE in parameter
- */
-QUEUE * copie(QUEUE * q);
-
-/**
  * Free the memory space occupied by a QUEUE
  * @param q1 the targeted QUEUE.
 */
 void delete_queue(QUEUE * q);
 
-void trierElem(QNODE* elem, QUEUE * f, int lastSorted);
+void trierElemDistance(QNODE* elem, QUEUE * f, int lastSorted);
+
+void trierElemGlobal(QNODE* elem, QUEUE * f);
 
 QNODE* find(NODE* val, QUEUE* q);
+
+void display_global(const QUEUE * f);
 
 #endif

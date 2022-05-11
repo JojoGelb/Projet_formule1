@@ -47,13 +47,14 @@ void enqueue(NODE* val, QUEUE * f){
         f->tail = n;
         n->pred = NULL;
     }else{
+        //fprintf(stderr,"HEAD: %f, QUEUE: %f\n",f->head->value->fGlobalGoal, f->tail->value->fGlobalGoal);
         f->tail->next = n;
         n->pred = f->tail;
         f->tail = n;
     }
 }
 
-void trierElem(QNODE* elem, QUEUE * f, int lastSorted){
+void trierElemDistance(QNODE* elem, QUEUE * f, int lastSorted){
     QNODE* current = f->head;
     //QNODE* temp;
     int index = 0;
@@ -66,7 +67,13 @@ void trierElem(QNODE* elem, QUEUE * f, int lastSorted){
     if(current->value->distanceToEnd > elem->value->distanceToEnd){
         //fprintf(stderr,"HEAD\n");
         elem->pred->next = elem->next;
-        elem->next->pred = elem->pred;
+        if(elem->next == NULL){
+            f->tail = elem->pred;
+            elem->pred->next = NULL;
+        }else{
+            elem->next->pred = elem->pred;
+        }
+
         elem->pred = NULL;
         elem->next = current;
         f->head = elem;
@@ -100,6 +107,60 @@ void trierElem(QNODE* elem, QUEUE * f, int lastSorted){
     fprintf(stderr,"NO CHANGE %d\n",elem->value->distanceToEnd);
 }
 
+/*
+* Trie un element de la liste dans la liste (a utiliser apres enqueue
+*/
+void trierElemGlobal(QNODE* elem, QUEUE * f){
+    QNODE* current = f->head;
+    //QNODE* temp;
+
+    if(elem == f->head){
+        return;
+    }
+
+    //switch with head
+    if(current->value->fGlobalGoal > elem->value->fGlobalGoal){
+        //fprintf(stderr,"HEAD\n");
+        elem->pred->next = elem->next;
+        if(elem->next == NULL){
+            f->tail = elem->pred;
+            elem->pred->next = NULL;
+        }else{
+            elem->next->pred = elem->pred;
+        }
+        
+        elem->pred = NULL;
+        elem->next = current;
+        f->head = elem;
+        current->pred = elem;
+        return;
+    }
+
+
+    while(current!= NULL){
+        if(elem->value->fGlobalGoal < current->value->fGlobalGoal){
+            elem->pred->next = elem->next;
+
+            if(elem == f->tail){
+                f->tail = elem->pred;
+            }else{
+                elem->next->pred = elem->pred;
+            }
+
+            //Appear before current
+            elem->pred = current->pred;
+            elem->next = current;
+
+            //Change current
+            current->pred->next = elem;
+            current->pred = elem;
+            return;
+        }
+        current = current->next;
+    }
+    //fprintf(stderr,"NO CHANGE %f\n",elem->value->fGlobalGoal);
+}
+
 void dequeue(QUEUE * f){
 
     if( f == NULL ){
@@ -124,7 +185,7 @@ QNODE* find(NODE* val, QUEUE* q){
     n = q->head;
 
     if(is_empty(q)){
-        fprintf(stderr,"NULL empty\n");
+        //fprintf(stderr,"NULL empty\n");
         return NULL;
     }
     while(n != NULL){
@@ -132,11 +193,11 @@ QNODE* find(NODE* val, QUEUE* q){
             return n;
         n = n->next;
     }
-    fprintf(stderr,"Not found NULL\n");
+    //fprintf(stderr,"Not found NULL\n");
     return NULL;
 }
 
-void display(const QUEUE * f){
+void display_distance(const QUEUE * f){
 
     QNODE * n;
 
@@ -152,6 +213,29 @@ void display(const QUEUE * f){
     while(n != NULL){
         //fprintf(stderr,"%d %d - ", n->value->x, n->value->y);
         fprintf(stderr,"%d - ", n->value->distanceToEnd);
+        n = n->next;
+    }
+
+    fprintf(stderr,"\n");
+
+}
+
+void display_global(const QUEUE * f){
+
+    QNODE * n;
+
+    n = f->head;
+
+    if(is_empty(f)){
+        //printf("List is already empty.");
+        return;
+    }
+
+    //printf("Display of a list: \n");
+
+    while(n != NULL){
+        //fprintf(stderr,"%d %d - ", n->value->x, n->value->y);
+        fprintf(stderr,"%f - ", n->value->fGlobalGoal);
         n = n->next;
     }
 
@@ -189,56 +273,11 @@ void concat(QUEUE * q1, QUEUE * q2){
 
 }
 
-QUEUE * copie(QUEUE * q){
-
-    QUEUE * q1 = create_queue();
-
-    QNODE * n;
-    QNODE * pre = NULL;
-    QNODE * next_node;
-
-    n = q->head;
-
-    if(n == NULL){
-        q1->head = NULL;
-        q1->tail = NULL;
-        return q1;
-    }
-
-    //head
-    pre= malloc(sizeof(QNODE));
-    pre->next = NULL;
-    pre->value = n->value;
-
-    q1->head = pre;
-    
-    n = n->next;
-    //body
-    while(n != NULL){
-        
-        next_node= malloc(sizeof(QNODE));
-        next_node->next = NULL;
-        next_node->value = n->value;
-
-        pre->next = next_node;
-
-        pre = next_node;
-
-        n = n->next;
-    }
-    //tail
-    q1->tail = pre;
-
-    return q1;
-
-}
-
 void delete_queue(QUEUE * q){
     
     while(q->head != NULL){
         dequeue(q);
     }
     free(q);
-
 
 }
