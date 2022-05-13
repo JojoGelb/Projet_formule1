@@ -10,7 +10,6 @@
 #define BOOSTS_AT_START 5
 
 int main() {
-
     clock_t start, end;
     double cpu_time_used;
     cpu_time_used = -1;
@@ -21,12 +20,17 @@ int main() {
     VECT2D player1Position;
     VECT2D player2Position;
     VECT2D player3Position;
+    VECT2D *findex;
+
     bool_t repeat;
 
+    NODE ***mapNodes;
     NODE **path;
     NODE **pathEssence;
     NODE **lastP2Position;
     NODE **lastP3Position;
+    NODE *nodeEnd;
+    NODE *nodeStart;
 
     int mapWidth, mapHeight, gaslevel, y, x, round;
 
@@ -46,11 +50,11 @@ int main() {
     sscanf(line_buffer, "%d %d %d", &mapWidth, &mapHeight, &gaslevel);
 
     /*=========================PATHFINDING=============================*/
-    VECT2D *findex = generateListIndex();
 
-    NODE ***mapNodes = createNodeMap(findex, mapWidth, mapHeight);
-    NODE *nodeEnd = NULL;
-    NODE *nodeStart = NULL;
+    findex = generateListIndex();
+    mapNodes = createNodeMap(findex, mapWidth, mapHeight);
+    nodeEnd = NULL;
+    nodeStart = NULL;
 
     fprintf(stderr, "=== >Map loaded< ===\n");
 
