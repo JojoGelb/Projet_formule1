@@ -79,13 +79,13 @@ float heuristic(NODE * nodeA);
 
 void reversePath(NODE ** path);
 
-NODE* Solve_AStar(NODE *** nodes, int width, int height, NODE * nodeStart, NODE * nodeEnd);
+NODE* Solve_AStar(NODE *** nodes, int width, int height, NODE * nodeStart);
 
-NODE ** get_path(NODE *** nodes, int width, int height, NODE * nodeStart, NODE * nodeEnd);
+NODE ** get_path(NODE *** nodes, int width, int height, NODE * nodeStart);
 
-NODE **get_path_essence(NODE ***nodes, int width, int height, NODE *nodeStart, NODE *nodeEnd, VECT2D *tab, int * carburant);
+NODE **get_path_essence(NODE ***nodes, int width, int height, NODE *nodeStart, VECT2D *tab, int * carburant);
 
-NODE *Solve_AStar_Essence(NODE ***nodes, int width, int height, NODE *nodeStart, NODE *nodeEnd, VECT2D *tab);
+NODE *Solve_AStar_Essence(NODE ***nodes, int width, int height, NODE *nodeStart, VECT2D *tab);
 
 VECT2D nextAcceleration(NODE ** path, VECT2D* lastPosition, VECT2D* lastSpeed, int index);
 
@@ -98,5 +98,9 @@ void display_heat_map(NODE *** map, int width, int height);
 void sort_heat_list(NODE ** list, int last_push);
 
 int calculConsommationEssenceSurTrajet(NODE ** path,int indexFin);
+
+int hit_a_wall(NODE ***nodeMap, int width, NODE *start, NODE *stop);
+
+void resetMapPlayersPosition(NODE *** mapNodes, int mapWidth, NODE ***lastP2Position, NODE ***lastP3Position, VECT2D player2Position, VECT2D player3Position);
 
 #endif

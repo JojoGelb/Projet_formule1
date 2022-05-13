@@ -453,9 +453,8 @@ int contain(NODE **list, int lastIndex, NODE *searched, int smaller) {
  * @param width largeur map
  * @param height longueur map
  * @param nodeStart
- * @param nodeEnd
  */
-NODE *Solve_AStar(NODE ***nodes, int width, int height, NODE *nodeStart, NODE *nodeEnd) {
+NODE *Solve_AStar(NODE ***nodes, int width, int height, NODE *nodeStart) {
 
     for (int x = 0; x < width; x++) {
         for (int y = 0; y < height; y++) {
@@ -502,7 +501,7 @@ NODE *Solve_AStar(NODE ***nodes, int width, int height, NODE *nodeStart, NODE *n
             // si le hastar plante, vérifier si on doit changer les if (cas où l'on vérifie ->sable sur un noeud null)
             if (!(nodeCurrent->vecNeighbours[i] == NULL /*|| nodeCurrent->vecNeighbours[i]->sable*/ || hit_a_wall(nodes, width, nodeCurrent, nodeCurrent->vecNeighbours[i]))) {
                 int cout = nodeCurrent->fLocalGoal + distance(nodeCurrent, nodeCurrent->vecNeighbours[i]);
-                int heur = cout + heuristic(nodeCurrent->vecNeighbours[0] /*nodeEnd*/);
+                int heur = cout + heuristic(nodeCurrent->vecNeighbours[0]);
 
                 if (nodeCurrent->vecNeighbours[i]->fGlobalGoal > heur && contain(open_list, openLastPushIndex, nodeCurrent->vecNeighbours[i], -1)) {
                     continue;
@@ -525,7 +524,7 @@ NODE *Solve_AStar(NODE ***nodes, int width, int height, NODE *nodeStart, NODE *n
         }
         nodeCurrent->bVisited = TRUE;
     }
-    return nodeEnd;
+    return NULL;
 }
 
 // Le cout d'un deplacement: pour le moment une distance
@@ -595,11 +594,11 @@ int gasConsumption(int accX, int accY, int speedX, int speedY, int inSand) {
 
 // Retourne le trajet à suivre par le pilote
 //  Résoud le A star puis stocke le résultat dans un tableau de pointeur de vecteur 2d (position à suivre)
-NODE **get_path(NODE ***nodes, int width, int height, NODE *nodeStart, NODE *nodeEnd) {
+NODE **get_path(NODE ***nodes, int width, int height, NODE *nodeStart) {
     NODE **path = malloc(800 * sizeof(NODE));
-    NODE *p = nodeEnd;
-
-    p = Solve_AStar(nodes, width, height, nodeStart, nodeEnd);
+    NODE* p;
+    
+    p = Solve_AStar(nodes, width, height, nodeStart);
     int i = 0;
     while (p != NULL) {
         fprintf(stderr, "%d %d - ", p->x, p->y);
@@ -873,10 +872,8 @@ void display_heat_map(NODE ***map, int width, int height) {
  * @param width largeur map
  * @param height longueur map
  * @param nodeStart
- * @param nodeEnd
- *
  */
-NODE *Solve_AStar_Essence(NODE ***nodes, int width, int height, NODE *nodeStart, NODE *nodeEnd, VECT2D *tab) {
+NODE *Solve_AStar_Essence(NODE ***nodes, int width, int height, NODE *nodeStart, VECT2D *tab) {
 
     for (int x = 0; x < width; x++) {
         for (int y = 0; y < height; y++) {
@@ -955,12 +952,12 @@ NODE *Solve_AStar_Essence(NODE ***nodes, int width, int height, NODE *nodeStart,
 
 // Retourne le trajet à suivre par le pilote
 //  Résoud le A star puis stocke le résultat dans un tableau de pointeur de vecteur 2d (position à suivre)
-NODE **get_path_essence(NODE ***nodes, int width, int height, NODE *nodeStart, NODE *nodeEnd, VECT2D *tab, int * carburant) {
+NODE **get_path_essence(NODE ***nodes, int width, int height, NODE *nodeStart, VECT2D *tab, int * carburant) {
     NODE **path = malloc(800 * sizeof(NODE));
-    NODE *p = nodeEnd;
+    NODE *p;
     int consomation_essence = 0;
 
-    p = Solve_AStar_Essence(nodes, width, height, nodeStart, nodeEnd, tab);
+    p = Solve_AStar_Essence(nodes, width, height, nodeStart, tab);
 
 
 
@@ -993,4 +990,26 @@ int calculConsommationEssenceSurTrajet(NODE ** path,int indexFin){
         consommation += gasConsumption(path[i+1]->x - path[i]->x - path[i]->speedX, path[i+1]->y - path[i]->y - path[i]->speedY, path[i]->speedX,  path[i]->speedY,  path[i]->sable);  
     }
     return consommation;
+}
+
+//Set a node to null if another player on it and keep trace of it to restore it next round
+void resetMapPlayersPosition(NODE *** mapNodes, int mapWidth, NODE ***lastP2Position, NODE ***lastP3Position, VECT2D player2Position, VECT2D player3Position){
+    if (*lastP2Position != NULL) {
+            mapNodes[(*lastP2Position)[0]->y * mapWidth + (*lastP2Position)[0]->x] = *lastP2Position;
+        }
+
+        if (*lastP3Position != NULL) {
+            mapNodes[(*lastP3Position)[0]->y * mapWidth + (*lastP3Position)[0]->x] = *lastP3Position;
+        }
+
+        *lastP2Position = mapNodes[player2Position.y * mapWidth + player2Position.x];
+        *lastP3Position = mapNodes[player3Position.y * mapWidth + player3Position.x];
+
+
+        if(*lastP2Position!= NULL){
+            mapNodes[player2Position.y * mapWidth + player2Position.x] = NULL;
+        }
+        if(*lastP3Position != NULL){
+            mapNodes[player3Position.y * mapWidth + player3Position.x] = NULL;
+        }
 }
