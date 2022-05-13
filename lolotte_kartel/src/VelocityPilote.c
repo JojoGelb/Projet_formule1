@@ -12,8 +12,6 @@
 int main() {
     clock_t start, end;
     double cpu_time_used;
-    cpu_time_used = -1;
-    start = clock();
 
     VECT2D acceleration;
     VECT2D speed;
@@ -32,10 +30,14 @@ int main() {
     NODE *nodeEnd;
     NODE *nodeStart;
 
-    int mapWidth, mapHeight, gaslevel, y, x, round;
+    int mapWidth, mapHeight, gaslevel, i, conso, autreConso, y, x, round;
 
     char action[100];
     char line_buffer[MAX_LINE_LENGTH];
+    char *ansiFegts; /*ne sert à rein à part respecter le ansi sur le retour des fonctions fgets*/
+
+    cpu_time_used = -1;
+    start = clock();
 
     acceleration.x = 0;
     acceleration.y = 0;
@@ -46,20 +48,20 @@ int main() {
     
 
     /* PARTIE LECTURE DES INFOS DE LA COURSE*/
-    fgets(line_buffer, MAX_LINE_LENGTH, stdin); /* Read gas level at Start */
+    ansiFegts = fgets(line_buffer, MAX_LINE_LENGTH, stdin); /* Read gas level at Start */
     sscanf(line_buffer, "%d %d %d", &mapWidth, &mapHeight, &gaslevel);
 
     /*=========================PATHFINDING=============================*/
 
     findex = generateListIndex();
-    mapNodes = createNodeMap(findex, mapWidth, mapHeight);
+    mapNodes = createNodeMap(mapWidth, mapHeight);
     nodeEnd = NULL;
     nodeStart = NULL;
 
     fprintf(stderr, "=== >Map loaded< ===\n");
 
     for (y = 0; y < mapHeight; ++y) { /* Read map data, line per line */
-        fgets(line_buffer, MAX_LINE_LENGTH, stdin);
+        ansiFegts = fgets(line_buffer, MAX_LINE_LENGTH, stdin);
         x = 0;
         while (line_buffer[x] != '\0') {
             if (line_buffer[x] == '.' || line_buffer[x] == '~') {
@@ -107,7 +109,7 @@ int main() {
             start = clock();
         }
 
-        fgets(line_buffer, MAX_LINE_LENGTH, stdin); /* Read positions of pilots*/
+        ansiFegts = fgets(line_buffer, MAX_LINE_LENGTH, stdin); /* Read positions of pilots*/
 
         sscanf(line_buffer, "%d %d %d %d %d %d",
                 &player1Position.x, &player1Position.y,
@@ -180,20 +182,20 @@ int main() {
         Split to avoid timeout*/
         if (round != 0 && pathEssence == NULL) {
             fprintf(stderr, "===================START CHECK ESSESNCE===================\n");
-            int i = 0;
+            i = 0;
             while (path[i] != NULL) {
                 i++;
             }
-            int conso = 0;
+            conso = 0;
 
             i--;
 
-            int autreConso = calculConsommationEssenceSurTrajet(path, i) + gasConsumption(path[0]->x - nodeStart->x, path[0]->y - nodeStart->y, 0, 0, nodeStart->sable);
+            autreConso = calculConsommationEssenceSurTrajet(path, i) + gasConsumption(path[0]->x - nodeStart->x, path[0]->y - nodeStart->y, 0, 0, nodeStart->sable);
 
             
             /*On skipera si on a assez pour faire un tour complet*/
             while (gaslevel - autreConso - conso < 1 && i > 0) {
-                pathEssence = get_path_essence(mapNodes, mapWidth, mapHeight, path[i], findex, &conso);
+                pathEssence = get_path_essence(mapNodes, mapWidth, mapHeight, path[i], &conso);
 
                 autreConso = calculConsommationEssenceSurTrajet(path, i + 1) + gasConsumption(path[0]->x - nodeStart->x, path[0]->y - nodeStart->y, 0, 0, nodeStart->sable);
                 i--;
@@ -229,6 +231,7 @@ int main() {
         fflush(stdout); /* CAUTION : This is necessary  */
         fprintf(stderr, "    Action: %s   Gas remaining: %d\n\n", action, 0);
         fprintf(stderr, "\nSENT\n\n");
+        fprintf(stderr, "%s", ansiFegts);
         fflush(stderr);
     }
 

@@ -48,7 +48,7 @@ VECT2D * generateListIndex();
 NODE * createNode();
 
 
-NODE*** createNodeMap(VECT2D* tab,int width, int height);
+NODE*** createNodeMap(int width, int height);
 
 void allocationSpeedForNormalNode(NODE ***nodes, VECT2D *tab, int width, int x, int y);
 
@@ -82,9 +82,9 @@ NODE* Solve_AStar(NODE *** nodes, int width, int height, NODE * nodeStart);
 
 NODE ** get_path(NODE *** nodes, int width, int height, NODE * nodeStart);
 
-NODE **get_path_essence(NODE ***nodes, int width, int height, NODE *nodeStart, VECT2D *tab, int * carburant);
+NODE **get_path_essence(NODE ***nodes, int width, int height, NODE *nodeStart, int * carburant);
 
-NODE *Solve_AStar_Essence(NODE ***nodes, int width, int height, NODE *nodeStart, VECT2D *tab);
+NODE *Solve_AStar_Essence(NODE ***nodes, int width, int height, NODE *nodeStart);
 
 VECT2D nextAcceleration(NODE ** path, VECT2D* lastPosition, VECT2D* lastSpeed, int index);
 

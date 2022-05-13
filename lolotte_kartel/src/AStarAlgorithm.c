@@ -45,7 +45,7 @@ VECT2D *generateListIndex() {
 }
 
 /** alloue la place pour toute la map */
-NODE ***createNodeMap(VECT2D *tab, int width, int height) {
+NODE ***createNodeMap(int width, int height) {
     NODE ***nodes;
     int x, y;
 
@@ -450,8 +450,9 @@ int contain(NODE **list, int lastIndex, NODE *searched, int smaller) {
  * @param nodeStart
  */
 NODE *Solve_AStar(NODE ***nodes, int width, int height, NODE *nodeStart) {
-    int i, x, y;
+    int i, x, y, openLastPushIndex, openLastNotSortedIndex, cout, heur;
     NODE *nodeCurrent;
+    NODE *open_list[80000];
 
     for (x = 0; x < width; x++) {
         for (y = 0; y < height; y++) {
@@ -468,12 +469,9 @@ NODE *Solve_AStar(NODE ***nodes, int width, int height, NODE *nodeStart) {
 
     nodeCurrent = nodeStart;
     nodeStart->fLocalGoal = 0.0f;
-
     nodeStart->fGlobalGoal = 0;
-
-    int openLastPushIndex = 1;
-    int openLastNotSortedIndex = 1;
-    NODE *open_list[80000];
+    openLastPushIndex = 1;
+    openLastNotSortedIndex = 1;
 
     open_list[0] = nodeStart;
 
@@ -496,8 +494,8 @@ NODE *Solve_AStar(NODE ***nodes, int width, int height, NODE *nodeStart) {
 
         for (i = 0; i < nodeCurrent->numberOfNeighbours; i++) {
             if (!(nodeCurrent->vecNeighbours[i] == NULL  || hit_a_wall(nodes, width, nodeCurrent, nodeCurrent->vecNeighbours[i]))) {
-                int cout = nodeCurrent->fLocalGoal + distance(nodeCurrent, nodeCurrent->vecNeighbours[i]);
-                int heur = cout + heuristic(nodeCurrent->vecNeighbours[0]);
+                cout = nodeCurrent->fLocalGoal + distance(nodeCurrent, nodeCurrent->vecNeighbours[i]);
+                heur = cout + heuristic(nodeCurrent->vecNeighbours[0]);
 
                 if (nodeCurrent->vecNeighbours[i]->fGlobalGoal > heur && contain(open_list, openLastPushIndex, nodeCurrent->vecNeighbours[i], -1)) {
                     continue;
@@ -593,11 +591,12 @@ int gasConsumption(int accX, int accY, int speedX, int speedY, int inSand) {
  *  Résoud le A star puis stocke le résultat dans un tableau de pointeur de vecteur 2d (position à suivre)
  */ 
 NODE **get_path(NODE ***nodes, int width, int height, NODE *nodeStart) {
+    int i;
     NODE **path = malloc(800 * sizeof(NODE));
     NODE* p;
     
     p = Solve_AStar(nodes, width, height, nodeStart);
-    int i = 0;
+    i = 0;
     while (p != NULL) {
         fprintf(stderr, "%d %d - ", p->x, p->y);
         path[i] = p;
@@ -665,12 +664,17 @@ VECT2D nextAcceleration(NODE **path, VECT2D *position, VECT2D *lastSpeed, int in
 }
 
 void generate_heat_map(NODE ***nodes, int width, int height, NODE *start) {
-    int y, x;
-    int lastChange = 1;
-    int poids_sable = 5;
-    QUEUE *q = create_queue();
+    int y, x, lastChange, poids_sable;
+    QNODE *temp;
+    QNODE *test;
+    QUEUE *q;
+    QNODE *current;
 
     /* Init la QUEUE trié par distance au start*/
+    q = create_queue();
+    lastChange = 1;
+    poids_sable = 5;
+
     for (y = 0; y < height; y++) {
         for (x = 0; x < width; x++) {
             if (nodes[y * width + x] != NULL) {
@@ -692,7 +696,7 @@ void generate_heat_map(NODE ***nodes, int width, int height, NODE *start) {
                     q->tail->pred = NULL;
                     q->head->next = NULL;
 
-                    QNODE *temp = q->head;
+                    temp = q->head;
                     q->head = q->tail;
                     q->tail = temp;
                 }
@@ -700,7 +704,7 @@ void generate_heat_map(NODE ***nodes, int width, int height, NODE *start) {
         }
     }
 
-    QNODE *current = NULL;
+    current = NULL;
 
     while (current != q->tail) {
 
@@ -798,7 +802,7 @@ void generate_heat_map(NODE ***nodes, int width, int height, NODE *start) {
             }
 
             nodes[(current->value->y + 1) * width + current->value->x - 1][0]->parent = current->value;
-            QNODE *test = find(nodes[(current->value->y + 1) * width + current->value->x - 1][0], q);
+            test = find(nodes[(current->value->y + 1) * width + current->value->x - 1][0], q);
 
             trierElemDistance(test, q, lastChange);
             lastChange++;
@@ -871,8 +875,10 @@ void display_heat_map(NODE ***map, int width, int height) {
  * @param height longueur map
  * @param nodeStart
  */
-NODE *Solve_AStar_Essence(NODE ***nodes, int width, int height, NODE *nodeStart, VECT2D *tab) {
-    int i, x, y;
+NODE *Solve_AStar_Essence(NODE ***nodes, int width, int height, NODE *nodeStart) {
+    int i, x, y, openLastPushIndex;
+    QUEUE *q;
+    QNODE *current;
 
     for (x = 0; x < width; x++) {
         for (y = 0; y < height; y++) {
@@ -887,19 +893,15 @@ NODE *Solve_AStar_Essence(NODE ***nodes, int width, int height, NODE *nodeStart,
         }
     }
 
-    QUEUE *q = create_queue();
-
+    q = create_queue();
     nodeStart->fLocalGoal = 0.0f;
     nodeStart->fGlobalGoal = 0;
-
-    int openLastPushIndex = 1;
+    openLastPushIndex = 1;
+    current = NULL;
 
     fprintf(stderr,"START: %d %d\n", nodeStart->x, nodeStart->y);
     enqueue(nodeStart, q);
-
-
-    QNODE *current = NULL;
-
+    
     while (!is_empty(q)) {
         /*if(current!= NULL){
             free(current);
@@ -952,20 +954,19 @@ NODE *Solve_AStar_Essence(NODE ***nodes, int width, int height, NODE *nodeStart,
 /** Retourne le trajet à suivre par le pilote
  *  Résoud le A star puis stocke le résultat dans un tableau de pointeur de vecteur 2d (position à suivre)
  */
-NODE **get_path_essence(NODE ***nodes, int width, int height, NODE *nodeStart, VECT2D *tab, int * carburant) {
+NODE **get_path_essence(NODE ***nodes, int width, int height, NODE *nodeStart, int * carburant) {
     NODE **path = malloc(800 * sizeof(NODE));
     NODE *p;
-    int consomation_essence = 0;
+    int i, consomation_essence;
 
-    p = Solve_AStar_Essence(nodes, width, height, nodeStart, tab);
+    consomation_essence = 0;
+    i = 0;
 
-
-
+    p = Solve_AStar_Essence(nodes, width, height, nodeStart);
     if (p == NULL) {
         fprintf(stderr, "NO PATH FOUND\n");
     }
 
-    int i = 0;
     while (p != NULL) {
         fprintf(stderr, "%d %d - ", p->x, p->y);
         path[i] = p;

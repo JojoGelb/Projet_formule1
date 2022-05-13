@@ -225,18 +225,16 @@ void display_global(const QUEUE * f){
 }
 
 int memory_size(const QUEUE * f){
+    int result;
+    QNODE * n;
 
     if( f == NULL ){
         perror("Uninitialized queue");
         exit(EXIT_FAILURE);
     }
 
-    int result;
-
     result = sizeof(*f);
     printf("%d\n",result);
-
-    QNODE * n;
 
     n = f->head;
 
