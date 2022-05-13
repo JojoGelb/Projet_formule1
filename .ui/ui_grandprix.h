@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'grandprix.ui'
 **
-** Created by: Qt User Interface Compiler version 5.9.4
+** Created by: Qt User Interface Compiler version 5.12.8
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,11 +10,8 @@
 #define UI_GRANDPRIX_H
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QGridLayout>
-#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QSplitter>
@@ -45,19 +42,19 @@ public:
     void setupUi(QMainWindow *GrandPrix)
     {
         if (GrandPrix->objectName().isEmpty())
-            GrandPrix->setObjectName(QStringLiteral("GrandPrix"));
+            GrandPrix->setObjectName(QString::fromUtf8("GrandPrix"));
         GrandPrix->resize(859, 575);
         centralWidget = new QWidget(GrandPrix);
-        centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         gridLayout = new QGridLayout(centralWidget);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         splitter_5 = new QSplitter(centralWidget);
-        splitter_5->setObjectName(QStringLiteral("splitter_5"));
+        splitter_5->setObjectName(QString::fromUtf8("splitter_5"));
         splitter_5->setOrientation(Qt::Horizontal);
         splitter_4 = new QSplitter(splitter_5);
-        splitter_4->setObjectName(QStringLiteral("splitter_4"));
+        splitter_4->setObjectName(QString::fromUtf8("splitter_4"));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -66,15 +63,15 @@ public:
         splitter_4->setMinimumSize(QSize(0, 551));
         splitter_4->setOrientation(Qt::Vertical);
         layoutWidget = new QWidget(splitter_4);
-        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
         verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setSizeConstraint(QLayout::SetDefaultConstraint);
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         mapview = new GPMapView(layoutWidget);
-        mapview->setObjectName(QStringLiteral("mapview"));
+        mapview->setObjectName(QString::fromUtf8("mapview"));
         sizePolicy.setHeightForWidth(mapview->sizePolicy().hasHeightForWidth());
         mapview->setSizePolicy(sizePolicy);
         mapview->setMinimumSize(QSize(0, 300));
@@ -83,25 +80,25 @@ public:
 
         splitter_4->addWidget(layoutWidget);
         splitter = new QSplitter(splitter_4);
-        splitter->setObjectName(QStringLiteral("splitter"));
+        splitter->setObjectName(QString::fromUtf8("splitter"));
         splitter->setOrientation(Qt::Horizontal);
         splitter_2 = new QSplitter(splitter);
-        splitter_2->setObjectName(QStringLiteral("splitter_2"));
+        splitter_2->setObjectName(QString::fromUtf8("splitter_2"));
         sizePolicy.setHeightForWidth(splitter_2->sizePolicy().hasHeightForWidth());
         splitter_2->setSizePolicy(sizePolicy);
         splitter_2->setOrientation(Qt::Vertical);
         splitter_3 = new QSplitter(splitter_2);
-        splitter_3->setObjectName(QStringLiteral("splitter_3"));
+        splitter_3->setObjectName(QString::fromUtf8("splitter_3"));
         splitter_3->setOrientation(Qt::Horizontal);
         splitter_3->setHandleWidth(6);
         driverview = new GPMapView(splitter_3);
-        driverview->setObjectName(QStringLiteral("driverview"));
+        driverview->setObjectName(QString::fromUtf8("driverview"));
         sizePolicy.setHeightForWidth(driverview->sizePolicy().hasHeightForWidth());
         driverview->setSizePolicy(sizePolicy);
         driverview->setMinimumSize(QSize(200, 200));
         splitter_3->addWidget(driverview);
         log = new QPlainTextEdit(splitter_3);
-        log->setObjectName(QStringLiteral("log"));
+        log->setObjectName(QString::fromUtf8("log"));
         sizePolicy.setHeightForWidth(log->sizePolicy().hasHeightForWidth());
         log->setSizePolicy(sizePolicy);
         log->setReadOnly(true);
@@ -111,7 +108,7 @@ public:
         splitter_4->addWidget(splitter);
         splitter_5->addWidget(splitter_4);
         controlview = new GPControlView(splitter_5);
-        controlview->setObjectName(QStringLiteral("controlview"));
+        controlview->setObjectName(QString::fromUtf8("controlview"));
         splitter_5->addWidget(controlview);
 
         gridLayout->addWidget(splitter_5, 0, 1, 1, 1);

@@ -16,7 +16,6 @@ QUEUE * create_queue(){
 }
 
 int is_empty(const QUEUE * f){
-    //1 = empty, 0 = not empty; -1: not initialised
     if( f == NULL ){
         perror("Uninitialized queue");
         exit(EXIT_FAILURE);
@@ -47,7 +46,6 @@ void enqueue(NODE* val, QUEUE * f){
         f->tail = n;
         n->pred = NULL;
     }else{
-        //fprintf(stderr,"HEAD: %f, QUEUE: %f\n",f->head->value->fGlobalGoal, f->tail->value->fGlobalGoal);
         f->tail->next = n;
         n->pred = f->tail;
         f->tail = n;
@@ -56,16 +54,13 @@ void enqueue(NODE* val, QUEUE * f){
 
 void trierElemDistance(QNODE* elem, QUEUE * f, int lastSorted){
     QNODE* current = f->head;
-    //QNODE* temp;
     int index = 0;
 
     if(elem == f->head){
         return;
     }
 
-    //switch with head
     if(current->value->distanceToEnd > elem->value->distanceToEnd){
-        //fprintf(stderr,"HEAD\n");
         elem->pred->next = elem->next;
         if(elem->next == NULL){
             f->tail = elem->pred;
@@ -93,11 +88,11 @@ void trierElemDistance(QNODE* elem, QUEUE * f, int lastSorted){
                 elem->next->pred = elem->pred;
             }
 
-            //Appear before current
+            /*Appear before current*/
             elem->pred = current->pred;
             elem->next = current;
 
-            //Change current
+            /*Change current*/
             current->pred->next = elem;
             current->pred = elem;
             return;
@@ -112,15 +107,13 @@ void trierElemDistance(QNODE* elem, QUEUE * f, int lastSorted){
 */
 void trierElemGlobal(QNODE* elem, QUEUE * f){
     QNODE* current = f->head;
-    //QNODE* temp;
 
     if(elem == f->head){
         return;
     }
 
-    //switch with head
+    /*switch with head*/
     if(current->value->fGlobalGoal > elem->value->fGlobalGoal){
-        //fprintf(stderr,"HEAD\n");
         elem->pred->next = elem->next;
         if(elem->next == NULL){
             f->tail = elem->pred;
@@ -147,18 +140,17 @@ void trierElemGlobal(QNODE* elem, QUEUE * f){
                 elem->next->pred = elem->pred;
             }
 
-            //Appear before current
+            /*Appear before current*/
             elem->pred = current->pred;
             elem->next = current;
 
-            //Change current
+            /*Change current*/
             current->pred->next = elem;
             current->pred = elem;
             return;
         }
         current = current->next;
     }
-    //fprintf(stderr,"NO CHANGE %f\n",elem->value->fGlobalGoal);
 }
 
 void dequeue(QUEUE * f){
@@ -171,8 +163,6 @@ void dequeue(QUEUE * f){
     if(f->head){
         f->head = f->head->next;
         f->head->pred = NULL;
-        //free(n);
-        //n = NULL;
     }else{
         perror("List is already empty.");
         exit(EXIT_FAILURE);
@@ -185,7 +175,6 @@ QNODE* find(NODE* val, QUEUE* q){
     n = q->head;
 
     if(is_empty(q)){
-        //fprintf(stderr,"NULL empty\n");
         return NULL;
     }
     while(n != NULL){
@@ -193,7 +182,7 @@ QNODE* find(NODE* val, QUEUE* q){
             return n;
         n = n->next;
     }
-    //fprintf(stderr,"Not found NULL\n");
+    
     return NULL;
 }
 
@@ -204,14 +193,10 @@ void display_distance(const QUEUE * f){
     n = f->head;
 
     if(is_empty(f)){
-        //printf("List is already empty.");
         return;
     }
 
-    //printf("Display of a list: \n");
-
     while(n != NULL){
-        //fprintf(stderr,"%d %d - ", n->value->x, n->value->y);
         fprintf(stderr,"%d - ", n->value->distanceToEnd);
         n = n->next;
     }
@@ -227,14 +212,10 @@ void display_global(const QUEUE * f){
     n = f->head;
 
     if(is_empty(f)){
-        //printf("List is already empty.");
         return;
     }
 
-    //printf("Display of a list: \n");
-
     while(n != NULL){
-        //fprintf(stderr,"%d %d - ", n->value->x, n->value->y);
         fprintf(stderr,"%f - ", n->value->fGlobalGoal);
         n = n->next;
     }

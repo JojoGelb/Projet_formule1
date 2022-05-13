@@ -12,24 +12,23 @@
 int main() {
 
     clock_t start, end;
-    double cpu_time_used = -1;
+    double cpu_time_used;
+    cpu_time_used = -1;
     start = clock();
 
     VECT2D acceleration;
     VECT2D speed;
-
     VECT2D player1Position;
     VECT2D player2Position;
     VECT2D player3Position;
+    bool_t repeat;
 
-    // VECT2D LastPosition;
+    NODE **path;
+    NODE **pathEssence;
+    NODE **lastP2Position;
+    NODE **lastP3Position;
 
-    bool_t repeat = FALSE;
-
-    int round = 0;
-    int mapWidth, mapHeight, gaslevel, y, x;
-
-    // int boost = BOOSTS_AT_START;
+    int mapWidth, mapHeight, gaslevel, y, x, round;
 
     char action[100];
     char line_buffer[MAX_LINE_LENGTH];
@@ -38,16 +37,17 @@ int main() {
     acceleration.y = 0;
     speed.x = 0;
     speed.y = 0;
+    round = 0;
+    repeat = FALSE;
+    
 
-    // PARTIE LECTURE DES INFOS DE LA COURSE
-    fgets(line_buffer, MAX_LINE_LENGTH, stdin); // Read gas level at Start
-    // fprintf(stderr, "=== >Map< ===\n");
+    /* PARTIE LECTURE DES INFOS DE LA COURSE*/
+    fgets(line_buffer, MAX_LINE_LENGTH, stdin); /* Read gas level at Start */
     sscanf(line_buffer, "%d %d %d", &mapWidth, &mapHeight, &gaslevel);
 
-    //=========================PATHFINDING=============================//
+    /*=========================PATHFINDING=============================*/
     VECT2D *findex = generateListIndex();
 
-    // opti ce truc
     NODE ***mapNodes = createNodeMap(findex, mapWidth, mapHeight);
     NODE *nodeEnd = NULL;
     NODE *nodeStart = NULL;
@@ -58,7 +58,6 @@ int main() {
         fgets(line_buffer, MAX_LINE_LENGTH, stdin);
         x = 0;
         while (line_buffer[x] != '\0') {
-            // IL faut allouer les noeud et leur mettre leur vitesse
             if (line_buffer[x] == '.' || line_buffer[x] == '~') {
                 if (line_buffer[x] == '~') {
                     allocationSpeedForSandNode(mapNodes, findex, mapWidth, x, y);
@@ -68,7 +67,7 @@ int main() {
             } else if (line_buffer[x] == '=') {
                 allocationSpeedForEndNode(mapNodes, findex, mapWidth, x, y);
                 nodeEnd = mapNodes[y * mapWidth + x][findIndex(findex, 0, 0)];
-            } else if (line_buffer[x] == '#') { // si il n'y a pas ce test, le programme crache à la dernière case ???
+            } else if (line_buffer[x] == '#') {
                 allocationSpeedForNormalNode(mapNodes, findex, mapWidth, x, y);
             }
             x++;
@@ -88,13 +87,13 @@ int main() {
         }
     }
 
-    //==================================================================================================================//
+    /*==================================================================================================================*/
 
-    NODE **path = NULL;
-    NODE **pathEssence = NULL;
+    path = NULL;
+    pathEssence = NULL;
 
-    NODE **lastP2Position = NULL;
-    NODE **lastP3Position = NULL;
+    lastP2Position = NULL;
+    lastP3Position = NULL;
 
     fflush(stderr);
 
@@ -104,20 +103,20 @@ int main() {
             start = clock();
         }
 
-        fgets(line_buffer, MAX_LINE_LENGTH, stdin); // Read positions of pilots
+        fgets(line_buffer, MAX_LINE_LENGTH, stdin); /* Read positions of pilots*/
 
         sscanf(line_buffer, "%d %d %d %d %d %d",
-               &player1Position.x, &player1Position.y,
-               &player2Position.x, &player2Position.y,
-               &player3Position.x, &player3Position.y);
+                &player1Position.x, &player1Position.y,
+                &player2Position.x, &player2Position.y,
+                &player3Position.x, &player3Position.y);
 
         resetMapPlayersPosition(mapNodes,mapWidth,&lastP2Position,&lastP3Position,player2Position,player3Position);
         
-        //Cas particulier: bloqué le trajet et potentiellement un mur
+        /*Cas particulier: bloqué le trajet et potentiellement un mur*/
         if(repeat == TRUE){
             int speedx = player1Position.x - nodeStart->x;
             int speedy = player1Position.y - nodeStart->y;
-            //Potential issue here
+            /*Potential issue here*/
             gaslevel -= gasConsumption(0,0,speedx,speedy,nodeStart->sable);
             nodeStart = mapNodes[player1Position.y * mapWidth + player1Position.x][findIndex(findex,speedx,speedy)];
 
@@ -149,14 +148,14 @@ int main() {
             display_node_map(mapNodes, mapWidth, mapHeight, path);
         }
 
-        //Une voiture passe devant
+        /*Une voiture passe devant*/
         if(hit_a_wall(mapNodes,mapWidth,path[round],path[round+1])){
                 fprintf(stderr,"------------------CROSSROAD-----------------\n");
                 nodeStart = path[round];
                 path = get_path(mapNodes, mapWidth, mapHeight, path[round]);
                 round = 0;
                 pathEssence = NULL;
-                //NO path available ahead: skip a beat. TODO: Recalcul the position and speed et recalcule speed + essence path
+                /*NO path available ahead: skip a beat. TODO: Recalcul the position and speed et recalcule speed + essence path*/
                 if(path[0] == NULL){
                     fprintf(stderr,"------------------cant find da wai: JUST PAUSE FOR A WHILE-----------------\n");
                     repeat = TRUE;
@@ -171,10 +170,10 @@ int main() {
                 fprintf(stderr,"------------------END CROSSROAD-----------------\n");
             }
 
-        //Calculer le path essence en decalage pour meilleur perf
-        // Peut faire mieux
-        // Mettre dans une fonction
-        // Split to avoid timeout
+        /*Calculer le path essence en decalage pour meilleur perf
+        Peut faire mieux
+        Mettre dans une fonction
+        Split to avoid timeout*/
         if (round != 0 && pathEssence == NULL) {
             fprintf(stderr, "===================START CHECK ESSESNCE===================\n");
             int i = 0;
@@ -188,10 +187,9 @@ int main() {
             int autreConso = calculConsommationEssenceSurTrajet(path, i) + gasConsumption(path[0]->x - nodeStart->x, path[0]->y - nodeStart->y, 0, 0, nodeStart->sable);
 
             
-            //On skipera si on a assez pour faire un tour complet
+            /*On skipera si on a assez pour faire un tour complet*/
             while (gaslevel - autreConso - conso < 1 && i > 0) {
-                pathEssence = get_path_essence(mapNodes, mapWidth, mapHeight,
-                                               path[i], findex, &conso);
+                pathEssence = get_path_essence(mapNodes, mapWidth, mapHeight, path[i], findex, &conso);
 
                 autreConso = calculConsommationEssenceSurTrajet(path, i + 1) + gasConsumption(path[0]->x - nodeStart->x, path[0]->y - nodeStart->y, 0, 0, nodeStart->sable);
                 i--;
@@ -206,7 +204,7 @@ int main() {
             fprintf(stderr, "===================FIN CHECK ESSESNCE===================\n");
         }
 
-        // Quand on arrive au meme point sur la route on swap de path vers pathEssence
+        /*Quand on arrive au meme point sur la route on swap de path vers pathEssence*/
         if (pathEssence != NULL && player1Position.x == pathEssence[0]->x && player1Position.y == pathEssence[0]->y) {
             round = 0;
             path = pathEssence;

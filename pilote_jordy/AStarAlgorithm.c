@@ -1,4 +1,4 @@
-#include "AStarAlgorithm.h"
+#include "AStarAlgorithm_pilote_jordy.h"
 
 NODE * createNode(){
     NODE* node;

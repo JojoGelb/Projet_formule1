@@ -1,4 +1,4 @@
-#include "AStarAlgorithm.h"
+#include "AStarAlgorithm_pilote_jordy2.h"
 #include "../follow_line/follow_line.h"
 #include "Queue.h"
 

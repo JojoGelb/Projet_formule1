@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'finishdialog.ui'
 **
-** Created by: Qt User Interface Compiler version 5.9.4
+** Created by: Qt User Interface Compiler version 5.12.8
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,12 +10,9 @@
 #define UI_FINISHDIALOG_H
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QGridLayout>
-#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QVBoxLayout>
@@ -39,36 +36,36 @@ public:
     void setupUi(QDialog *FinnishDialog)
     {
         if (FinnishDialog->objectName().isEmpty())
-            FinnishDialog->setObjectName(QStringLiteral("FinnishDialog"));
+            FinnishDialog->setObjectName(QString::fromUtf8("FinnishDialog"));
         FinnishDialog->resize(299, 88);
         verticalLayout = new QVBoxLayout(FinnishDialog);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         table = new QWidget(FinnishDialog);
-        table->setObjectName(QStringLiteral("table"));
+        table->setObjectName(QString::fromUtf8("table"));
         gridLayout = new QGridLayout(table);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         label = new QLabel(table);
-        label->setObjectName(QStringLiteral("label"));
+        label->setObjectName(QString::fromUtf8("label"));
 
         gridLayout->addWidget(label, 0, 0, 1, 1);
 
         label_2 = new QLabel(table);
-        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setObjectName(QString::fromUtf8("label_2"));
 
         gridLayout->addWidget(label_2, 0, 1, 1, 1);
 
         label_3 = new QLabel(table);
-        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setObjectName(QString::fromUtf8("label_3"));
 
         gridLayout->addWidget(label_3, 0, 2, 1, 1);
 
         label_4 = new QLabel(table);
-        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setObjectName(QString::fromUtf8("label_4"));
 
         gridLayout->addWidget(label_4, 0, 3, 1, 1);
 
         label_5 = new QLabel(table);
-        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setObjectName(QString::fromUtf8("label_5"));
 
         gridLayout->addWidget(label_5, 0, 4, 1, 1);
 
@@ -76,7 +73,7 @@ public:
         verticalLayout->addWidget(table);
 
         abortButton = new QPushButton(FinnishDialog);
-        abortButton->setObjectName(QStringLiteral("abortButton"));
+        abortButton->setObjectName(QString::fromUtf8("abortButton"));
 
         verticalLayout->addWidget(abortButton);
 
@@ -89,13 +86,13 @@ public:
 
     void retranslateUi(QDialog *FinnishDialog)
     {
-        FinnishDialog->setWindowTitle(QApplication::translate("FinnishDialog", "Dialog", Q_NULLPTR));
-        label->setText(QApplication::translate("FinnishDialog", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Rank</span></p></body></html>", Q_NULLPTR));
-        label_2->setText(QApplication::translate("FinnishDialog", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Driver</span></p></body></html>", Q_NULLPTR));
-        label_3->setText(QApplication::translate("FinnishDialog", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Hops</span></p></body></html>", Q_NULLPTR));
-        label_4->setText(QApplication::translate("FinnishDialog", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Gas</span></p></body></html>", Q_NULLPTR));
-        label_5->setText(QApplication::translate("FinnishDialog", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Boosts</span></p></body></html>", Q_NULLPTR));
-        abortButton->setText(QApplication::translate("FinnishDialog", "Ok", Q_NULLPTR));
+        FinnishDialog->setWindowTitle(QApplication::translate("FinnishDialog", "Dialog", nullptr));
+        label->setText(QApplication::translate("FinnishDialog", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Rank</span></p></body></html>", nullptr));
+        label_2->setText(QApplication::translate("FinnishDialog", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Driver</span></p></body></html>", nullptr));
+        label_3->setText(QApplication::translate("FinnishDialog", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Hops</span></p></body></html>", nullptr));
+        label_4->setText(QApplication::translate("FinnishDialog", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Gas</span></p></body></html>", nullptr));
+        label_5->setText(QApplication::translate("FinnishDialog", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Boosts</span></p></body></html>", nullptr));
+        abortButton->setText(QApplication::translate("FinnishDialog", "Ok", nullptr));
     } // retranslateUi
 
 };

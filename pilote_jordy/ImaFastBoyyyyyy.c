@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "AStarAlgorithm.h"
+#include "AStarAlgorithm_pilote_jordy.h"
 
 #define MAX_LINE_LENGTH 1024
 #define BOOSTS_AT_START 5

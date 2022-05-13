@@ -31,7 +31,7 @@ $(OBJ)follow_line.o: ../follow_line/follow_line.c ../follow_line/follow_line.h
 	$(CC) $(CFLAGS) -I ../follow_line $< -c -o $@
 
 #AStarAlgorithm
-$(OBJ)$(MORE_FILE).o: $(SRC)$(MORE_FILE).c $(HEADER)$(MORE_FILE).h
+$(OBJ)$(MORE_FILE).o: $(SRC)$(MORE_FILE).c $(HEADER)AStarAlgorithm_pilote_jordy2.h
 	$(CC) $(CFLAGS) -I ./ $< -c -o $@
 
 #Queue

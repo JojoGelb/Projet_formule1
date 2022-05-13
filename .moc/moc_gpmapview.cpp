@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'gpmapview.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.4)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.12.8)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'gpmapview.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.9.4. It"
+#error "This file was generated using the moc from 5.12.8. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -48,7 +48,7 @@ QT_MOC_LITERAL(6, 59, 4) // "nCar"
 static const uint qt_meta_data_GPMapView[] = {
 
  // content:
-       7,       // revision
+       8,       // revision
        0,       // classname
        0,    0, // classinfo
        2,   14, // methods
@@ -72,7 +72,7 @@ static const uint qt_meta_data_GPMapView[] = {
 void GPMapView::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        GPMapView *_t = static_cast<GPMapView *>(_o);
+        auto *_t = static_cast<GPMapView *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->mapChanged((*reinterpret_cast< GPControl*(*)>(_a[1]))); break;
@@ -93,10 +93,14 @@ void GPMapView::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
     }
 }
 
-const QMetaObject GPMapView::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_GPMapView.data,
-      qt_meta_data_GPMapView,  qt_static_metacall, nullptr, nullptr}
-};
+QT_INIT_METAOBJECT const QMetaObject GPMapView::staticMetaObject = { {
+    &QWidget::staticMetaObject,
+    qt_meta_stringdata_GPMapView.data,
+    qt_meta_data_GPMapView,
+    qt_static_metacall,
+    nullptr,
+    nullptr
+} };
 
 
 const QMetaObject *GPMapView::metaObject() const

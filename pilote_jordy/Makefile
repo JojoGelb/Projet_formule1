@@ -38,7 +38,7 @@ $(PILOT_NAME).o: $(PILOT_NAME).c
 	$(CC) $(CFLAGS) -I . $< -c -o $@
 
 #AStarAlgorithm
-$(MORE_FILE).o: $(MORE_FILE).c ./$(MORE_FILE).h
+$(MORE_FILE).o: $(MORE_FILE).c ./AStarAlgorithm_pilote_jordy.h
 	$(CC) $(CFLAGS) -I ./ $< -c -o $@
 
 

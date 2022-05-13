@@ -32,11 +32,10 @@ typedef struct node{
     int y;
     int speedX;
     int speedY;
-    struct node** vecNeighbours; //Array
+    struct node** vecNeighbours; /*Array*/
     int numberOfNeighbours;
-    struct node* parent;        //One element
+    struct node* parent;        /*One element*/
 
-    //add
     int distanceToEnd;
     char end;
 } NODE;

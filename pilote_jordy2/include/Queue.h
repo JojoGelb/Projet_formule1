@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "AStarAlgorithm.h"
+#include "AStarAlgorithm_pilote_jordy2.h"
 
 typedef struct qNode QNODE;
 typedef struct queue QUEUE;
