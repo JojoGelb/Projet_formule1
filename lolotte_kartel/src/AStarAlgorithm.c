@@ -260,7 +260,6 @@ void findNeighbourForSandNode(NODE ***nodes, VECT2D *tab, int width, int height,
  */
 void findNeighbourForNormalNode(NODE ***nodes, VECT2D *tab, int width, int height, int x, int y) {
 
-    
     bool_t x_in, y_in;
     int y_prime, x_prime, i, num_neigh, findex;
 
@@ -450,9 +449,9 @@ int contain(NODE **list, int lastIndex, NODE *searched, int smaller) {
  * @param nodeStart
  */
 NODE *Solve_AStar(NODE ***nodes, int width, int height, NODE *nodeStart) {
-    int i, x, y, openLastPushIndex, openLastNotSortedIndex, cout, heur;
-    NODE *nodeCurrent;
-    NODE *open_list[80000];
+    int i, x, y, openLastPushIndex, heur,cout;
+    QUEUE *q;
+    QNODE *current;
 
     for (x = 0; x < width; x++) {
         for (y = 0; y < height; y++) {
@@ -467,56 +466,69 @@ NODE *Solve_AStar(NODE ***nodes, int width, int height, NODE *nodeStart) {
         }
     }
 
-    nodeCurrent = nodeStart;
+    q = create_queue();
     nodeStart->fLocalGoal = 0.0f;
     nodeStart->fGlobalGoal = 0;
     openLastPushIndex = 1;
-    openLastNotSortedIndex = 1;
+    current = NULL;
 
-    open_list[0] = nodeStart;
+    enqueue(nodeStart, q);
 
-    while (openLastPushIndex != 0) {
+    while (!is_empty(q)) {
 
-        sort_nodes_list(open_list, openLastPushIndex, &openLastNotSortedIndex);
-        openLastNotSortedIndex = openLastPushIndex;
+        current = q->head;
 
-        nodeCurrent = open_list[0];
-
-        /* Depilement*/
-        shift_left(open_list, openLastPushIndex);
-        openLastPushIndex--;
-        openLastNotSortedIndex--;
-
-        if (nodeCurrent->end == TRUE) {
-            fprintf(stderr, "END: %d %d - %d %d\n", nodeCurrent->x, nodeCurrent->y, nodeCurrent->speedX, nodeCurrent->speedY);
-            return nodeCurrent;
+        /* Depile*/
+        if (current != q->tail) {
+            dequeue(q);
+            openLastPushIndex--;
+        } else{
+            q->head = NULL;
+            q->tail = NULL;
         }
 
-        for (i = 0; i < nodeCurrent->numberOfNeighbours; i++) {
-            if (!(nodeCurrent->vecNeighbours[i] == NULL  || hit_a_wall(nodes, width, nodeCurrent, nodeCurrent->vecNeighbours[i]))) {
-                cout = nodeCurrent->fLocalGoal + distance(nodeCurrent, nodeCurrent->vecNeighbours[i]);
-                heur = cout + heuristic(nodeCurrent->vecNeighbours[0]);
-
-                if (nodeCurrent->vecNeighbours[i]->fGlobalGoal > heur && contain(open_list, openLastPushIndex, nodeCurrent->vecNeighbours[i], -1)) {
-                    continue;
-                }
-
-                if (nodeCurrent->vecNeighbours[i]->fGlobalGoal > heur && nodeCurrent->vecNeighbours[i]->bVisited) {
-                    continue;
-                }
-
-                if(nodeCurrent->vecNeighbours[i] == nodeCurrent){
-                    continue;
-                }
-
-                nodeCurrent->vecNeighbours[i]->parent = nodeCurrent;
-
-                open_list[openLastPushIndex] = nodeCurrent->vecNeighbours[i];
-                openLastPushIndex++;
-                openLastNotSortedIndex++;
+         for (i = 0; i < current->value->numberOfNeighbours; i++) {
+            if (current->value->vecNeighbours[i]->speedX == current->value->speedX && current->value->vecNeighbours[i]->speedY == current->value->speedY) {
+                NODE *temp = current->value->vecNeighbours[i];
+                current->value->vecNeighbours[i] = current->value->vecNeighbours[0];
+                current->value->vecNeighbours[0] = temp;
             }
         }
-        nodeCurrent->bVisited = TRUE;
+
+        for (i = 0; i < current->value->numberOfNeighbours; i++) {
+            if (!(hit_a_wall(nodes, width, current->value, current->value->vecNeighbours[i]))) {
+
+                if (current->value->vecNeighbours[i]->end == TRUE) {
+                    fprintf(stderr, "END: %d %d - %d %d\n", current->value->vecNeighbours[i]->x, current->value->vecNeighbours[i]->y, current->value->vecNeighbours[i]->speedX, current->value->vecNeighbours[i]->speedY);
+                    current->value->vecNeighbours[i]->parent = current->value;
+                    return current->value->vecNeighbours[i];
+                }
+
+                cout = current->value->fLocalGoal + distance(current->value, current->value->vecNeighbours[i]);
+                heur = cout + heuristic(current->value->vecNeighbours[0]);
+
+                if (current->value->vecNeighbours[i]->fGlobalGoal > heur && find(current->value->vecNeighbours[i], q) != NULL) {
+                    continue;
+                }
+
+                if (current->value->vecNeighbours[i]->fGlobalGoal > heur && current->value->vecNeighbours[i]->bVisited) {
+                    continue;
+                }
+
+                if(current->value->vecNeighbours[i] == current->value){
+                    continue;
+                }
+
+                current->value->vecNeighbours[i]->parent = current->value;
+
+                enqueue(current->value->vecNeighbours[i], q);
+                trierElemGlobal(find(current->value->vecNeighbours[i], q), q);
+
+                openLastPushIndex++;
+            }
+        }
+        current->value->bVisited = TRUE;
+        free(current);
     }
     return NULL;
 }
@@ -589,12 +601,12 @@ int gasConsumption(int accX, int accY, int speedX, int speedY, int inSand) {
 
 /** Retourne le trajet à suivre par le pilote
  *  Résoud le A star puis stocke le résultat dans un tableau de pointeur de vecteur 2d (position à suivre)
- */ 
+ */
 NODE **get_path(NODE ***nodes, int width, int height, NODE *nodeStart) {
     int i;
     NODE **path = malloc(800 * sizeof(NODE));
-    NODE* p;
-    
+    NODE *p;
+
     p = Solve_AStar(nodes, width, height, nodeStart);
     i = 0;
     while (p != NULL) {
@@ -666,7 +678,6 @@ VECT2D nextAcceleration(NODE **path, VECT2D *position, VECT2D *lastSpeed, int in
 void generate_heat_map(NODE ***nodes, int width, int height, NODE *start) {
     int y, x, lastChange, poids_sable;
     QNODE *temp;
-    QNODE *test;
     QUEUE *q;
     QNODE *current;
 
@@ -722,25 +733,7 @@ void generate_heat_map(NODE ***nodes, int width, int height, NODE *start) {
 
         lastChange--;
 
-        /* check 8 neighbour
-        0 1 2
-        3 4 5
-        6 7 8
-        */
-        if (current->value->y > 0 && current->value->x > 0 && current->value->sable == FALSE && nodes[(current->value->y - 1) * width + current->value->x - 1] != NULL &&
-            nodes[(current->value->y - 1) * width + current->value->x - 1][0]->distanceToEnd > current->value->distanceToEnd) {
-            nodes[(current->value->y - 1) * width + current->value->x - 1][0]->distanceToEnd = current->value->distanceToEnd + 1;
-
-            if (nodes[(current->value->y - 1) * width + current->value->x - 1][0]->sable == TRUE) {
-                nodes[(current->value->y - 1) * width + current->value->x - 1][0]->distanceToEnd = current->value->distanceToEnd + poids_sable;
-            }
-
-            nodes[(current->value->y - 1) * width + current->value->x - 1][0]->parent = current->value;
-            trierElemDistance(find(nodes[(current->value->y - 1) * width + current->value->x - 1][0], q), q, lastChange);
-
-            lastChange++;
-        }
-
+        /* check 4 neighbour */
         if (current->value->y > 0 && nodes[(current->value->y - 1) * width + current->value->x] != NULL &&
             nodes[(current->value->y - 1) * width + current->value->x][0]->distanceToEnd > current->value->distanceToEnd) {
             nodes[(current->value->y - 1) * width + current->value->x][0]->distanceToEnd = current->value->distanceToEnd + 1;
@@ -750,36 +743,27 @@ void generate_heat_map(NODE ***nodes, int width, int height, NODE *start) {
             }
 
             nodes[(current->value->y - 1) * width + current->value->x][0]->parent = current->value;
-            trierElemDistance(find(nodes[(current->value->y - 1) * width + current->value->x][0], q), q, lastChange);
-            lastChange++;
-        }
-
-        if (current->value->y > 0 && current->value->x < width - 1 && current->value->sable == FALSE &&
-            nodes[(current->value->y - 1) * width + current->value->x + 1] != NULL &&
-            nodes[(current->value->y - 1) * width + current->value->x + 1][0]->distanceToEnd > current->value->distanceToEnd) {
-            nodes[(current->value->y - 1) * width + current->value->x + 1][0]->distanceToEnd = current->value->distanceToEnd + 1;
-
-            if (nodes[(current->value->y - 1) * width + current->value->x + 1][0]->sable == TRUE) {
-                nodes[(current->value->y - 1) * width + current->value->x + 1][0]->distanceToEnd = current->value->distanceToEnd + poids_sable;
+            temp= find(nodes[(current->value->y - 1) * width + current->value->x][0],q);
+            if(temp){
+                trierElemDistance(temp, q, lastChange);
+                lastChange++;
             }
-
-            nodes[(current->value->y - 1) * width + current->value->x + 1][0]->parent = current->value;
-            trierElemDistance(find(nodes[(current->value->y - 1) * width + current->value->x + 1][0], q), q, lastChange);
-            lastChange++;
         }
 
         if (current->value->x > 0 && nodes[current->value->y * width + current->value->x - 1] != NULL &&
             nodes[current->value->y * width + current->value->x - 1][0]->distanceToEnd > current->value->distanceToEnd) {
             nodes[current->value->y * width + current->value->x - 1][0]->distanceToEnd = current->value->distanceToEnd + 1;
-
             if (nodes[(current->value->y) * width + current->value->x - 1][0]->sable == TRUE) {
                 nodes[(current->value->y) * width + current->value->x - 1][0]->distanceToEnd = current->value->distanceToEnd + poids_sable;
             }
-
             nodes[current->value->y * width + current->value->x - 1][0]->parent = current->value;
-            trierElemDistance(find(nodes[(current->value->y) * width + current->value->x - 1][0], q), q, lastChange);
-            lastChange++;
+            temp= find(nodes[current->value->y * width + current->value->x - 1][0],q);
+            if(temp){
+                trierElemDistance(temp, q, lastChange);
+                lastChange++;
+            }
         }
+
         if (current->value->x < width - 1 && nodes[current->value->y * width + current->value->x + 1] != NULL &&
             nodes[current->value->y * width + current->value->x + 1][0]->distanceToEnd > current->value->distanceToEnd) {
             nodes[current->value->y * width + current->value->x + 1][0]->distanceToEnd = current->value->distanceToEnd + 1;
@@ -789,24 +773,13 @@ void generate_heat_map(NODE ***nodes, int width, int height, NODE *start) {
             }
 
             nodes[current->value->y * width + current->value->x + 1][0]->parent = current->value;
-            trierElemDistance(find(nodes[(current->value->y) * width + current->value->x + 1][0], q), q, lastChange);
-            lastChange++;
-        }
-        if (current->value->y < height - 1 && current->value->x > 0 && current->value->sable == FALSE &&
-            nodes[(current->value->y + 1) * width + current->value->x - 1] != NULL &&
-            nodes[(current->value->y + 1) * width + current->value->x - 1][0]->distanceToEnd > current->value->distanceToEnd) {
-            nodes[(current->value->y + 1) * width + current->value->x - 1][0]->distanceToEnd = current->value->distanceToEnd + 1;
-
-            if (nodes[(current->value->y + 1) * width + current->value->x - 1][0]->sable == TRUE) {
-                nodes[(current->value->y + 1) * width + current->value->x - 1][0]->distanceToEnd = current->value->distanceToEnd + poids_sable;
+            temp= find(nodes[current->value->y * width + current->value->x + 1][0],q);
+            if(temp){
+                trierElemDistance(temp, q, lastChange);
+                lastChange++;
             }
-
-            nodes[(current->value->y + 1) * width + current->value->x - 1][0]->parent = current->value;
-            test = find(nodes[(current->value->y + 1) * width + current->value->x - 1][0], q);
-
-            trierElemDistance(test, q, lastChange);
-            lastChange++;
         }
+
         if (current->value->y < height - 1 && nodes[(current->value->y + 1) * width + current->value->x] != NULL &&
             nodes[(current->value->y + 1) * width + current->value->x][0]->distanceToEnd > current->value->distanceToEnd) {
             nodes[(current->value->y + 1) * width + current->value->x][0]->distanceToEnd = current->value->distanceToEnd + 1;
@@ -816,21 +789,11 @@ void generate_heat_map(NODE ***nodes, int width, int height, NODE *start) {
             }
 
             nodes[(current->value->y + 1) * width + current->value->x][0]->parent = current->value;
-            trierElemDistance(find(nodes[(current->value->y + 1) * width + current->value->x][0], q), q, lastChange);
-            lastChange++;
-        }
-        if (current->value->y < height - 1 && current->value->x < width - 1 && current->value->sable == FALSE &&
-            nodes[(current->value->y + 1) * width + current->value->x + 1] != NULL &&
-            nodes[(current->value->y + 1) * width + current->value->x + 1][0]->distanceToEnd > current->value->distanceToEnd) {
-            nodes[(current->value->y + 1) * width + current->value->x + 1][0]->distanceToEnd = current->value->distanceToEnd + 1;
-
-            if (nodes[(current->value->y + 1) * width + current->value->x + 1][0]->sable == TRUE) {
-                nodes[(current->value->y + 1) * width + current->value->x + 1][0]->distanceToEnd = current->value->distanceToEnd + poids_sable;
+            temp= find(nodes[(current->value->y + 1) * width + current->value->x][0],q);
+            if(temp){
+                trierElemDistance(temp, q, lastChange);
+                lastChange++;
             }
-
-            nodes[(current->value->y + 1) * width + current->value->x + 1][0]->parent = current->value;
-            trierElemDistance(find(nodes[(current->value->y + 1) * width + current->value->x + 1][0], q), q, lastChange);
-            lastChange++;
         }
         free(current);
     }
@@ -899,20 +862,19 @@ NODE *Solve_AStar_Essence(NODE ***nodes, int width, int height, NODE *nodeStart)
     openLastPushIndex = 1;
     current = NULL;
 
-    fprintf(stderr,"START: %d %d\n", nodeStart->x, nodeStart->y);
+    fprintf(stderr, "START: %d %d\n", nodeStart->x, nodeStart->y);
     enqueue(nodeStart, q);
-    
+
     while (!is_empty(q)) {
-        /*if(current!= NULL){
-            free(current);
-            current = NULL;
-        }*/
         current = q->head;
 
         /* Depile*/
         if (current != q->tail) {
             dequeue(q);
             openLastPushIndex--;
+        }else{
+            q->head = NULL;
+            q->tail = NULL;
         }
 
         if (current->value->end == TRUE) {
@@ -922,39 +884,38 @@ NODE *Solve_AStar_Essence(NODE ***nodes, int width, int height, NODE *nodeStart)
 
         for (i = 0; i < current->value->numberOfNeighbours; i++) {
             if (!(hit_a_wall(nodes, width, current->value, current->value->vecNeighbours[i]) ||
-                    current->value->vecNeighbours[i]->bVisited ||
-                    (find(current->value->vecNeighbours[i], q) != NULL && current->value->vecNeighbours[i]->fLocalGoal < current->value->fLocalGoal))) {
+                  current->value->vecNeighbours[i]->bVisited ||
+                  (find(current->value->vecNeighbours[i], q) != NULL && current->value->vecNeighbours[i]->fLocalGoal < current->value->fLocalGoal))) {
 
-                float cout = current->value->fLocalGoal + gasConsumption(current->value->vecNeighbours[i]->x - current->value->x - current->value->speedX, current->value->vecNeighbours[i]->y - current->value->y - current->value->speedY, current->value->speedX, current->value->speedY,current->value->sable) /*distance(current->value, current->value->vecNeighbours[i])*/;
+                float cout = current->value->fLocalGoal + gasConsumption(current->value->vecNeighbours[i]->x - current->value->x - current->value->speedX, current->value->vecNeighbours[i]->y - current->value->y - current->value->speedY, current->value->speedX, current->value->speedY, current->value->sable) /*distance(current->value, current->value->vecNeighbours[i])*/;
                 float heur = cout + heuristic(nodes[current->value->vecNeighbours[i]->y * width + current->value->vecNeighbours[i]->x][0]);
 
                 current->value->vecNeighbours[i]->fLocalGoal = cout;
                 current->value->vecNeighbours[i]->fGlobalGoal = heur;
 
-                if(current->value->vecNeighbours[i] == current->value){
+                if (current->value->vecNeighbours[i] == current->value) {
                     continue;
                 }
 
                 current->value->vecNeighbours[i]->parent = current->value;
 
-
                 enqueue(current->value->vecNeighbours[i], q);
                 trierElemGlobal(find(current->value->vecNeighbours[i], q), q);
 
                 openLastPushIndex++;
-                
             }
         }
         current->value->bVisited = TRUE;
+        free(current);
     }
-    fprintf(stderr,"CANT FIND DA WEI\n");
+    fprintf(stderr, "CANT FIND DA WEI\n");
     return NULL;
 }
 
 /** Retourne le trajet à suivre par le pilote
  *  Résoud le A star puis stocke le résultat dans un tableau de pointeur de vecteur 2d (position à suivre)
  */
-NODE **get_path_essence(NODE ***nodes, int width, int height, NODE *nodeStart, int * carburant) {
+NODE **get_path_essence(NODE ***nodes, int width, int height, NODE *nodeStart, int *carburant) {
     NODE **path = malloc(800 * sizeof(NODE));
     NODE *p;
     int i, consomation_essence;
@@ -968,10 +929,10 @@ NODE **get_path_essence(NODE ***nodes, int width, int height, NODE *nodeStart, i
     }
 
     while (p != NULL) {
-        fprintf(stderr, "%d %d - ", p->x, p->y);
+        /*fprintf(stderr, "%d %d - ", p->x, p->y);*/
         path[i] = p;
-        if(p->parent != NULL){
-            consomation_essence += gasConsumption(p->x - p->parent->x - p->parent->speedX, p->y - p->parent->y - p->parent->speedY, p->parent->speedX, p->parent->speedY, p->parent->sable);  
+        if (p->parent != NULL) {
+            consomation_essence += gasConsumption(p->x - p->parent->x - p->parent->speedX, p->y - p->parent->y - p->parent->speedY, p->parent->speedX, p->parent->speedY, p->parent->sable);
         }
         i++;
         p = p->parent;
@@ -984,33 +945,32 @@ NODE **get_path_essence(NODE ***nodes, int width, int height, NODE *nodeStart, i
     return path;
 }
 
-int calculConsommationEssenceSurTrajet(NODE ** path,int indexFin){
+int calculConsommationEssenceSurTrajet(NODE **path, int indexDebut, int indexFin) {
     int i;
     int consommation = 0;
-    for(i = 0; i < indexFin-1; i++){
-        consommation += gasConsumption(path[i+1]->x - path[i]->x - path[i]->speedX, path[i+1]->y - path[i]->y - path[i]->speedY, path[i]->speedX,  path[i]->speedY,  path[i]->sable);  
+    for (i = indexDebut; i < indexFin - 1; i++) {
+        consommation += gasConsumption(path[i + 1]->x - path[i]->x - path[i]->speedX, path[i + 1]->y - path[i]->y - path[i]->speedY, path[i]->speedX, path[i]->speedY, path[i]->sable);
     }
     return consommation;
 }
 
 /** Set a node to null if another player on it and keep trace of it to restore it next round*/
-void resetMapPlayersPosition(NODE *** mapNodes, int mapWidth, NODE ***lastP2Position, NODE ***lastP3Position, VECT2D player2Position, VECT2D player3Position){
+void resetMapPlayersPosition(NODE ***mapNodes, int mapWidth, NODE ***lastP2Position, NODE ***lastP3Position, VECT2D player2Position, VECT2D player3Position) {
     if (*lastP2Position != NULL) {
-            mapNodes[(*lastP2Position)[0]->y * mapWidth + (*lastP2Position)[0]->x] = *lastP2Position;
-        }
+        mapNodes[(*lastP2Position)[0]->y * mapWidth + (*lastP2Position)[0]->x] = *lastP2Position;
+    }
 
-        if (*lastP3Position != NULL) {
-            mapNodes[(*lastP3Position)[0]->y * mapWidth + (*lastP3Position)[0]->x] = *lastP3Position;
-        }
+    if (*lastP3Position != NULL) {
+        mapNodes[(*lastP3Position)[0]->y * mapWidth + (*lastP3Position)[0]->x] = *lastP3Position;
+    }
 
-        *lastP2Position = mapNodes[player2Position.y * mapWidth + player2Position.x];
-        *lastP3Position = mapNodes[player3Position.y * mapWidth + player3Position.x];
+    *lastP2Position = mapNodes[player2Position.y * mapWidth + player2Position.x];
+    *lastP3Position = mapNodes[player3Position.y * mapWidth + player3Position.x];
 
-
-        if(*lastP2Position!= NULL){
-            mapNodes[player2Position.y * mapWidth + player2Position.x] = NULL;
-        }
-        if(*lastP3Position != NULL){
-            mapNodes[player3Position.y * mapWidth + player3Position.x] = NULL;
-        }
+    if (*lastP2Position != NULL) {
+        mapNodes[player2Position.y * mapWidth + player2Position.x] = NULL;
+    }
+    if (*lastP3Position != NULL) {
+        mapNodes[player3Position.y * mapWidth + player3Position.x] = NULL;
+    }
 }

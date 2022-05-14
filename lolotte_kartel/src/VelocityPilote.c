@@ -21,6 +21,7 @@ int main() {
     VECT2D *findex;
 
     bool_t repeat;
+    bool_t onPeutFinir = FALSE;
 
     NODE ***mapNodes;
     NODE **path;
@@ -133,6 +134,7 @@ int main() {
             if(repeat == FALSE){
                 nodeStart = mapNodes[player1Position.y * mapWidth + player1Position.x][findIndex(findex, 0, 0)];
                 generate_heat_map(mapNodes, mapWidth, mapHeight, nodeEnd);
+                display_heat_map(mapNodes,mapWidth,mapHeight);
             }else{
                 repeat = FALSE;
             }
@@ -157,8 +159,10 @@ int main() {
         /*Une voiture passe devant*/
         if(hit_a_wall(mapNodes,mapWidth,path[round],path[round+1])){
                 fprintf(stderr,"------------------CROSSROAD-----------------\n");
+                onPeutFinir = FALSE;
                 nodeStart = path[round];
                 path = get_path(mapNodes, mapWidth, mapHeight, path[round]);
+                fprintf(stderr,"------------------PATH DONE-----------------\n");
                 round = 0;
                 pathEssence = NULL;
                 /*NO path available ahead: skip a beat. TODO: Recalcul the position and speed et recalcule speed + essence path*/
@@ -180,7 +184,7 @@ int main() {
         Peut faire mieux
         Mettre dans une fonction
         Split to avoid timeout*/
-        if (round != 0 && pathEssence == NULL) {
+        if (round != 0 && pathEssence == NULL && !onPeutFinir) {
             fprintf(stderr, "===================START CHECK ESSESNCE===================\n");
             i = 0;
             while (path[i] != NULL) {
@@ -188,16 +192,16 @@ int main() {
             }
             conso = 0;
 
-            i--;
-
-            autreConso = calculConsommationEssenceSurTrajet(path, i) + gasConsumption(path[0]->x - nodeStart->x, path[0]->y - nodeStart->y, 0, 0, nodeStart->sable);
-
+            autreConso = calculConsommationEssenceSurTrajet(path,round,i);
+            fprintf(stderr,"AUTRECONSO: %d %d %d\n", autreConso, gaslevel, conso);
+            i-=2;
             
             /*On skipera si on a assez pour faire un tour complet*/
             while (gaslevel - autreConso - conso < 1 && i > 0) {
                 pathEssence = get_path_essence(mapNodes, mapWidth, mapHeight, path[i], &conso);
 
-                autreConso = calculConsommationEssenceSurTrajet(path, i + 1) + gasConsumption(path[0]->x - nodeStart->x, path[0]->y - nodeStart->y, 0, 0, nodeStart->sable);
+                autreConso = calculConsommationEssenceSurTrajet(path, round, i+1);
+                fprintf(stderr,"AUTRECONSO: %d %d %d\n", autreConso, gaslevel, conso);
                 i--;
             }
 
@@ -206,12 +210,14 @@ int main() {
                 display_node_map(mapNodes, mapWidth, mapHeight, pathEssence);
             }else{
                 fprintf(stderr,"ON PEUT GAS JUSQU'AU BOUT \n");
+                onPeutFinir = TRUE;
             }
             fprintf(stderr, "===================FIN CHECK ESSESNCE===================\n");
         }
 
         /*Quand on arrive au meme point sur la route on swap de path vers pathEssence*/
         if (pathEssence != NULL && player1Position.x == pathEssence[0]->x && player1Position.y == pathEssence[0]->y) {
+            fprintf(stderr, "===================SWAP TO ESSENCE===================\n");
             round = 0;
             path = pathEssence;
         }

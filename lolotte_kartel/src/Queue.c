@@ -54,12 +54,15 @@ void enqueue(NODE* val, QUEUE * f){
 
 void trierElemDistance(QNODE* elem, QUEUE * f, int lastSorted){
     QNODE* current = f->head;
+
     int index = 0;
 
     if(elem == f->head){
         return;
     }
-
+    fprintf(stderr,"affichage : ");
+    fprintf(stderr,"%d ",current->value->distanceToEnd);
+    fprintf(stderr,"%d\n", elem->value->distanceToEnd);
     if(current->value->distanceToEnd > elem->value->distanceToEnd){
         elem->pred->next = elem->next;
         if(elem->next == NULL){

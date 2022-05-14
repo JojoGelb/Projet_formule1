@@ -17,7 +17,7 @@ all: $(BIN)$(PILOT_NAME) install clean
 install: $(DRIVERS_PATH)/$(PILOT_NAME)
 
 $(DRIVERS_PATH)/$(PILOT_NAME): $(BIN)$(PILOT_NAME)
-	mv MemoryPilote $(DRIVERS_PATH)
+	mv MemoryPilote.exe $(DRIVERS_PATH)
 
 $(BIN)$(PILOT_NAME): $(OBJ)$(PILOT_NAME).o $(OBJ)$(MORE_FILE).o $(OBJ)follow_line.o $(OBJ)Queue.o
 	$(CC) $(CFLAGS) $^ -o MemoryPilote $(LDLIBS)

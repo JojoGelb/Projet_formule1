@@ -96,7 +96,7 @@ void display_heat_map(NODE *** map, int width, int height);
 
 void sort_heat_list(NODE ** list, int last_push);
 
-int calculConsommationEssenceSurTrajet(NODE ** path,int indexFin);
+int calculConsommationEssenceSurTrajet(NODE ** path, int indexDebut,int indexFin);
 
 int hit_a_wall(NODE ***nodeMap, int width, NODE *start, NODE *stop);
 

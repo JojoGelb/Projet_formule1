@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'gpcontrol.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.12.8)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.4)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'gpcontrol.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.12.8. It"
+#error "This file was generated using the moc from 5.9.4. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -66,7 +66,7 @@ QT_MOC_LITERAL(20, 228, 7) // "timeout"
 static const uint qt_meta_data_GPControl[] = {
 
  // content:
-       8,       // revision
+       7,       // revision
        0,       // classname
        0,    0, // classinfo
       16,   14, // methods
@@ -122,7 +122,7 @@ static const uint qt_meta_data_GPControl[] = {
 void GPControl::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        auto *_t = static_cast<GPControl *>(_o);
+        GPControl *_t = static_cast<GPControl *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->carMoved((*reinterpret_cast< int(*)>(_a[1]))); break;
@@ -146,63 +146,63 @@ void GPControl::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (GPControl::*)(int );
+            typedef void (GPControl::*_t)(int );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&GPControl::carMoved)) {
                 *result = 0;
                 return;
             }
         }
         {
-            using _t = void (GPControl::*)(int );
+            typedef void (GPControl::*_t)(int );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&GPControl::carMovedWithBoost)) {
                 *result = 1;
                 return;
             }
         }
         {
-            using _t = void (GPControl::*)();
+            typedef void (GPControl::*_t)();
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&GPControl::driverTimeout)) {
                 *result = 2;
                 return;
             }
         }
         {
-            using _t = void (GPControl::*)(int );
+            typedef void (GPControl::*_t)(int );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&GPControl::driverCrashed)) {
                 *result = 3;
                 return;
             }
         }
         {
-            using _t = void (GPControl::*)(int );
+            typedef void (GPControl::*_t)(int );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&GPControl::driverStopped)) {
                 *result = 4;
                 return;
             }
         }
         {
-            using _t = void (GPControl::*)(Acceleration );
+            typedef void (GPControl::*_t)(Acceleration );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&GPControl::invalidMove)) {
                 *result = 5;
                 return;
             }
         }
         {
-            using _t = void (GPControl::*)();
+            typedef void (GPControl::*_t)();
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&GPControl::syntaxError)) {
                 *result = 6;
                 return;
             }
         }
         {
-            using _t = void (GPControl::*)(QString );
+            typedef void (GPControl::*_t)(QString );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&GPControl::end)) {
                 *result = 7;
                 return;
             }
         }
         {
-            using _t = void (GPControl::*)(int );
+            typedef void (GPControl::*_t)(int );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&GPControl::newStderrData)) {
                 *result = 8;
                 return;
@@ -211,14 +211,10 @@ void GPControl::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
     }
 }
 
-QT_INIT_METAOBJECT const QMetaObject GPControl::staticMetaObject = { {
-    &QObject::staticMetaObject,
-    qt_meta_stringdata_GPControl.data,
-    qt_meta_data_GPControl,
-    qt_static_metacall,
-    nullptr,
-    nullptr
-} };
+const QMetaObject GPControl::staticMetaObject = {
+    { &QObject::staticMetaObject, qt_meta_stringdata_GPControl.data,
+      qt_meta_data_GPControl,  qt_static_metacall, nullptr, nullptr}
+};
 
 
 const QMetaObject *GPControl::metaObject() const

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'gpmapselector.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.8
+** Created by: Qt User Interface Compiler version 5.9.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,7 +10,10 @@
 #define UI_GPMAPSELECTOR_H
 
 #include <QtCore/QVariant>
+#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QVBoxLayout>
@@ -28,17 +31,17 @@ public:
     void setupUi(QWidget *GPMapSelector)
     {
         if (GPMapSelector->objectName().isEmpty())
-            GPMapSelector->setObjectName(QString::fromUtf8("GPMapSelector"));
+            GPMapSelector->setObjectName(QStringLiteral("GPMapSelector"));
         GPMapSelector->resize(400, 298);
         verticalLayout = new QVBoxLayout(GPMapSelector);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         label = new QLabel(GPMapSelector);
-        label->setObjectName(QString::fromUtf8("label"));
+        label->setObjectName(QStringLiteral("label"));
 
         verticalLayout->addWidget(label);
 
         listMap = new QListWidget(GPMapSelector);
-        listMap->setObjectName(QString::fromUtf8("listMap"));
+        listMap->setObjectName(QStringLiteral("listMap"));
 
         verticalLayout->addWidget(listMap);
 
@@ -50,8 +53,8 @@ public:
 
     void retranslateUi(QWidget *GPMapSelector)
     {
-        GPMapSelector->setWindowTitle(QApplication::translate("GPMapSelector", "Form", nullptr));
-        label->setText(QApplication::translate("GPMapSelector", "<html><head/><body><p><span style=\" font-weight:600;\">Map selection</span></p></body></html>", nullptr));
+        GPMapSelector->setWindowTitle(QApplication::translate("GPMapSelector", "Form", Q_NULLPTR));
+        label->setText(QApplication::translate("GPMapSelector", "<html><head/><body><p><span style=\" font-weight:600;\">Map selection</span></p></body></html>", Q_NULLPTR));
     } // retranslateUi
 
 };
