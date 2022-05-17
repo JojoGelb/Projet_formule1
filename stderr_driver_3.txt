@@ -1,0 +1,2911 @@
+=== >Map loaded< ===
+................#######################....................................
+...............#########################...................................
+..............##########################...................................
+.............###########################...................................
+............############################...................................
+...........#######..................####...................................
+..........#######...................####...................................
+.........#######....................####...................................
+........#######.....................####...................................
+.......#######.....................#####...................................
+......#######......................#####...................................
+.....#######.......................###~~...................................
+....#######........................###~~...................................
+....######.........................#####...................................
+....#####..........................#~~##...................................
+....#####..........................#~~##...................................
+....#####..........................#####...................................
+....#####..........................###~~...................................
+....#####..........................###~~...#########.......................
+....#####..........................#~~##..###~~####~#......................
+....#####..........................#~~##..###~~####~~......................
+....#####..........................#####..###########......................
+....#####..........................~~###..#####~#~~##......................
+....#####..........................~~###..#####.#~~##......................
+....#####..........................###~~..#####.######.....................
+....#####..........................###~~..#####.###~~##....................
+....#####..........................#~~##..~~###.###~~#~~############.......
+....#####..........................#~~##..~~###.######~~#######~~####......
+....#####..........................###~~..#####.~~#######~~#~~#~~####......
+....#####..........................###~~..#####.~~#######~~#~~########.....
+....#####..........................#~~##..#####..################~~###.....
+....#####..........................#~~##..#####..................~~#~~#....
+....#####..........................#####..###~~..................###~~#....
+....#####..........................###~~..###~~...................#####....
+....#####..........................###~~#~~####...................####~~...
+....#####..........................#~~###~~####...................####~~...
+....#####..........................#~~#########....................#~~###..
+....#####..........................###~~###~~##....................#~~###..
+....#####...........................##~~###~~#......................###~~..
+....#####...........................................................###~~#.
+....#####...........................................................######.
+....#####............................................................#####.
+....#####............................................................#~~###
+....#####............................................................#~~###
+....#####.............................................................#####
+......................................................................#####
+.......................................................................####
+.......................................................................##~~
+.......................................................................##~~
+.......................................................................####
+........................................................#####~~#########~~#
+.......................................................######~~####~~###~~#
+.....====..............................................###~~#######~~######
+.....####..............................................###~~####~~####~~#~~
+.....####..............................................~~#######~~####~~#~~
+.....####..............................................~~####~~##..........
+.....####..............................................####~~~~~...........
+.....####..............................................~~##~~##............
+.....####..............................................~~###~~.............
+.....####..............................................#####~..............
+.....####..............................................#####...............
+.....####.............................................######...............
+.....#####...........................................~~#####...............
+.....######.........................................#~~#####...............
+......######.......................................~~#~~####...............
+.......######.....................................~~~~~~####...............
+........##################~~#####~~###########~~####~~####~~...............
+.........###########~~####~~#####~~#####~~####~~##########~~...............
+..........##########~~##############~~##~~########~~########...............
+.....................##~~####~~#####~~#####~~#####~~##~~####...............
+......................#~~####~~############~~#########~~###................
+...........................................................................
+...........................................................................
+...........................................................................
+START WHILE 0 0
+=======================START PATH FINDING==========================
+affichage : 2147483647 1
+affichage : 1 1
+affichage : 1 2
+affichage : 1 2
+affichage : 2 2
+affichage : 2 2
+affichage : 2 3
+affichage : 2 3
+affichage : 2 3
+affichage : 2 3
+affichage : 3 3
+affichage : 3 3
+affichage : 3 4
+affichage : 3 4
+affichage : 3 4
+affichage : 3 4
+affichage : 3 4
+affichage : 4 4
+affichage : 4 4
+affichage : 4 5
+affichage : 4 5
+affichage : 4 5
+affichage : 4 5
+affichage : 4 5
+affichage : 5 5
+affichage : 5 5
+affichage : 5 6
+affichage : 5 6
+affichage : 5 6
+affichage : 5 6
+affichage : 5 6
+affichage : 6 6
+affichage : 6 6
+affichage : 6 7
+affichage : 6 7
+affichage : 6 7
+affichage : 6 7
+affichage : 6 7
+affichage : 7 7
+affichage : 7 7
+affichage : 7 8
+affichage : 7 8
+affichage : 7 8
+affichage : 7 8
+affichage : 7 8
+affichage : 8 8
+affichage : 8 8
+affichage : 8 9
+affichage : 8 9
+affichage : 8 9
+affichage : 8 9
+affichage : 8 9
+affichage : 9 9
+affichage : 9 9
+affichage : 9 10
+affichage : 9 10
+affichage : 9 10
+affichage : 9 10
+affichage : 9 10
+affichage : 10 10
+affichage : 10 10
+affichage : 10 11
+affichage : 10 11
+affichage : 10 11
+affichage : 10 11
+affichage : 10 11
+affichage : 11 11
+affichage : 11 11
+affichage : 11 11
+affichage : 11 12
+affichage : 11 12
+affichage : 11 12
+affichage : 11 12
+affichage : 11 12
+affichage : 11 12
+affichage : 12 12
+affichage : 12 12
+affichage : 12 12
+affichage : 12 13
+affichage : 12 13
+affichage : 12 13
+affichage : 12 13
+affichage : 12 13
+affichage : 12 13
+affichage : 12 13
+affichage : 13 13
+affichage : 13 13
+affichage : 13 13
+affichage : 13 14
+affichage : 13 14
+affichage : 13 14
+affichage : 13 14
+affichage : 13 14
+affichage : 13 14
+affichage : 13 14
+affichage : 13 14
+affichage : 14 14
+affichage : 14 14
+affichage : 14 14
+affichage : 14 15
+affichage : 14 15
+affichage : 14 15
+affichage : 14 15
+affichage : 15 15
+affichage : 15 16
+affichage : 15 16
+affichage : 15 16
+affichage : 16 16
+affichage : 16 16
+affichage : 16 17
+affichage : 16 17
+affichage : 16 17
+affichage : 16 17
+affichage : 17 17
+affichage : 17 18
+affichage : 17 18
+affichage : 17 18
+affichage : 18 18
+affichage : 18 18
+affichage : 18 19
+affichage : 18 19
+affichage : 18 19
+affichage : 18 19
+affichage : 19 19
+affichage : 19 20
+affichage : 19 20
+affichage : 19 20
+affichage : 19 20
+affichage : 20 20
+affichage : 20 21
+affichage : 20 21
+affichage : 20 21
+affichage : 20 21
+affichage : 21 21
+affichage : 21 22
+affichage : 21 22
+affichage : 21 22
+affichage : 21 22
+affichage : 22 22
+affichage : 22 23
+affichage : 22 23
+affichage : 22 23
+affichage : 22 23
+affichage : 23 23
+affichage : 23 24
+affichage : 23 24
+affichage : 23 24
+affichage : 23 24
+affichage : 24 24
+affichage : 24 25
+affichage : 24 25
+affichage : 24 25
+affichage : 24 25
+affichage : 25 25
+affichage : 25 26
+affichage : 25 26
+affichage : 25 26
+affichage : 25 26
+affichage : 26 26
+affichage : 26 27
+affichage : 26 31
+affichage : 26 31
+affichage : 26 27
+affichage : 27 27
+affichage : 27 28
+affichage : 27 32
+affichage : 28 32
+affichage : 31 29
+affichage : 29 29
+affichage : 29 30
+affichage : 29 30
+affichage : 30 34
+affichage : 30 30
+affichage : 30 30
+affichage : 30 31
+affichage : 30 31
+affichage : 30 31
+affichage : 30 31
+affichage : 31 35
+affichage : 31 31
+affichage : 31 31
+affichage : 31 36
+affichage : 31 36
+affichage : 31 36
+affichage : 31 32
+affichage : 31 32
+affichage : 31 32
+affichage : 31 32
+affichage : 31 36
+affichage : 32 32
+affichage : 32 36
+affichage : 32 32
+affichage : 32 37
+affichage : 32 33
+affichage : 32 33
+affichage : 32 37
+affichage : 32 37
+affichage : 33 37
+affichage : 36 34
+affichage : 34 34
+affichage : 34 39
+affichage : 34 35
+affichage : 34 35
+affichage : 35 39
+affichage : 35 35
+affichage : 35 35
+affichage : 35 40
+affichage : 35 36
+affichage : 35 36
+affichage : 35 36
+affichage : 35 36
+affichage : 36 40
+affichage : 36 36
+affichage : 36 41
+affichage : 36 41
+affichage : 36 41
+affichage : 36 41
+affichage : 36 41
+affichage : 36 41
+affichage : 36 37
+affichage : 36 37
+affichage : 36 37
+affichage : 36 37
+affichage : 36 37
+affichage : 37 37
+affichage : 37 38
+affichage : 37 42
+affichage : 37 38
+affichage : 37 38
+affichage : 37 38
+affichage : 37 42
+affichage : 37 42
+affichage : 37 38
+affichage : 38 38
+affichage : 38 43
+affichage : 38 39
+affichage : 38 39
+affichage : 38 39
+affichage : 38 39
+affichage : 38 39
+affichage : 38 43
+affichage : 39 43
+affichage : 39 40
+affichage : 39 40
+affichage : 39 40
+affichage : 40 40
+affichage : 40 40
+affichage : 40 40
+affichage : 40 45
+affichage : 40 45
+affichage : 40 41
+affichage : 40 41
+affichage : 40 41
+affichage : 40 41
+affichage : 40 41
+affichage : 40 41
+affichage : 41 45
+affichage : 41 41
+affichage : 41 41
+affichage : 41 46
+affichage : 41 42
+affichage : 41 42
+affichage : 41 46
+affichage : 41 46
+affichage : 41 42
+affichage : 41 42
+affichage : 41 42
+affichage : 41 42
+affichage : 42 46
+affichage : 42 42
+affichage : 42 47
+affichage : 42 47
+affichage : 42 47
+affichage : 42 47
+affichage : 42 43
+affichage : 42 43
+affichage : 42 43
+affichage : 42 43
+affichage : 43 43
+affichage : 43 48
+affichage : 43 44
+affichage : 43 48
+affichage : 43 44
+affichage : 43 44
+affichage : 43 44
+affichage : 44 44
+affichage : 44 45
+affichage : 44 49
+affichage : 44 45
+affichage : 44 49
+affichage : 44 45
+affichage : 45 45
+affichage : 45 50
+affichage : 45 46
+affichage : 45 46
+affichage : 45 46
+affichage : 45 50
+affichage : 46 46
+affichage : 46 51
+affichage : 46 51
+affichage : 46 51
+affichage : 46 51
+affichage : 46 47
+affichage : 46 47
+affichage : 46 47
+affichage : 46 51
+affichage : 47 51
+affichage : 47 47
+affichage : 47 48
+affichage : 47 48
+affichage : 47 48
+affichage : 47 48
+affichage : 48 52
+affichage : 48 48
+affichage : 48 49
+affichage : 48 49
+affichage : 48 53
+affichage : 48 49
+affichage : 48 53
+affichage : 48 49
+affichage : 48 49
+affichage : 49 49
+affichage : 49 49
+affichage : 49 50
+affichage : 49 54
+affichage : 49 50
+affichage : 49 54
+affichage : 49 50
+affichage : 50 50
+affichage : 50 50
+affichage : 50 55
+affichage : 50 55
+affichage : 50 55
+affichage : 50 55
+affichage : 50 51
+affichage : 50 55
+affichage : 50 51
+affichage : 51 51
+affichage : 51 51
+affichage : 51 52
+affichage : 51 56
+affichage : 51 56
+affichage : 51 52
+affichage : 52 52
+affichage : 52 52
+affichage : 52 53
+affichage : 52 53
+affichage : 52 57
+affichage : 52 53
+affichage : 53 53
+affichage : 53 57
+affichage : 53 54
+affichage : 53 54
+affichage : 53 58
+affichage : 53 54
+affichage : 53 54
+affichage : 54 54
+affichage : 54 58
+affichage : 54 59
+affichage : 54 59
+affichage : 54 55
+affichage : 54 55
+affichage : 54 55
+affichage : 54 55
+affichage : 55 59
+affichage : 55 55
+affichage : 55 60
+affichage : 55 60
+affichage : 55 60
+affichage : 55 56
+affichage : 55 56
+affichage : 55 56
+affichage : 56 56
+affichage : 56 60
+affichage : 56 61
+affichage : 56 57
+affichage : 57 57
+affichage : 57 61
+affichage : 57 62
+affichage : 57 62
+affichage : 59 58
+affichage : 58 58
+affichage : 58 63
+affichage : 58 59
+affichage : 58 59
+affichage : 59 63
+affichage : 59 59
+affichage : 59 59
+affichage : 59 64
+affichage : 59 64
+affichage : 59 64
+affichage : 59 60
+affichage : 59 60
+affichage : 59 60
+affichage : 59 60
+affichage : 60 64
+affichage : 60 60
+affichage : 60 65
+affichage : 60 65
+affichage : 60 61
+affichage : 60 61
+affichage : 60 61
+affichage : 60 61
+affichage : 60 61
+affichage : 61 61
+affichage : 61 62
+affichage : 61 66
+affichage : 61 62
+affichage : 61 62
+affichage : 61 66
+affichage : 61 62
+affichage : 61 62
+affichage : 61 62
+affichage : 62 62
+affichage : 62 67
+affichage : 62 67
+affichage : 62 63
+affichage : 62 63
+affichage : 62 63
+affichage : 62 67
+affichage : 62 63
+affichage : 63 63
+affichage : 63 64
+affichage : 63 64
+affichage : 63 64
+affichage : 63 68
+affichage : 64 64
+affichage : 64 69
+affichage : 64 69
+affichage : 64 65
+affichage : 64 65
+affichage : 64 65
+affichage : 64 69
+affichage : 65 69
+affichage : 65 65
+affichage : 65 70
+affichage : 65 70
+affichage : 65 70
+affichage : 65 70
+affichage : 65 66
+affichage : 65 66
+affichage : 66 70
+affichage : 66 66
+affichage : 66 71
+affichage : 66 67
+affichage : 66 67
+affichage : 66 71
+affichage : 66 67
+affichage : 66 67
+affichage : 67 67
+affichage : 67 67
+affichage : 67 72
+affichage : 67 68
+affichage : 67 68
+affichage : 67 68
+affichage : 67 68
+affichage : 67 68
+affichage : 67 72
+affichage : 67 68
+affichage : 68 68
+affichage : 68 72
+affichage : 68 73
+affichage : 68 73
+affichage : 68 73
+affichage : 68 73
+affichage : 68 69
+affichage : 68 69
+affichage : 68 69
+affichage : 68 69
+affichage : 68 69
+affichage : 68 73
+affichage : 69 73
+affichage : 69 74
+affichage : 69 74
+affichage : 69 70
+affichage : 69 70
+affichage : 69 70
+affichage : 69 70
+affichage : 70 70
+affichage : 70 74
+affichage : 70 75
+affichage : 70 75
+affichage : 70 71
+affichage : 70 71
+affichage : 70 71
+affichage : 70 75
+affichage : 70 71
+affichage : 71 71
+affichage : 71 71
+affichage : 71 72
+affichage : 71 76
+affichage : 71 72
+affichage : 71 72
+affichage : 71 76
+affichage : 71 72
+affichage : 71 72
+affichage : 72 76
+affichage : 72 72
+affichage : 72 72
+affichage : 72 77
+affichage : 72 77
+affichage : 72 77
+affichage : 72 77
+affichage : 72 73
+affichage : 72 77
+affichage : 72 73
+affichage : 72 73
+affichage : 72 73
+affichage : 72 77
+affichage : 72 73
+affichage : 72 73
+affichage : 72 73
+affichage : 72 73
+affichage : 73 77
+affichage : 73 73
+affichage : 73 78
+affichage : 73 78
+affichage : 73 78
+affichage : 73 74
+affichage : 73 74
+affichage : 73 74
+affichage : 73 74
+affichage : 73 74
+affichage : 73 74
+affichage : 73 74
+affichage : 73 78
+affichage : 73 78
+affichage : 73 74
+affichage : 73 74
+affichage : 73 74
+affichage : 74 74
+affichage : 74 79
+affichage : 74 79
+affichage : 74 75
+affichage : 74 75
+affichage : 74 75
+affichage : 74 75
+affichage : 74 79
+affichage : 74 79
+affichage : 74 75
+affichage : 74 75
+affichage : 74 75
+affichage : 74 75
+affichage : 74 75
+affichage : 74 79
+affichage : 75 80
+affichage : 75 76
+affichage : 75 76
+affichage : 75 76
+affichage : 75 76
+affichage : 75 80
+affichage : 75 76
+affichage : 75 76
+affichage : 75 76
+affichage : 75 76
+affichage : 76 76
+affichage : 76 81
+affichage : 76 81
+affichage : 76 77
+affichage : 76 77
+affichage : 76 77
+affichage : 76 77
+affichage : 76 77
+affichage : 76 77
+affichage : 76 77
+affichage : 76 77
+affichage : 76 77
+affichage : 77 77
+affichage : 77 82
+affichage : 77 82
+affichage : 77 82
+affichage : 77 78
+affichage : 77 78
+affichage : 77 78
+affichage : 77 82
+affichage : 77 78
+affichage : 77 78
+affichage : 77 78
+affichage : 77 78
+affichage : 78 78
+affichage : 78 83
+affichage : 78 79
+affichage : 78 83
+affichage : 78 83
+affichage : 78 83
+affichage : 78 79
+affichage : 78 79
+affichage : 78 79
+affichage : 78 79
+affichage : 79 79
+affichage : 79 84
+affichage : 79 84
+affichage : 79 84
+affichage : 79 84
+affichage : 79 84
+affichage : 79 84
+affichage : 79 84
+affichage : 79 84
+affichage : 79 80
+affichage : 79 84
+affichage : 79 80
+affichage : 79 80
+affichage : 79 80
+affichage : 80 80
+affichage : 80 81
+affichage : 80 85
+affichage : 80 81
+affichage : 80 81
+affichage : 80 81
+affichage : 81 81
+affichage : 81 85
+affichage : 81 82
+affichage : 81 82
+affichage : 81 82
+affichage : 81 82
+affichage : 81 86
+affichage : 82 86
+affichage : 82 86
+affichage : 82 87
+affichage : 82 87
+affichage : 82 83
+affichage : 82 87
+affichage : 82 83
+affichage : 82 87
+affichage : 82 83
+affichage : 82 87
+affichage : 83 83
+affichage : 83 87
+affichage : 83 88
+affichage : 83 88
+affichage : 83 84
+affichage : 83 88
+affichage : 83 84
+affichage : 83 88
+affichage : 83 88
+affichage : 84 84
+affichage : 84 84
+affichage : 84 89
+affichage : 84 85
+affichage : 84 89
+affichage : 84 85
+affichage : 84 85
+affichage : 84 85
+affichage : 84 89
+affichage : 84 89
+affichage : 84 85
+affichage : 85 85
+affichage : 85 85
+affichage : 85 89
+affichage : 85 90
+affichage : 85 86
+affichage : 85 86
+affichage : 85 90
+affichage : 85 86
+affichage : 85 86
+affichage : 85 90
+affichage : 85 90
+affichage : 85 86
+affichage : 86 86
+affichage : 86 90
+affichage : 86 90
+affichage : 86 91
+affichage : 86 91
+affichage : 86 87
+affichage : 86 87
+affichage : 86 87
+affichage : 86 87
+affichage : 86 87
+affichage : 86 87
+affichage : 86 91
+affichage : 87 87
+affichage : 87 87
+affichage : 87 92
+affichage : 87 92
+affichage : 87 92
+affichage : 87 92
+affichage : 87 88
+affichage : 87 88
+affichage : 87 88
+affichage : 87 88
+affichage : 87 92
+affichage : 87 88
+affichage : 87 88
+affichage : 87 88
+affichage : 87 88
+affichage : 87 92
+affichage : 87 88
+affichage : 88 88
+affichage : 88 88
+affichage : 88 92
+affichage : 88 89
+affichage : 88 89
+affichage : 88 89
+affichage : 88 93
+affichage : 88 89
+affichage : 88 93
+affichage : 88 89
+affichage : 88 89
+affichage : 88 89
+affichage : 89 89
+affichage : 89 89
+affichage : 89 93
+affichage : 89 94
+affichage : 89 94
+affichage : 89 90
+affichage : 89 90
+affichage : 89 94
+affichage : 89 94
+affichage : 89 90
+affichage : 89 90
+affichage : 89 90
+affichage : 90 90
+affichage : 90 94
+affichage : 90 90
+affichage : 90 95
+affichage : 90 95
+affichage : 90 95
+affichage : 90 95
+affichage : 90 95
+affichage : 90 95
+affichage : 90 95
+affichage : 90 91
+affichage : 90 91
+affichage : 90 95
+affichage : 91 95
+affichage : 91 91
+affichage : 91 95
+affichage : 91 96
+affichage : 91 96
+affichage : 91 92
+affichage : 91 92
+affichage : 92 96
+affichage : 92 97
+affichage : 92 97
+affichage : 92 93
+affichage : 92 97
+affichage : 92 93
+affichage : 93 93
+affichage : 93 93
+affichage : 93 97
+affichage : 93 98
+affichage : 93 98
+affichage : 93 98
+affichage : 93 94
+affichage : 93 94
+affichage : 93 94
+affichage : 94 94
+affichage : 94 94
+affichage : 94 98
+affichage : 94 99
+affichage : 94 99
+affichage : 94 95
+affichage : 94 95
+affichage : 94 95
+affichage : 95 95
+affichage : 95 99
+affichage : 95 95
+affichage : 95 96
+affichage : 95 96
+affichage : 95 100
+affichage : 95 96
+affichage : 95 96
+affichage : 95 100
+affichage : 96 100
+affichage : 96 96
+affichage : 96 96
+affichage : 96 101
+affichage : 96 101
+affichage : 96 101
+affichage : 96 97
+affichage : 96 97
+affichage : 96 101
+affichage : 96 97
+affichage : 96 97
+affichage : 97 101
+affichage : 97 97
+affichage : 97 102
+affichage : 97 102
+affichage : 97 98
+affichage : 97 102
+affichage : 97 102
+affichage : 97 98
+affichage : 97 98
+affichage : 98 98
+affichage : 98 103
+affichage : 98 103
+affichage : 98 99
+affichage : 98 103
+affichage : 98 99
+affichage : 98 103
+affichage : 98 99
+affichage : 99 99
+affichage : 99 100
+affichage : 99 100
+affichage : 99 100
+affichage : 99 104
+affichage : 99 100
+affichage : 100 104
+affichage : 100 105
+affichage : 100 105
+affichage : 100 101
+affichage : 100 101
+affichage : 100 105
+affichage : 100 101
+affichage : 101 101
+affichage : 101 101
+affichage : 101 105
+affichage : 101 106
+affichage : 101 106
+affichage : 101 106
+affichage : 101 102
+affichage : 101 106
+affichage : 101 102
+affichage : 101 102
+affichage : 102 102
+affichage : 102 102
+affichage : 102 106
+affichage : 102 103
+affichage : 102 103
+affichage : 102 107
+affichage : 103 107
+affichage : 103 103
+affichage : 103 103
+affichage : 103 104
+affichage : 103 104
+affichage : 103 104
+affichage : 103 104
+affichage : 103 108
+affichage : 103 108
+affichage : 103 104
+affichage : 103 108
+affichage : 104 108
+affichage : 104 108
+affichage : 104 104
+affichage : 104 109
+affichage : 104 109
+affichage : 104 105
+affichage : 104 105
+affichage : 104 105
+affichage : 104 109
+affichage : 104 109
+affichage : 104 105
+affichage : 104 109
+affichage : 104 105
+affichage : 104 109
+affichage : 105 109
+affichage : 105 109
+affichage : 105 110
+affichage : 105 110
+affichage : 105 106
+affichage : 105 106
+affichage : 105 106
+affichage : 105 110
+affichage : 105 110
+affichage : 105 106
+affichage : 106 106
+affichage : 106 110
+affichage : 106 107
+affichage : 106 107
+affichage : 106 107
+affichage : 106 107
+affichage : 106 107
+affichage : 107 111
+affichage : 107 112
+affichage : 107 112
+affichage : 107 112
+affichage : 107 108
+affichage : 107 108
+affichage : 107 108
+affichage : 107 108
+affichage : 107 108
+affichage : 108 108
+affichage : 108 108
+affichage : 108 112
+affichage : 108 113
+affichage : 108 113
+affichage : 108 113
+affichage : 108 113
+affichage : 108 113
+affichage : 108 109
+affichage : 108 109
+affichage : 108 109
+affichage : 108 109
+affichage : 109 109
+affichage : 109 113
+affichage : 109 114
+affichage : 109 114
+affichage : 109 110
+affichage : 109 114
+affichage : 109 110
+affichage : 109 110
+affichage : 109 110
+affichage : 110 110
+affichage : 110 111
+affichage : 110 115
+affichage : 110 111
+affichage : 110 111
+affichage : 110 111
+affichage : 111 111
+affichage : 111 116
+affichage : 111 116
+affichage : 111 112
+affichage : 111 112
+affichage : 111 112
+affichage : 111 112
+affichage : 111 112
+affichage : 112 112
+affichage : 112 117
+affichage : 112 113
+affichage : 112 113
+affichage : 112 113
+affichage : 112 113
+affichage : 112 117
+affichage : 112 113
+affichage : 113 118
+affichage : 113 118
+affichage : 113 118
+affichage : 113 114
+affichage : 113 118
+affichage : 113 118
+affichage : 113 118
+affichage : 113 118
+affichage : 113 114
+affichage : 113 114
+affichage : 113 114
+affichage : 113 118
+affichage : 114 114
+affichage : 114 115
+affichage : 114 115
+affichage : 114 115
+affichage : 114 115
+affichage : 114 115
+affichage : 115 119
+affichage : 115 116
+affichage : 115 116
+affichage : 115 120
+affichage : 115 116
+affichage : 115 116
+affichage : 116 120
+affichage : 116 117
+affichage : 116 117
+affichage : 116 121
+affichage : 116 117
+affichage : 116 117
+affichage : 117 117
+affichage : 117 122
+affichage : 117 122
+affichage : 117 118
+affichage : 117 122
+affichage : 117 118
+affichage : 117 122
+affichage : 117 118
+affichage : 118 118
+affichage : 118 123
+affichage : 118 123
+affichage : 118 119
+affichage : 118 119
+affichage : 118 119
+affichage : 118 123
+affichage : 119 123
+affichage : 119 124
+affichage : 119 124
+affichage : 119 124
+affichage : 119 120
+affichage : 120 124
+affichage : 123 127
+affichage : 123 127
+affichage : 123 128
+affichage : 123 124
+affichage : 123 128
+affichage : 124 128
+affichage : 127 125
+affichage : 125 125
+affichage : 125 129
+affichage : 125 126
+affichage : 125 126
+affichage : 125 130
+affichage : 126 126
+affichage : 126 126
+affichage : 126 130
+affichage : 126 131
+affichage : 126 127
+affichage : 126 127
+affichage : 126 127
+affichage : 126 127
+affichage : 127 127
+affichage : 127 127
+affichage : 127 127
+affichage : 127 132
+affichage : 127 128
+affichage : 127 128
+affichage : 127 132
+affichage : 127 132
+affichage : 127 128
+affichage : 127 128
+affichage : 127 128
+affichage : 127 128
+affichage : 128 132
+affichage : 128 128
+affichage : 128 133
+affichage : 128 129
+affichage : 128 133
+affichage : 128 129
+affichage : 128 129
+affichage : 128 129
+affichage : 129 134
+affichage : 129 134
+affichage : 129 130
+affichage : 129 130
+affichage : 129 134
+affichage : 130 130
+affichage : 130 131
+affichage : 130 135
+affichage : 130 135
+affichage : 131 135
+affichage : 131 131
+affichage : 131 132
+affichage : 131 136
+affichage : 131 132
+affichage : 132 136
+affichage : 132 137
+affichage : 132 133
+affichage : 132 133
+affichage : 132 133
+affichage : 133 133
+affichage : 133 133
+affichage : 133 137
+affichage : 133 138
+affichage : 133 138
+affichage : 133 134
+affichage : 133 134
+affichage : 133 134
+affichage : 133 134
+affichage : 133 134
+affichage : 133 138
+affichage : 133 134
+affichage : 133 134
+affichage : 134 134
+affichage : 134 138
+affichage : 134 135
+affichage : 134 135
+affichage : 134 135
+affichage : 134 135
+affichage : 134 135
+affichage : 134 135
+affichage : 134 135
+affichage : 134 139
+affichage : 134 135
+affichage : 135 140
+affichage : 135 140
+affichage : 135 136
+affichage : 135 136
+affichage : 135 136
+affichage : 135 136
+affichage : 135 140
+affichage : 135 140
+affichage : 135 136
+affichage : 135 136
+affichage : 136 137
+affichage : 136 137
+affichage : 136 141
+affichage : 136 141
+affichage : 136 137
+affichage : 136 137
+affichage : 137 137
+affichage : 137 141
+affichage : 137 142
+affichage : 137 142
+affichage : 137 138
+affichage : 137 138
+affichage : 137 142
+affichage : 137 138
+affichage : 138 138
+affichage : 138 139
+affichage : 138 143
+affichage : 138 139
+affichage : 138 143
+affichage : 138 143
+affichage : 139 139
+affichage : 139 140
+affichage : 139 144
+affichage : 139 140
+affichage : 139 140
+affichage : 139 144
+affichage : 140 144
+affichage : 140 140
+affichage : 140 145
+affichage : 140 145
+affichage : 140 145
+affichage : 140 145
+affichage : 140 141
+affichage : 140 141
+affichage : 140 141
+affichage : 140 145
+affichage : 141 145
+affichage : 141 141
+affichage : 141 142
+affichage : 141 142
+affichage : 141 142
+affichage : 141 146
+affichage : 142 142
+affichage : 142 142
+affichage : 142 143
+affichage : 142 143
+affichage : 142 143
+affichage : 142 143
+affichage : 142 143
+affichage : 142 147
+affichage : 142 147
+affichage : 143 147
+affichage : 143 143
+affichage : 143 144
+affichage : 143 144
+affichage : 143 144
+affichage : 143 148
+affichage : 143 148
+affichage : 143 148
+affichage : 144 148
+affichage : 144 144
+affichage : 144 149
+affichage : 144 149
+affichage : 144 149
+affichage : 144 149
+affichage : 144 145
+affichage : 144 145
+affichage : 144 145
+affichage : 144 149
+affichage : 145 145
+affichage : 145 145
+affichage : 145 146
+affichage : 145 146
+affichage : 145 150
+affichage : 145 146
+affichage : 145 146
+affichage : 145 146
+affichage : 145 150
+affichage : 146 146
+affichage : 146 146
+affichage : 146 151
+affichage : 146 147
+affichage : 146 151
+affichage : 146 147
+affichage : 146 147
+affichage : 147 147
+affichage : 147 147
+affichage : 147 152
+affichage : 147 152
+affichage : 147 152
+affichage : 147 148
+affichage : 147 148
+affichage : 147 148
+affichage : 148 148
+affichage : 148 148
+affichage : 148 153
+affichage : 148 153
+affichage : 148 153
+affichage : 148 149
+affichage : 148 149
+affichage : 148 149
+affichage : 149 149
+affichage : 149 149
+affichage : 149 150
+affichage : 149 150
+affichage : 149 150
+affichage : 149 150
+affichage : 150 150
+affichage : 150 150
+affichage : 150 151
+affichage : 150 151
+affichage : 150 155
+affichage : 150 151
+affichage : 150 151
+affichage : 150 151
+affichage : 150 151
+affichage : 151 151
+affichage : 151 151
+affichage : 151 156
+affichage : 151 156
+affichage : 151 156
+affichage : 151 156
+affichage : 151 152
+affichage : 151 156
+affichage : 151 156
+affichage : 151 156
+affichage : 151 152
+affichage : 151 152
+affichage : 151 152
+affichage : 151 152
+affichage : 151 156
+affichage : 152 156
+affichage : 152 153
+affichage : 152 157
+affichage : 152 153
+affichage : 152 157
+affichage : 152 153
+affichage : 153 153
+affichage : 153 157
+affichage : 153 154
+affichage : 153 158
+affichage : 154 154
+affichage : 154 154
+affichage : 154 155
+affichage : 154 155
+affichage : 154 159
+affichage : 154 155
+affichage : 154 155
+affichage : 154 159
+affichage : 155 155
+affichage : 155 155
+affichage : 155 159
+affichage : 155 160
+affichage : 155 160
+affichage : 155 156
+affichage : 155 156
+affichage : 155 156
+affichage : 155 156
+affichage : 155 160
+affichage : 155 156
+affichage : 155 156
+affichage : 155 160
+affichage : 155 156
+affichage : 155 156
+affichage : 156 156
+affichage : 156 160
+affichage : 156 161
+affichage : 156 161
+affichage : 156 161
+affichage : 156 161
+affichage : 156 157
+affichage : 156 157
+affichage : 156 157
+affichage : 156 161
+affichage : 156 161
+affichage : 156 157
+affichage : 156 157
+affichage : 156 157
+affichage : 157 157
+affichage : 157 162
+affichage : 157 158
+affichage : 157 158
+affichage : 157 162
+affichage : 157 162
+affichage : 157 158
+affichage : 158 158
+affichage : 158 163
+affichage : 158 159
+affichage : 159 159
+affichage : 159 160
+affichage : 159 160
+affichage : 159 164
+affichage : 160 160
+affichage : 160 164
+affichage : 160 165
+affichage : 160 165
+affichage : 160 165
+affichage : 160 165
+affichage : 160 161
+affichage : 160 161
+affichage : 160 165
+affichage : 160 161
+affichage : 160 161
+affichage : 160 165
+affichage : 161 161
+affichage : 161 165
+affichage : 161 165
+affichage : 161 166
+affichage : 161 166
+affichage : 161 162
+affichage : 161 162
+affichage : 161 166
+affichage : 161 162
+affichage : 161 162
+affichage : 162 162
+affichage : 162 162
+affichage : 162 163
+affichage : 162 167
+affichage : 162 163
+affichage : 162 163
+affichage : 162 163
+affichage : 162 163
+affichage : 162 163
+affichage : 162 163
+affichage : 163 163
+affichage : 163 163
+affichage : 163 167
+affichage : 163 168
+affichage : 163 168
+affichage : 163 164
+affichage : 163 164
+affichage : 163 164
+affichage : 163 164
+affichage : 163 168
+affichage : 164 168
+affichage : 164 164
+affichage : 164 164
+affichage : 164 165
+affichage : 164 165
+affichage : 164 169
+affichage : 164 169
+affichage : 164 165
+affichage : 164 165
+affichage : 165 165
+affichage : 165 169
+affichage : 165 165
+affichage : 165 170
+affichage : 165 170
+affichage : 165 166
+affichage : 165 166
+affichage : 165 166
+affichage : 165 166
+affichage : 165 166
+affichage : 165 166
+affichage : 166 166
+affichage : 166 166
+affichage : 166 167
+affichage : 166 171
+affichage : 166 167
+affichage : 166 167
+affichage : 166 171
+affichage : 166 167
+affichage : 166 167
+affichage : 166 167
+affichage : 166 167
+affichage : 166 167
+affichage : 166 167
+affichage : 166 167
+affichage : 167 167
+affichage : 167 167
+affichage : 167 172
+affichage : 167 168
+affichage : 167 172
+affichage : 167 168
+affichage : 167 168
+affichage : 167 172
+affichage : 167 168
+affichage : 167 168
+affichage : 167 168
+affichage : 167 168
+affichage : 167 168
+affichage : 167 168
+affichage : 167 168
+affichage : 167 168
+affichage : 167 168
+affichage : 167 168
+affichage : 168 168
+affichage : 168 168
+affichage : 168 173
+affichage : 168 173
+affichage : 168 169
+affichage : 168 169
+affichage : 168 169
+affichage : 168 169
+affichage : 168 169
+affichage : 168 169
+affichage : 168 169
+affichage : 168 169
+affichage : 168 169
+affichage : 168 169
+affichage : 168 169
+affichage : 169 169
+affichage : 169 169
+affichage : 169 170
+affichage : 169 170
+affichage : 169 170
+affichage : 169 170
+affichage : 169 170
+affichage : 169 170
+affichage : 169 170
+affichage : 170 170
+affichage : 170 170
+affichage : 170 171
+affichage : 170 171
+affichage : 170 175
+affichage : 170 175
+affichage : 170 171
+affichage : 170 171
+affichage : 170 171
+affichage : 171 171
+affichage : 171 171
+affichage : 171 176
+affichage : 171 176
+affichage : 171 172
+affichage : 171 172
+affichage : 171 172
+affichage : 172 172
+affichage : 172 172
+affichage : 172 177
+affichage : 172 177
+affichage : 172 173
+affichage : 172 173
+affichage : 172 173
+affichage : 172 173
+affichage : 173 173
+affichage : 173 173
+affichage : 173 178
+affichage : 173 174
+affichage : 173 174
+affichage : 173 174
+affichage : 173 174
+affichage : 173 174
+affichage : 173 174
+affichage : 174 174
+affichage : 174 178
+affichage : 174 179
+affichage : 174 175
+affichage : 174 175
+affichage : 174 175
+affichage : 174 175
+affichage : 174 175
+affichage : 175 175
+affichage : 175 179
+affichage : 175 180
+affichage : 175 180
+affichage : 175 176
+affichage : 175 176
+affichage : 175 176
+affichage : 176 176
+affichage : 176 176
+affichage : 176 177
+affichage : 176 177
+affichage : 176 177
+affichage : 177 177
+affichage : 177 181
+affichage : 177 177
+affichage : 177 178
+affichage : 177 178
+affichage : 177 178
+affichage : 178 178
+affichage : 178 182
+affichage : 178 178
+affichage : 178 183
+affichage : 178 183
+affichage : 178 179
+affichage : 178 179
+affichage : 178 179
+affichage : 179 179
+affichage : 179 179
+affichage : 179 179
+affichage : 179 184
+affichage : 179 184
+affichage : 179 184
+affichage : 179 184
+affichage : 179 180
+affichage : 179 184
+affichage : 179 180
+affichage : 179 180
+affichage : 180 180
+affichage : 180 180
+affichage : 180 185
+affichage : 180 181
+affichage : 180 185
+affichage : 180 181
+affichage : 180 181
+affichage : 180 181
+affichage : 181 181
+affichage : 181 185
+affichage : 181 182
+affichage : 181 186
+affichage : 181 182
+affichage : 182 182
+affichage : 182 182
+affichage : 182 187
+affichage : 182 183
+affichage : 182 183
+affichage : 182 183
+affichage : 183 187
+affichage : 183 183
+affichage : 183 183
+affichage : 183 188
+affichage : 183 188
+affichage : 183 184
+affichage : 183 184
+affichage : 183 184
+affichage : 183 188
+affichage : 183 184
+affichage : 184 188
+affichage : 184 189
+affichage : 184 189
+affichage : 184 185
+affichage : 184 185
+affichage : 184 185
+affichage : 184 185
+affichage : 184 185
+affichage : 185 185
+affichage : 185 189
+affichage : 185 190
+affichage : 185 186
+affichage : 185 186
+affichage : 185 190
+affichage : 185 186
+affichage : 185 186
+affichage : 185 190
+affichage : 185 190
+affichage : 185 186
+affichage : 186 186
+affichage : 186 191
+affichage : 186 191
+affichage : 186 191
+affichage : 186 187
+affichage : 186 187
+affichage : 186 191
+affichage : 186 191
+affichage : 187 191
+affichage : 187 192
+affichage : 187 192
+affichage : 189 192
+affichage : 189 192
+affichage : 189 194
+affichage : 190 194
+affichage : 190 194
+affichage : 191 195
+affichage : 191 195
+affichage : 191 196
+affichage : 191 196
+affichage : 191 196
+affichage : 196 196
+affichage : 196 192
+affichage : 196 193
+affichage : 193 197
+affichage : 193 193
+affichage : 193 198
+affichage : 193 194
+affichage : 193 194
+affichage : 194 194
+affichage : 194 198
+affichage : 194 195
+affichage : 196 196
+affichage : 196 200
+affichage : 194 197
+affichage : 194 201
+affichage : 196 200
+affichage : 196 197
+affichage : 196 201
+affichage : 196 201
+affichage : 196 197
+affichage : 197 197
+affichage : 197 201
+affichage : 197 202
+affichage : 197 198
+affichage : 197 198
+affichage : 197 198
+affichage : 197 198
+affichage : 198 198
+affichage : 198 198
+affichage : 198 199
+affichage : 198 199
+affichage : 198 199
+affichage : 198 199
+affichage : 198 203
+affichage : 198 199
+affichage : 198 199
+affichage : 198 203
+affichage : 198 199
+affichage : 198 199
+affichage : 199 199
+affichage : 199 203
+affichage : 199 204
+affichage : 199 200
+affichage : 199 200
+affichage : 199 204
+affichage : 199 204
+affichage : 199 200
+affichage : 199 200
+affichage : 199 200
+affichage : 200 200
+affichage : 200 205
+affichage : 200 205
+affichage : 200 205
+affichage : 200 201
+affichage : 200 205
+affichage : 201 205
+affichage : 202 202
+affichage : 202 206
+affichage : 203 203
+affichage : 203 203
+affichage : 203 204
+affichage : 203 204
+affichage : 204 204
+affichage : 204 204
+affichage : 204 208
+affichage : 204 209
+affichage : 204 209
+affichage : 204 209
+affichage : 204 209
+affichage : 204 205
+affichage : 204 209
+affichage : 204 209
+affichage : 204 205
+affichage : 205 205
+affichage : 205 209
+affichage : 205 209
+affichage : 205 206
+affichage : 205 210
+affichage : 206 210
+affichage : 206 210
+affichage : 208 207
+affichage : 207 207
+affichage : 207 212
+affichage : 207 208
+affichage : 208 208
+affichage : 208 208
+affichage : 208 212
+affichage : 208 213
+affichage : 208 213
+affichage : 208 213
+affichage : 208 209
+affichage : 209 209
+affichage : 209 213
+affichage : 209 213
+affichage : 209 210
+affichage : 209 214
+affichage : 209 214
+affichage : 209 214
+affichage : 209 214
+affichage : 210 210
+affichage : 210 214
+affichage : 210 211
+affichage : 210 211
+affichage : 211 211
+affichage : 211 215
+affichage : 211 211
+affichage : 211 216
+affichage : 211 212
+affichage : 211 212
+affichage : 211 216
+affichage : 211 216
+affichage : 211 212
+affichage : 211 216
+affichage : 211 212
+affichage : 212 212
+affichage : 212 212
+affichage : 212 216
+affichage : 212 217
+affichage : 212 217
+affichage : 212 217
+affichage : 212 217
+affichage : 212 217
+affichage : 212 213
+affichage : 212 213
+affichage : 212 213
+affichage : 212 213
+affichage : 213 213
+affichage : 213 217
+affichage : 213 218
+affichage : 213 214
+affichage : 213 218
+affichage : 213 214
+affichage : 213 214
+affichage : 214 214
+affichage : 214 219
+affichage : 214 215
+affichage : 214 219
+affichage : 214 215
+affichage : 214 219
+affichage : 214 215
+affichage : 215 215
+affichage : 215 216
+affichage : 215 220
+affichage : 215 220
+affichage : 215 220
+affichage : 215 216
+affichage : 216 216
+affichage : 216 221
+affichage : 216 221
+affichage : 216 221
+affichage : 216 221
+affichage : 216 221
+affichage : 216 217
+affichage : 216 221
+affichage : 217 221
+affichage : 217 222
+affichage : 219 218
+affichage : 218 218
+affichage : 218 219
+affichage : 218 219
+affichage : 219 219
+affichage : 219 219
+affichage : 219 223
+affichage : 219 224
+affichage : 219 224
+affichage : 219 224
+affichage : 219 220
+affichage : 219 220
+affichage : 219 220
+affichage : 219 220
+affichage : 220 220
+affichage : 224 224
+affichage : 220 229
+affichage : 220 221
+affichage : 220 225
+affichage : 220 225
+affichage : 220 221
+affichage : 221 221
+affichage : 221 225
+affichage : 221 226
+affichage : 221 222
+affichage : 221 226
+affichage : 222 226
+affichage : 222 222
+affichage : 222 223
+affichage : 222 223
+affichage : 223 223
+affichage : 223 223
+affichage : 223 227
+affichage : 223 228
+affichage : 223 228
+affichage : 223 224
+affichage : 223 224
+affichage : 223 224
+affichage : 223 224
+affichage : 223 228
+affichage : 223 224
+affichage : 223 228
+affichage : 223 224
+affichage : 224 224
+affichage : 224 228
+affichage : 224 225
+affichage : 224 225
+affichage : 224 225
+affichage : 224 225
+affichage : 224 225
+affichage : 224 225
+affichage : 224 229
+affichage : 224 225
+affichage : 224 229
+affichage : 224 225
+affichage : 225 225
+affichage : 225 230
+affichage : 225 230
+affichage : 225 226
+affichage : 225 226
+affichage : 225 226
+affichage : 225 226
+affichage : 225 226
+affichage : 225 230
+affichage : 225 230
+affichage : 225 226
+affichage : 226 226
+affichage : 226 227
+affichage : 226 227
+affichage : 226 227
+affichage : 226 227
+affichage : 226 231
+affichage : 227 231
+affichage : 227 232
+affichage : 227 228
+affichage : 227 228
+affichage : 228 228
+affichage : 228 228
+affichage : 228 229
+affichage : 228 229
+affichage : 228 229
+affichage : 228 229
+affichage : 229 229
+affichage : 229 229
+affichage : 229 233
+affichage : 229 234
+affichage : 229 234
+affichage : 229 230
+affichage : 229 230
+affichage : 229 230
+affichage : 229 230
+affichage : 229 230
+affichage : 229 230
+affichage : 230 230
+affichage : 230 234
+affichage : 230 235
+affichage : 230 235
+affichage : 230 231
+affichage : 230 231
+affichage : 230 231
+affichage : 230 231
+affichage : 230 231
+affichage : 230 231
+affichage : 231 231
+affichage : 231 232
+affichage : 231 232
+affichage : 231 232
+affichage : 231 232
+affichage : 231 232
+affichage : 231 232
+affichage : 232 232
+affichage : 232 233
+affichage : 232 233
+affichage : 232 233
+affichage : 232 233
+affichage : 232 233
+affichage : 232 233
+affichage : 232 233
+affichage : 233 233
+affichage : 233 234
+affichage : 233 234
+affichage : 233 234
+affichage : 233 234
+affichage : 233 234
+affichage : 233 234
+affichage : 233 234
+affichage : 233 234
+affichage : 233 234
+affichage : 234 234
+affichage : 234 239
+affichage : 234 239
+affichage : 234 235
+affichage : 234 235
+affichage : 234 235
+affichage : 234 235
+affichage : 234 235
+affichage : 234 235
+affichage : 234 235
+affichage : 234 235
+affichage : 234 235
+affichage : 234 235
+affichage : 234 235
+affichage : 235 235
+affichage : 235 236
+affichage : 235 236
+affichage : 235 236
+affichage : 235 236
+affichage : 235 236
+affichage : 235 236
+affichage : 235 236
+affichage : 235 236
+affichage : 235 236
+affichage : 235 236
+affichage : 235 236
+affichage : 235 236
+affichage : 235 236
+affichage : 236 236
+affichage : 236 237
+affichage : 236 237
+affichage : 236 237
+affichage : 236 237
+affichage : 236 237
+affichage : 236 237
+affichage : 236 237
+affichage : 236 237
+affichage : 236 237
+affichage : 236 237
+affichage : 236 237
+affichage : 236 237
+affichage : 236 237
+affichage : 236 237
+affichage : 237 237
+affichage : 237 238
+affichage : 237 238
+affichage : 237 238
+affichage : 237 238
+affichage : 237 238
+affichage : 237 238
+affichage : 237 238
+affichage : 237 238
+affichage : 237 238
+affichage : 237 238
+affichage : 237 238
+affichage : 237 238
+affichage : 238 238
+affichage : 238 239
+affichage : 238 239
+affichage : 238 239
+affichage : 238 239
+affichage : 238 239
+affichage : 238 239
+affichage : 238 239
+affichage : 238 239
+affichage : 238 239
+affichage : 239 240
+affichage : 239 240
+affichage : 239 240
+affichage : 239 240
+affichage : 239 240
+affichage : 239 240
+affichage : 239 240
+affichage : 240 240
+affichage : 240 240
+affichage : 240 241
+affichage : 240 241
+affichage : 240 241
+affichage : 240 241
+affichage : 240 241
+affichage : 240 241
+affichage : 240 241
+affichage : 241 241
+affichage : 241 241
+affichage : 241 242
+affichage : 241 242
+affichage : 241 242
+affichage : 241 242
+affichage : 241 242
+affichage : 241 242
+affichage : 241 242
+affichage : 242 242
+affichage : 242 242
+affichage : 242 243
+affichage : 242 243
+affichage : 242 243
+affichage : 242 243
+affichage : 242 243
+affichage : 242 243
+affichage : 242 243
+affichage : 243 243
+affichage : 243 243
+affichage : 243 244
+affichage : 243 244
+affichage : 243 244
+affichage : 243 244
+affichage : 243 244
+affichage : 243 244
+affichage : 243 244
+affichage : 244 244
+affichage : 244 244
+affichage : 244 245
+affichage : 244 245
+affichage : 244 245
+affichage : 244 245
+affichage : 244 245
+affichage : 244 245
+affichage : 244 245
+affichage : 245 245
+affichage : 245 245
+affichage : 245 246
+affichage : 245 246
+affichage : 245 246
+affichage : 245 246
+affichage : 245 246
+affichage : 245 246
+affichage : 245 246
+affichage : 246 246
+affichage : 246 246
+affichage : 246 247
+affichage : 246 247
+affichage : 246 247
+affichage : 246 247
+affichage : 246 247
+affichage : 246 247
+affichage : 246 247
+affichage : 247 247
+affichage : 247 247
+affichage : 247 248
+affichage : 247 248
+affichage : 247 248
+affichage : 247 248
+affichage : 247 248
+affichage : 247 248
+affichage : 247 248
+affichage : 248 248
+affichage : 248 248
+affichage : 248 249
+affichage : 248 249
+affichage : 248 249
+affichage : 248 249
+affichage : 248 249
+affichage : 248 249
+affichage : 248 249
+affichage : 249 249
+affichage : 249 249
+affichage : 249 250
+affichage : 249 250
+affichage : 249 250
+affichage : 249 250
+affichage : 249 250
+affichage : 249 250
+affichage : 249 250
+affichage : 250 250
+affichage : 250 250
+affichage : 250 251
+affichage : 250 251
+affichage : 250 251
+affichage : 250 251
+affichage : 250 251
+affichage : 250 251
+affichage : 250 251
+affichage : 251 251
+affichage : 251 251
+affichage : 251 252
+affichage : 251 252
+affichage : 251 252
+affichage : 251 252
+affichage : 251 252
+affichage : 251 252
+affichage : 251 252
+affichage : 252 252
+affichage : 252 252
+affichage : 252 252
+affichage : 252 253
+affichage : 252 253
+affichage : 252 253
+affichage : 252 253
+affichage : 252 253
+affichage : 252 253
+affichage : 252 253
+affichage : 252 253
+affichage : 252 253
+affichage : 252 253
+affichage : 253 253
+affichage : 253 254
+affichage : 253 254
+affichage : 253 254
+affichage : 253 254
+affichage : 253 254
+affichage : 253 254
+affichage : 253 254
+affichage : 253 254
+affichage : 253 254
+affichage : 253 254
+affichage : 254 254
+affichage : 254 254
+affichage : 254 255
+affichage : 254 255
+affichage : 254 255
+affichage : 254 255
+affichage : 254 255
+affichage : 254 255
+affichage : 254 255
+affichage : 254 255
+affichage : 254 255
+affichage : 254 255
+affichage : 254 255
+affichage : 254 255
+affichage : 255 255
+affichage : 255 256
+affichage : 255 256
+affichage : 255 256
+affichage : 255 256
+affichage : 255 256
+affichage : 255 256
+affichage : 255 256
+affichage : 255 256
+affichage : 255 256
+affichage : 255 256
+affichage : 255 256
+affichage : 255 256
+affichage : 256 256
+affichage : 256 256
+affichage : 256 257
+affichage : 256 257
+affichage : 256 257
+affichage : 256 257
+affichage : 256 257
+affichage : 257 257
+affichage : 257 258
+affichage : 257 258
+affichage : 257 258
+affichage : 257 258
+affichage : 258 258
+affichage : 258 258
+affichage : 258 259
+affichage : 258 259
+affichage : 258 259
+affichage : 258 259
+affichage : 258 259
+affichage : 259 259
+affichage : 259 260
+affichage : 259 260
+affichage : 259 260
+affichage : 259 260
+affichage : 260 260
+affichage : 260 260
+affichage : 260 261
+affichage : 260 261
+affichage : 260 261
+affichage : 260 261
+affichage : 260 261
+affichage : 261 261
+affichage : 261 262
+affichage : 261 262
+affichage : 261 262
+affichage : 261 262
+affichage : 262 262
+affichage : 262 262
+affichage : 262 263
+affichage : 262 263
+affichage : 262 263
+affichage : 262 263
+affichage : 262 263
+affichage : 263 263
+affichage : 263 264
+affichage : 263 264
+affichage : 263 264
+affichage : 263 264
+affichage : 264 264
+affichage : 264 264
+affichage : 264 265
+affichage : 264 265
+affichage : 264 265
+affichage : 264 265
+affichage : 264 265
+affichage : 265 265
+affichage : 265 266
+affichage : 265 266
+affichage : 265 266
+affichage : 265 266
+affichage : 266 266
+affichage : 266 266
+affichage : 266 267
+affichage : 266 267
+affichage : 266 267
+affichage : 266 267
+affichage : 266 267
+affichage : 267 267
+affichage : 267 268
+affichage : 267 268
+affichage : 267 268
+affichage : 267 268
+affichage : 268 268
+affichage : 268 268
+affichage : 268 269
+affichage : 268 269
+affichage : 268 269
+affichage : 268 269
+affichage : 268 269
+affichage : 269 269
+affichage : 269 270
+affichage : 269 270
+affichage : 269 270
+affichage : 269 270
+affichage : 270 270
+affichage : 270 270
+affichage : 270 271
+affichage : 270 271
+affichage : 270 271
+affichage : 270 271
+affichage : 270 271
+affichage : 271 271
+affichage : 271 271
+affichage : 271 272
+affichage : 271 272
+affichage : 271 272
+affichage : 271 272
+affichage : 271 272
+affichage : 271 272
+affichage : 272 272
+affichage : 272 272
+affichage : 272 273
+affichage : 272 273
+affichage : 272 273
+affichage : 272 273
+affichage : 272 273
+affichage : 272 273
+affichage : 272 273
+affichage : 273 273
+affichage : 273 273
+affichage : 273 274
+affichage : 273 274
+affichage : 273 274
+affichage : 273 274
+affichage : 273 274
+affichage : 273 274
+affichage : 273 274
+affichage : 274 274
+affichage : 274 274
+affichage : 274 275
+affichage : 274 275
+affichage : 274 275
+affichage : 274 275
+affichage : 274 275
+affichage : 274 275
+affichage : 274 275
+affichage : 275 275
+affichage : 275 275
+affichage : 275 276
+affichage : 275 276
+affichage : 275 276
+affichage : 275 276
+affichage : 275 276
+affichage : 275 276
+affichage : 275 276
+affichage : 276 276
+affichage : 276 276
+affichage : 276 277
+affichage : 276 277
+affichage : 276 277
+affichage : 276 277
+affichage : 276 277
+affichage : 276 277
+affichage : 276 277
+affichage : 277 277
+affichage : 277 277
+affichage : 277 278
+affichage : 277 278
+affichage : 277 278
+affichage : 277 278
+affichage : 277 278
+affichage : 277 278
+affichage : 277 278
+affichage : 278 278
+affichage : 278 278
+affichage : 278 279
+affichage : 278 279
+affichage : 278 279
+affichage : 278 279
+affichage : 278 279
+affichage : 278 279
+affichage : 278 279
+affichage : 279 279
+affichage : 279 279
+affichage : 279 280
+affichage : 279 280
+affichage : 279 280
+affichage : 279 280
+affichage : 279 280
+affichage : 279 280
+affichage : 279 280
+affichage : 280 280
+affichage : 280 280
+affichage : 280 281
+affichage : 280 281
+affichage : 280 281
+affichage : 280 281
+affichage : 280 281
+affichage : 280 281
+affichage : 280 281
+affichage : 281 281
+affichage : 281 281
+affichage : 281 282
+affichage : 281 282
+affichage : 281 282
+affichage : 281 282
+affichage : 281 282
+affichage : 281 282
+affichage : 281 282
+affichage : 282 282
+affichage : 282 282
+affichage : 282 283
+affichage : 282 283
+affichage : 282 283
+affichage : 282 283
+affichage : 282 283
+affichage : 282 283
+affichage : 282 283
+affichage : 283 283
+affichage : 283 283
+affichage : 283 284
+affichage : 283 284
+affichage : 283 284
+affichage : 283 284
+affichage : 283 284
+affichage : 283 284
+affichage : 283 284
+affichage : 284 284
+affichage : 284 284
+affichage : 284 285
+affichage : 284 285
+affichage : 284 285
+affichage : 284 285
+affichage : 284 285
+affichage : 284 285
+affichage : 284 285
+affichage : 285 285
+affichage : 285 285
+affichage : 285 286
+affichage : 285 286
+affichage : 285 286
+affichage : 285 286
+affichage : 285 286
+affichage : 285 286
+affichage : 285 286
+affichage : 286 286
+affichage : 286 286
+affichage : 286 287
+affichage : 286 287
+affichage : 286 287
+affichage : 286 287
+affichage : 286 287
+affichage : 286 287
+affichage : 286 287
+affichage : 287 287
+affichage : 287 287
+affichage : 287 288
+affichage : 287 288
+affichage : 287 288
+affichage : 287 288
+affichage : 287 288
+affichage : 287 288
+affichage : 287 288
+affichage : 288 288
+affichage : 288 288
+affichage : 288 289
+affichage : 288 289
+affichage : 288 289
+affichage : 288 289
+affichage : 288 289
+affichage : 288 289
+affichage : 288 289
+affichage : 289 289
+affichage : 289 289
+affichage : 289 290
+affichage : 289 290
+affichage : 289 290
+affichage : 289 290
+affichage : 289 290
+affichage : 289 290
+affichage : 289 290
+affichage : 290 290
+affichage : 290 290
+affichage : 290 291
+affichage : 290 291
+affichage : 290 291
+affichage : 290 291
+affichage : 290 291
+affichage : 290 291
+affichage : 290 291
+affichage : 291 291
+affichage : 291 291
+affichage : 291 292
+affichage : 291 292
+affichage : 291 292
+affichage : 291 292
+affichage : 291 292
+affichage : 291 292
+affichage : 291 292
+affichage : 292 292
+affichage : 292 292
+affichage : 292 293
+affichage : 292 293
+affichage : 292 293
+affichage : 292 293
+affichage : 292 293
+affichage : 292 293
+affichage : 292 293
+affichage : 293 293
+affichage : 293 293
+affichage : 293 294
+affichage : 293 294
+affichage : 293 294
+affichage : 293 294
+affichage : 293 294
+affichage : 293 294
+affichage : 293 294
+affichage : 294 294
+affichage : 294 294
+affichage : 294 295
+affichage : 294 295
+affichage : 294 295
+affichage : 294 295
+affichage : 294 295
+affichage : 294 295
+affichage : 294 295
+affichage : 295 295
+affichage : 295 295
+affichage : 295 296
+affichage : 295 296
+affichage : 295 296
+affichage : 295 296
+affichage : 295 296
+affichage : 295 296
+affichage : 295 296
+affichage : 296 296
+affichage : 296 296
+affichage : 296 297
+affichage : 296 297
+affichage : 296 297
+affichage : 296 297
+affichage : 296 297
+affichage : 296 297
+affichage : 296 297
+affichage : 297 297
+affichage : 297 297
+affichage : 297 298
+affichage : 297 298
+affichage : 297 298
+affichage : 297 298
+affichage : 297 298
+affichage : 297 298
+affichage : 297 298
+affichage : 298 298
+affichage : 298 298
+affichage : 298 299
+affichage : 298 299
+affichage : 298 299
+affichage : 298 299
+affichage : 298 299
+affichage : 298 299
+affichage : 298 299
+affichage : 299 299
+affichage : 299 299
+affichage : 299 300
+affichage : 299 300
+affichage : 299 300
+affichage : 299 300
+affichage : 299 300
+affichage : 299 300
+affichage : 299 300
+affichage : 300 300
+affichage : 300 300
+affichage : 300 301
+affichage : 300 301
+affichage : 300 301
+affichage : 300 301
+affichage : 300 301
+affichage : 300 301
+affichage : 300 301
+affichage : 301 301
+affichage : 301 302
+affichage : 301 302
+affichage : 301 302
+affichage : 301 302
+affichage : 302 303
+affichage : 303 303
+NO CHANGE 303
+ .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 256255254253252251250249248247246245244243242241240239238237236237238 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 256255254253252251250249248247246245244243242241240239238237236235236237238 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  .  .  .  .  .  .  .  .  . 256255254253252251250249248247246245244243242241240239238237236235234235236237 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  .  .  .  .  .  .  .  . 256255254253252251250249248247246245244243242241240239238237236235234233234235236 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  .  .  .  .  .  .  . 256255254253252251250249248247246245244243242241240239238237236235234233232233234235 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  .  .  .  .  .  . 258257256255254253252 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 231232233234 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  .  .  .  .  . 260259258257256255254 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 230231232233 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  .  .  .  . 262261260259258257256 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 229230231232 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  .  .  . 264263262261260259258 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 228229230231 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  .  . 266265264263262261260 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 226227228229230 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  . 268267266265264263262 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 225226227228229 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  . 270269268267266265264 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 224225226239234 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  . 272271270269268267266 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 223224225230239 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  . 273272271270269268 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 222223224225226 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  . 274273272271270 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 221234229224225 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  . 275274273272271 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 220225234223224 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  . 276275274273272 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 219220221222223 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  . 277276275274273 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 218219220227232 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  . 278277276275274 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 217218219226221 .  .  . 169168167166165164163162163 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  . 279278277276275 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 216223228215216 .  . 169168167172177164163162161172163 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  . 280279278277276 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 215228219214215 .  . 168167166177168163162161160167162 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  . 281280279278277 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 214213212213214 .  . 167166165164163162161160159158157 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  . 282281280279278 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 219224211212213 .  . 168167166165164169160165170157156 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  . 283282281280279 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 212217210211212 .  . 169168167166165 . 159170161156155 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  . 284283282281280 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 207208209216221 .  . 170169168167166 . 158157156155154153 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  . 285284283282281 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 206207208221216 .  . 171170169168167 . 157156155160165152153 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  . 286285284283282 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 205214221212211 .  . 184175170169168 . 156155154165156151160151146145144143142141140139138137136135 .  .  .  .  .  .  . 
+ .  .  .  . 287286285284283 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 204209216211210 .  . 179184171170169 . 155154153152151150155160145144143142141140139144149136135134135 .  .  .  .  .  . 
+ .  .  .  . 288287286285284 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 203204205216209 .  . 174173172171170 . 160165152151150149148147146151156143148153138149140135134133134 .  .  .  .  .  . 
+ .  .  .  . 289288287286285 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 202203204209204 .  . 175174173172171 . 165156151150149148147146145156147142153144137136135134133132133134 .  .  .  .  . 
+ .  .  .  . 290289288287286 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 201208213200199 .  . 176175174173172 .  . 151150149148147146145144143142141140139138137136145140131132133 .  .  .  .  . 
+ .  .  .  . 291290289288287 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 200213204199198 .  . 177176175174173 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 140135130137142129 .  .  .  . 
+ .  .  .  . 292291290289288 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 199200199198197 .  . 178177176183178 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 131130129142133128 .  .  .  . 
+ .  .  .  . 293292291290289 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 198199198203196 .  . 179178177190185 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 129128127126127 .  .  .  . 
+ .  .  .  . 294293292291290 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 197198197196191186191184179178179180 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 128127126125132137 .  .  . 
+ .  .  .  . 295294293292291 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 196205196187186185196189180179180181 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 127126125124123128 .  .  . 
+ .  .  .  . 296295294293292 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 195200191186185184183182181180181182 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 127134129118119120 .  . 
+ .  .  .  . 297296295294293 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 194193192197190185184183194187182183 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 128127122117118119 .  . 
+ .  .  .  . 298297296295294 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 194193202195186185184189194183 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 118117116123128 .  . 
+ .  .  .  . 299298297296295 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 117116115128119114 . 
+ .  .  .  . 300299298297296 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 116115114113112113 . 
+ .  .  .  . 301300299298297 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 114113112111112 . 
+ .  .  .  . 302301300299298 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 115122117110111112
+ .  .  .  . 303302301300299 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 114113122109110111
+ .  .  .  .  . 303 . 301300 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 108107108109110
+ .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 107106107108109
+ .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 105106107108
+ .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 104105118113
+ .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 103104109118
+ .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 102103104105
+ .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  88 87 88 89 90103 98 93 94 95 96 97 98 99100101116111106
+ .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  88 87 86 87 88 89 94103 92 93 94 95110105100101102107116105
+ .  .  .  .  .   3  2  1  0 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  87 86 85 98 93 88 89 90 91 92 93 94101110 99100101102103104
+ .  .  .  .  .   4  3  2  1 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  86 85 84 89 98 87 88 89 90105100 95 96 97 98113108103108113
+ .  .  .  .  .   5  4  3  2 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  91 96 83 84 85 86 87 88 89 96105 96 97 98 99104113104113118
+ .  .  .  .  .   6  5  4  3 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  96 87 82 83 84 85 92 97 90 91 .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .   7  6  5  4 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  83 82 81 82 95 90101106 95 .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .   8  7  6  5 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  92 87 80 81 86 95 96 97 .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .   9  8  7  6 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  83 92 79 80 81 90 95 .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  10  9  8  7 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  78 77 78 79 80 85 .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  11 10  9  8 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  77 76 77 78 79 .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  12 11 10  9 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  77 76 75 76 77 78 .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  13 12 11 10 11 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  89 82 75 74 75 76 77 .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  14 13 12 11 12 13 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  85 84 89 74 73 74 75 76 .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  .  14 13 12 13 14 15 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  79 84 79 78 83 72 73 74 75 .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  .  .  14 13 14 15 16 17 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  69 74 79 84 73 78 71 72 73 74 .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  .  .  .  14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 36 43 38 39 40 41 42 55 50 45 46 47 48 49 50 51 52 53 54 55 60 67 62 63 64 65 70 75 68 69 70 71 84 79 .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  .  .  .  .  16 17 18 19 20 21 22 23 24 25 26 31 36 29 30 31 32 41 48 37 38 39 40 41 46 55 44 45 46 47 48 55 64 53 54 55 56 65 72 61 62 63 64 65 66 67 68 69 70 77 84 .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  .  .  .  .  .  18 19 20 21 22 23 24 25 26 27 36 41 30 31 32 33 34 35 36 37 38 39 40 41 42 43 50 59 48 49 64 59 54 55 56 57 58 59 60 61 68 77 66 67 68 69 70 71 72 73 .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  32 31 36 45 34 35 36 37 42 51 40 41 42 43 44 59 54 49 50 51 52 53 62 69 58 59 60 61 62 77 72 67 68 81 76 71 72 73 74 .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  32 45 40 35 36 37 38 51 46 41 42 43 44 45 46 47 48 49 50 51 52 57 64 59 60 61 62 63 64 65 66 67 72 81 72 73 74 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+ .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
+END: 7 52 - 0 -5
+7 52 - 7 57 - 8 61 - 10 64 - 13 66 - 17 67 - 22 67 - 26 68 - 30 68 - 34 69 - 38 69 - 42 69 - 46 68 - 49 66 - 52 63 - 55 61 - 59 58 - 63 55 - 67 53 - 70 51 - 72 49 - 73 46 - 73 43 - 72 40 - 70 36 - 67 32 - 63 29 - 59 27 - 56 26 - 54 25 - 51 23 - 48 22 - 46 22 - 45 23 - 45 25 - 45 28 - 44 31 - 42 33 - 40 34 - 39 34 - 39 34 - 39 30 - 38 26 - 37 22 - 37 17 - 37 12 - 37 8 - 36 5 - 34 3 - 31 2 - 27 1 - 22 1 - 18 2 - 14 4 - 11 7 - 9 11 - 8 15 - 8 20 - 8 25 - 8 30 - 8 34 - 8 38 - 8 41 - 8 43 - 8 44 - ==========================END PATH FINDING============================
+................***********************....................................
+...............*******$****$************...................................
+..............****$************$********...................................
+.............*********************$*****...................................
+............**$*************************...................................
+...........*******..................$***...................................
+..........*******...................****...................................
+.........**$****....................****...................................
+........*******.....................*$**...................................
+.......*******.....................*****...................................
+......*******......................*****...................................
+.....****$**.......................*****...................................
+....*******........................**$**...................................
+....******.........................*****...................................
+....*****..........................*****...................................
+....****$..........................*****...................................
+....*****..........................*****...................................
+....*****..........................**$**...................................
+....*****..........................*****...*********.......................
+....*****..........................*****..***********......................
+....****$..........................*****..***********......................
+....*****..........................*****..***********......................
+....*****..........................**$**..****$*$****......................
+....*****..........................*****..***$*.***$*......................
+....*****..........................*****..*****.******.....................
+....****$..........................*****..***$*.******$....................
+....*****..........................***$*..*****.********$***********.......
+....*****..........................*****..*****.***********$*********......
+....*****..........................*****..***$*.*********************......
+....*****..........................*****..*****.***************$******.....
+....****$..........................****$..*****..*********************.....
+....*****..........................*****..**$**..................******....
+....*****..........................*****..*****..................**$***....
+....*****..........................*****..$****...................*****....
+....****$..........................****$$******...................******...
+....*****..........................************...................******...
+....*****..........................************....................***$**..
+....*****..........................************....................******..
+....****$...........................**********......................*****..
+....*****...........................................................******.
+....*****...........................................................****$*.
+....****$............................................................*****.
+....*****............................................................******
+....****$............................................................****$*
+.....*.*$.............................................................*****
+......................................................................*****
+.......................................................................**$*
+.......................................................................****
+.......................................................................****
+.......................................................................*$**
+........................................................*******************
+.......................................................***************$****
+.....====..............................................********************
+.....****..............................................************$*******
+.....****..............................................********************
+.....****..............................................********$*..........
+.....****..............................................*********...........
+.....**$*..............................................********............
+.....****..............................................****$**.............
+.....****..............................................******..............
+.....****..............................................*****...............
+.....***$.............................................*$****...............
+.....*****...........................................*******...............
+.....******.........................................$*******...............
+......****$*.......................................*********...............
+.......******.....................................**********...............
+........*****$***********************************$**********...............
+.........********$****$*************************************...............
+..........****************$***$***************$*************...............
+.....................*************$***$***$*****************...............
+......................*************************************................
+...........................................................................
+...........................................................................
+...........................................................................
+CALCUL: H8 43 - B8 44 - S0 0Acceleration 0 -1, Speed 0 -1
+
+Temps utilisé: 0.233000 
+
+    Action: 0 -1   Gas remaining: 0
+
+
+SENT
+
+8 44	4 44	6 44
+START WHILE 0 1
+===================START CHECK ESSESNCE===================
+AUTRECONSO: 422 409 0
+START: 7 57
+END: 7 52 - 0 -5
+AUTRECONSO: 414 409 8
+START: 8 61
+END: 7 52 - 0 -5
+AUTRECONSO: 407 409 15
+START: 10 64
+END: 7 52 - 0 -5
+AUTRECONSO: 400 409 22
+START: 13 66
+END: 7 52 - 0 -2
+AUTRECONSO: 392 409 29
+START: 17 67
+END: 7 52 - 0 -5
+AUTRECONSO: 383 409 39
+START: 22 67
+END: 8 52 - 0 -2
+AUTRECONSO: 375 409 42
+START: 26 68
+END: 8 52 - 0 -2
+AUTRECONSO: 368 409 46
+START: 30 68
+END: 8 52 - 0 -2
+AUTRECONSO: 361 409 52
+START: 34 69
+END: 7 52 - 0 -2
+AUTRECONSO: 354 409 58
+START: 38 69
+END: 8 52 - 0 -2
+AUTRECONSO: 348 409 62
+START: 42 69
+END: 8 52 - 0 -2
+AUTRECONSO: 341 409 70
+START: 46 68
+END: 8 52 - 0 -2
+AUTRECONSO: 334 409 77
+START: 49 66
+END: 8 52 - 0 -2
+AUTRECONSO: 327 409 83
+START: 52 63
+END: 8 52 - 0 -2
+AUTRECONSO: 321 409 91
+START: 55 61
+END: 8 52 - 0 -2
+AUTRECONSO: 312 409 100
+START: 59 58
+END: 8 52 - 0 -2
+AUTRECONSO: 305 409 106
+START: 63 55
+END: 8 52 - 0 -2
+AUTRECONSO: 298 409 113
+START: 67 53
+END: 8 52 - 0 -2
+AUTRECONSO: 292 409 112
+................***********************....................................
+...............*************************...................................
+..............**************************...................................
+.............***************************...................................
+............****************************...................................
+...........*******..................****...................................
+..........*******...................****...................................
+.........*******....................****...................................
+........*******.....................****...................................
+.......*******.....................*****...................................
+......*******......................*****...................................
+.....*******.......................*****...................................
+....*******........................*****...................................
+....******.........................*****...................................
+....*****..........................*****...................................
+....*****..........................*****...................................
+....*****..........................*****...................................
+....*****..........................*****...................................
+....*****..........................*****...*********.......................
+....*****..........................*****..***********......................
+....*****..........................*****..***********......................
+....*****..........................*****..***********......................
+....*****..........................*****..***********......................
+....*****..........................*****..*****.*****......................
+....*****..........................*****..*****.******.....................
+....*****..........................*****..*****.*******....................
+....*****..........................*****..*****.********************.......
+....*****..........................*****..*****.*********************......
+....*****..........................*****..*****.*********************......
+....*****..........................*****..*****.**********************.....
+....*****..........................*****..*****..*********************.....
+....*****..........................*****..*****..................******....
+....*****..........................*****..*****..................******....
+....*****..........................*****..*****...................*****....
+....*****..........................************...................******...
+....*****..........................************...................******...
+....*****..........................************....................******..
+....*****..........................************....................******..
+....*****...........................**********......................*****..
+....*****...........................................................******.
+....*****...........................................................******.
+....*****............................................................*****.
+....*****............................................................******
+.....****............................................................******
+....**.**.............................................................*****
+......................................................................*****
+.......................................................................****
+.......................................................................****
+.......................................................................****
+.......................................................................****
+........................................................*******************
+.......................................................********************
+.....====..............................................********************
+.....****..............................................************$*******
+.....***$..............................................********************
+.....***$..............................................*********$..........
+.....***$..............................................*********...........
+.....***$..............................................******$*............
+.....***$..............................................*******.............
+.....***$..............................................***$**..............
+.....***$..............................................*****...............
+.....***$.............................................*$****...............
+.....****$...........................................*******...............
+.....*****$.........................................********...............
+......*****$.......................................**$******...............
+.......*****$.....................................**********...............
+........*****$$$$$$$$$*****************************$********...............
+.........*************$*************$$*$**$**$**$***********...............
+..........*************$$$$$$$$$$$$$************************...............
+.....................***************************************...............
+......................*************************************................
+...........................................................................
+...........................................................................
+...........................................................................
+===================FIN CHECK ESSESNCE===================
+CALCUL: H8 41 - B8 43 - S0 -1Acceleration 0 -1, Speed 0 -2
+
+Temps utilisé: 0.672000 
+
+    Action: 0 -1   Gas remaining: 0
+
+
+SENT
+
+8 43	4 43	6 44
+START WHILE 0 2
+CALCUL: H8 38 - B8 41 - S0 -2Acceleration 0 -1, Speed 0 -3
+
+Temps utilisé: 0.000000 
+
+    Action: 0 -1   Gas remaining: 0
+
+
+SENT
+
+8 41	4 39	6 44
+START WHILE 0 3
+CALCUL: H8 34 - B8 38 - S0 -3Acceleration 0 -1, Speed 0 -4
+
+Temps utilisé: 0.000000 
+
+    Action: 0 -1   Gas remaining: 0
+
+
+SENT
+
+8 38	4 36	6 44
+START WHILE 0 4
+CALCUL: H8 30 - B8 34 - S0 -4Acceleration 0 0, Speed 0 -4
+
+Temps utilisé: 0.000000 
+
+    Action: 0 0   Gas remaining: 0
+
+
+SENT
+
+8 34	5 32	6 44
+START WHILE 0 5
+CALCUL: H8 25 - B8 30 - S0 -4Acceleration 0 -1, Speed 0 -5
+
+Temps utilisé: 0.000000 
+
+    Action: 0 -1   Gas remaining: 0
+
+
+SENT
+
+8 30	5 27	6 44
+START WHILE 0 6
+CALCUL: H8 20 - B8 25 - S0 -5Acceleration 0 0, Speed 0 -5
+
+Temps utilisé: 0.000000 
+
+    Action: 0 0   Gas remaining: 0
+
+
+SENT
+
+8 25	5 22	6 44
+START WHILE 0 7
+CALCUL: H8 15 - B8 20 - S0 -5Acceleration 0 0, Speed 0 -5
+
+Temps utilisé: 0.000000 
+
+    Action: 0 0   Gas remaining: 0
+
+
+SENT
+
+8 20	6 18	6 44
+START WHILE 0 8
+CALCUL: H9 11 - B8 15 - S0 -5Acceleration 1 1, Speed 1 -4
+
+Temps utilisé: 0.000000 
+
+    Action: 1 1   Gas remaining: 0
+
+
+SENT
+
+8 15	7 14	6 44
+START WHILE 0 9
+CALCUL: H11 7 - B9 11 - S1 -4Acceleration 1 0, Speed 2 -4
+
+Temps utilisé: 0.000000 
+
+    Action: 1 0   Gas remaining: 0
+
+
+SENT
+
+9 11	8 10	6 44
+START WHILE 0 10
+CALCUL: H14 4 - B11 7 - S2 -4Acceleration 1 1, Speed 3 -3
+
+Temps utilisé: 0.000000 
+
+    Action: 1 1   Gas remaining: 0
+
+
+SENT
+
+11 7	8 10	6 44
+START WHILE 0 11
+CALCUL: H18 2 - B14 4 - S3 -3Acceleration 1 1, Speed 4 -2
+
+Temps utilisé: 0.000000 
+
+    Action: 1 1   Gas remaining: 0
+
+
+SENT
+
+14 4	8 10	6 44
+START WHILE 0 12
+CALCUL: H22 1 - B18 2 - S4 -2Acceleration 0 1, Speed 4 -1
+
+Temps utilisé: 0.000000 
+
+    Action: 0 1   Gas remaining: 0
+
+
+SENT
+
+18 2	8 10	6 44
+START WHILE 0 13
+CALCUL: H27 1 - B22 1 - S4 -1Acceleration 1 1, Speed 5 0
+
+Temps utilisé: 0.000000 
+
+    Action: 1 1   Gas remaining: 0
+
+
+SENT
+
+22 1	8 10	6 44
+START WHILE 0 14
