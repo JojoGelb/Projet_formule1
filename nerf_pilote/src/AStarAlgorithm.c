@@ -44,7 +44,6 @@ VECT2D *generateListIndex() {
     return result;
 }
 
-/** alloue la place pour toute la map */
 NODE ***createNodeMap(int width, int height) {
     NODE ***nodes;
     int x, y;
@@ -416,11 +415,10 @@ void display_node_map(NODE ***map, int width, int height, NODE **path) {
 void display_vector(NODE **path) {
     int i;
     fprintf(stderr, "START PATH \n");
-    for (i = 0; i < 800; i++) {
-        if (path[i] == NULL) {
-            break;
-        }
+    i = 0;
+    while (path[i] != NULL) {
         fprintf(stderr, "%d %d - ", path[i]->x, path[i]->y);
+        i++;
     }
     fprintf(stderr, "\nEND PATH \n");
 }
