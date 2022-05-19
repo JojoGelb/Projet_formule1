@@ -16,7 +16,7 @@ all: $(BIN)$(PILOT_NAME) install clean
 install: $(DRIVERS_PATH)/$(PILOT_NAME)
 
 $(DRIVERS_PATH)/$(PILOT_NAME): $(BIN)$(PILOT_NAME)
-	mv $(PILOT_NAME).exe $(DRIVERS_PATH)
+	mv $(PILOT_NAME) $(DRIVERS_PATH)
 
 $(BIN)$(PILOT_NAME): $(OBJ)$(PILOT_NAME).o $(OBJ)$(MORE_FILE).o $(OBJ)follow_line.o $(OBJ)Queue.o
 	$(CC) $(CFLAGS) $^ -o $(PILOT_NAME) $(LDLIBS)
