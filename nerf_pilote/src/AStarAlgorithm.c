@@ -363,10 +363,6 @@ int hit_a_wall(NODE ***nodeMap, int width, NODE *start, NODE *stop) {
         Pos2Dint p;
         initLine(start->x, start->y, stop->x, stop->y, &vline);
         while (nextPoint(&vline, &p, +1) > 0) {
-            if (p.x == start->x && p.y == start->y) {
-                /* We suppose that the start position is not worth visiting! */
-                continue;
-            }
             if (nodeMap[p.y * width + p.x] == NULL) {
                 return 1;
             }
@@ -485,7 +481,7 @@ NODE *Solve_AStar(NODE ***nodes, int width, int height, NODE *nodeStart, char sl
             q->tail = NULL;
         }
 
-         for (i = 0; i < current->value->numberOfNeighbours; i++) {
+        for (i = 0; i < current->value->numberOfNeighbours; i++) {
             if (current->value->vecNeighbours[i]->speedX == current->value->speedX && current->value->vecNeighbours[i]->speedY == current->value->speedY) {
                 NODE *temp = current->value->vecNeighbours[i];
                 current->value->vecNeighbours[i] = current->value->vecNeighbours[0];
@@ -579,19 +575,6 @@ void shift_left(NODE **list, int last_push) {
     }
 }
 
-/**
- * @brief Compute the gas consumption of a requested acceleration
- *
- * CAUTION: Even an illegal move will result in gas consumption. Producing
- * illegal moves should be prevented as much as possible!
- *
- * @param accX Acceleration x component
- * @param accY Acceleration y component
- * @param speedX Speed x component
- * @param speedY Speed y component
- * @param inSand (boolean)
- * @return Number of gas units consumed
- */
 int gasConsumption(int accX, int accY, int speedX, int speedY, int inSand) {
     int gas = accX * accX + accY * accY;
     gas += (int)(sqrt(speedX * speedX + speedY * speedY) * 3.0 / 2.0);
@@ -601,9 +584,6 @@ int gasConsumption(int accX, int accY, int speedX, int speedY, int inSand) {
     return gas;
 }
 
-/** Retourne le trajet à suivre par le pilote
- *  Résoud le A star puis stocke le résultat dans un tableau de pointeur de vecteur 2d (position à suivre)
- */
 NODE **get_path(NODE ***nodes, int width, int height, NODE *nodeStart, int* autreConso, char slowDown) {
     int i, consoEssence = 0;
     NODE **path = malloc(800 * sizeof(NODE));
@@ -804,21 +784,6 @@ void generate_heat_map(NODE ***nodes, int width, int height, NODE *start) {
     }
 
     free(q);
-}
-
-void sort_heat_list(NODE **list, int last_push) {
-    int i, j;
-    NODE *tempNode;
-
-    for (i = 0; i < last_push; i++) {
-        for (j = 0; j < i; j++) {
-            if (list[j]->distanceToEnd > list[i]->distanceToEnd) {
-                tempNode = list[j];
-                list[j] = list[i];
-                list[i] = tempNode;
-            }
-        }
-    }
 }
 
 void display_heat_map(NODE ***map, int width, int height) {

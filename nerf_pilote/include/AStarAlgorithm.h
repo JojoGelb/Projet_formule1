@@ -41,12 +41,16 @@ typedef struct node{
 } NODE;
 
 /**
- * @brief Retourne la liste avec tout les vecteurs de vitesse possibles que peut prendre le pilote
+ * @brief  Retourne la liste avec tout les vecteurs de vitesse possibles que peut prendre le pilote
+ * 
+ * @return VECT2D* 
  */
 VECT2D * generateListIndex();
 
 /**
- * @brief alloue un noeud 
+ * @brief Crée un noeud
+ * 
+ * @return NODE* 
  */
 NODE * createNode();
 
@@ -55,7 +59,7 @@ NODE * createNode();
  * 
  * @param width la largeur de la carte
  * @param height la hauteur de la carte
- * @return NODE*** 
+ * @return NODE*** la carte du circuit
  */
 NODE*** createNodeMap(int width, int height);
 
@@ -121,7 +125,7 @@ void findNeighbourForSandNode(NODE ***nodes, VECT2D *tab, int width, int height,
  * 
  * @param x la valeur x associée au vecteur
  * @param y la valeur x associée au vecteur
- * @return VECT2D* 
+ * @return VECT2D* le vecteur à deux dimensions crée
  */
 VECT2D * create_vector(int x, int y);
 
@@ -142,8 +146,21 @@ void display_vector(NODE ** path);
  */
 void display_node_map(NODE *** map, int width, int height, NODE** path);
 
+/**
+ * @brief Trie une liste de noeuds à partir d'un index de cette liste
+ * 
+ * @param list la liste à trier
+ * @param last_push la taille de la liste
+ * @param lastBigNumber l'index où la liste n'est plus triée
+ */
 void sort_nodes_list(NODE ** list, int last_push, int* lastBigNumber);
 
+/**
+ * @brief dépile la première valeur d'une liste et décale toute les valeurs à gauche
+ * 
+ * @param list la liste 
+ * @param last_push la taille de la liste
+ */
 void shift_left(NODE ** list, int last_push);
 
 /**
@@ -165,27 +182,117 @@ float distance(NODE * nodeA, NODE * nodeB);
  */
 int findIndex(VECT2D* tab,char speedX, char speedY);
 
+/**
+ * @brief Retourne l'heuristique d'un noeud
+ * 
+ * @deprecated
+ * @param nodeA le neud dont on veut l'heuristique
+ * @return float 
+ */
 float heuristic(NODE * nodeA);
 
+/**
+ * @brief Inverse un liste de noeuds
+ * 
+ * @param path la liste à inverser
+ */
 void reversePath(NODE ** path);
 
+/**
+ * @brief Calcule la trajet que le pilote doit prendre pour finir le circuit le plus rapidement possible, via l'algorithme de pathfinding A*
+ * 
+ * @param nodes la carte du circuit
+ * @param width la largeur de la carte
+ * @param height la hauteur de la carte
+ * @param nodeStart le noeud de départ du pilote
+ * @param slowDown indique de combien on veut réduire la vitesse maximale du pilote
+ * @return NODE* le noeud où devra arriver le pilote, prend la valeur null si on ne trouve pas de trajet
+ */
 NODE* Solve_AStar(NODE *** nodes, int width, int height, NODE * nodeStart, char slowDown);
 
+/**
+ * @brief  Retourne le trajet à suivre par le pilote pour se déplacer le plus rapidement possible
+ * Résoud le A* puis stocke le résultat dans un tableau de noeuds (position à suivre)
+ * 
+ * @param nodes la carte du circuit
+ * @param width la largeur de la carte
+ * @param height la hauteur de la carte
+ * @param nodeStart le noeud de départ du pilote
+ * @param autreConso la variable qui va contenir le coût en essence total du trajet
+ * @param slowDown indique de combien on veut réduire la vitesse maximale du pilote
+ * @return NODE** le tableau contenant les noeuds par lesquels doit passer le pilote
+ */
 NODE ** get_path(NODE *** nodes, int width, int height, NODE * nodeStart, int* autreConso, char slowDown);
 
+/**
+ * @brief Retourne le trajet à suivre par le pilote pour se déplacer le plus rapidement possible
+ * Résoud le A* puis stocke le résultat dans un tableau de noeuds (position à suivre)
+ * 
+ * @param nodes la carte du circuit
+ * @param width la largeur de la carte
+ * @param height la hauteur de la carte
+ * @param nodeStart le noeud de départ du pilote
+ * @param carburant la variable qui va contenir le coût en essence total du trajet
+ * @return NODE** le tableau contenant les noeuds par lesquels doit passer le pilote
+ */
 NODE **get_path_essence(NODE ***nodes, int width, int height, NODE *nodeStart, int * carburant);
 
+/**
+ * @brief Calcule la trajet que le pilote doit prendre pour finir le circuit en consommant le moins d'essence possible, via l'algorithme de pathfinding A*
+ * 
+ * @param nodes la carte du circuit
+ * @param width la largeur de la carte
+ * @param height la hauteur de la carte
+ * @param nodeStart le noeud de départ du pilote
+ * @return NODE* le noeud où devra arriver le pilote, prend la valeur null si on ne trouve pas de trajet
+ */
 NODE *Solve_AStar_Essence(NODE ***nodes, int width, int height, NODE *nodeStart);
 
+/**
+ * @brief Retourne la prochaine accélération que le pilote doit prendre pour suivre son trajet
+ * 
+ * @param path la liste de points où le pilote doit passer pour aller jusqu'à l'arrivée
+ * @param lastPosition la derniere position x,y du pilote
+ * @param lastSpeed la derniere vitesse x,y du pilote
+ * @param index le nombre de point où le joueur est déjà passé sur le trajet en cours
+ * @return VECT2D le vecteur à deux dimension de la prochaine accélération
+ */
 VECT2D nextAcceleration(NODE ** path, VECT2D* lastPosition, VECT2D* lastSpeed, int index);
 
+/**
+ * @brief Génère la heat map : met à jour la distance par rapport à la fin de la course de chaque noeuds.
+ * Utilise l'algorithme de pathfinding Dijkstra
+ * 
+ * @param nodesMap la carte du circuit
+ * @param width la largeur de la carte
+ * @param height la hauteur de la carte
+ * @param start noeuds où doit arriver le pilote en fin de course
+ */
 void generate_heat_map(NODE *** nodesMap, int width, int height, NODE * start);
 
+/**
+ * @brief Compute the gas consumption of a requested acceleration
+ *
+ * CAUTION: Even an illegal move will result in gas consumption. Producing
+ * illegal moves should be prevented as much as possible!
+ *
+ * @param accX Acceleration x component
+ * @param accY Acceleration y component
+ * @param speedX Speed x component
+ * @param speedY Speed y component
+ * @param inSand (boolean)
+ * @return Number of gas units consumed
+ */
 int gasConsumption(int accX, int accY, int speedX, int speedY, int inSand);
 
+/**
+ * @brief Affiche la carte du circuit
+ * 
+ * @param map la carte du circuit
+ * @param width la largeur du circuit
+ * @param height la hauteur du circuit
+ */
 void display_heat_map(NODE *** map, int width, int height);
-
-void sort_heat_list(NODE ** list, int last_push);
 
 /**
  * @brief Calcule la consommation du pilote entre deux points de son trajet
@@ -193,7 +300,7 @@ void sort_heat_list(NODE ** list, int last_push);
  * @param path le trajet de noeuds que doit suivre le pilote
  * @param indexDebut l'indice du point dans le trajet où l'on souhaite commencer à calculer la consommation
  * @param indexFin l'indice du point dans le trajet où l'on souhaite arrêter le calcul de la consommation
- * @return int 
+ * @return int la consommation totale rentre les deux intervals
  */
 int calculConsommationEssenceSurTrajet(NODE ** path, int indexDebut,int indexFin);
 
@@ -204,7 +311,7 @@ int calculConsommationEssenceSurTrajet(NODE ** path, int indexDebut,int indexFin
  * @param width la largeur de la carte
  * @param start le noeud de départ
  * @param stop le noeud d'arrivée
- * @return int 
+ * @return int 1 si un obstacle est sur la route, 0 sinon
  */
 int hit_a_wall(NODE ***nodeMap, int width, NODE *start, NODE *stop);
 
