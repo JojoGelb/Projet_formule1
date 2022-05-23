@@ -38,7 +38,7 @@ int main() {
 
     char action[100];
     char line_buffer[MAX_LINE_LENGTH];
-    char *ansiFegts; /*ne sert à rein à part respecter le ansi sur le retour des fonctions fgets*/
+    char *ansiFegts;
 
     cpu_time_used = -1;
     start = clock();
@@ -68,8 +68,6 @@ int main() {
     nodeEnd = NULL;
     nodeStart = NULL;
 
-    fprintf(stderr, "=== >Map loaded< ===\n");
-
     for (y = 0; y < mapHeight; ++y) { /* Read map data, line per line */
         ansiFegts = fgets(line_buffer, MAX_LINE_LENGTH, stdin);
         x = 0;
@@ -88,7 +86,6 @@ int main() {
             }
             x++;
         }
-        fputs(line_buffer, stderr);
     }
 
     for (y = 0; y < mapHeight; y++) {
@@ -111,18 +108,13 @@ int main() {
     lastP2Position = NULL;
     lastP3Position = NULL;
 
-    fflush(stderr);
-
     while (!feof(stdin)) {
-        fprintf(stderr,"START WHILE %d %d\n",repeat, round);
         if (cpu_time_used != -1) {
             start = clock();
         }
 
         fprintf(stderr,"GETS\n");
-
         ansiFegts = fgets(line_buffer, MAX_LINE_LENGTH, stdin); /* Read positions of pilots*/
-
         fprintf(stderr,"SCAN\n");
 
         sscanf(line_buffer, "%d %d %d %d %d %d",
@@ -136,20 +128,15 @@ int main() {
         if(repeat == TRUE){
             int speedx = player1Position.x - nodeStart->x;
             int speedy = player1Position.y - nodeStart->y;
-            /*Potential issue here*/
             gaslevel -= gasConsumption(0,0,speedx,speedy,nodeStart->sable);
             nodeStart = mapNodes[player1Position.y * mapWidth + player1Position.x][findIndex(findex,speedx,speedy)];
 
         }
 
-        fprintf(stderr,"TEST\n");
-
         if (round == 0) {
-            fprintf(stderr, "=======================START PATH FINDING==========================\n");
             if(repeat == FALSE){
                 nodeStart = mapNodes[player1Position.y * mapWidth + player1Position.x][findIndex(findex, 0, 0)];
                 generate_heat_map(mapNodes, mapWidth, mapHeight, nodeEnd);
-                /*display_heat_map(mapNodes,mapWidth,mapHeight);*/
             }else{
                 repeat = FALSE;
             }
@@ -157,36 +144,26 @@ int main() {
             consoPathD = 0;
             path = get_path(mapNodes, mapWidth, mapHeight, nodeStart, &consoPathD,valeurNerf);
 
-            /*voir si path normal + path essencence est plus ou moins rentable qu'un nerf*/
-
             if(path[0] == NULL){
-                    fprintf(stderr,"------------------cant find da wai ON NORMAL-----------------\n");
-                    /*display_node_map(mapNodes,mapWidth,mapHeight,NULL);*/
                     repeat = TRUE;
                     sprintf(action, "%d %d", 0, 0);
                     fprintf(stdout, "%s", action);
                     fflush(stdout); /* CAUTION : This is necessary  */
                     continue;
             }
-
             reversePath(path);
-            fprintf(stderr, "==========================END PATH FINDING============================\n");
-            /*display_node_map(mapNodes, mapWidth, mapHeight, path);*/
         }
 
         /*Une voiture passe devant*/
         if(hit_a_wall(mapNodes,mapWidth,path[round],path[round+1])){
-                fprintf(stderr,"------------------CROSSROAD-----------------\n");
                 onPeutFinir = FALSE;
                 nodeStart = path[round];
                 path = get_path(mapNodes, mapWidth, mapHeight, path[round],&consoPathD,valeurNerf);
-                fprintf(stderr,"------------------PATH DONE-----------------\n");
                 round = 0;
                 lastFart += 5-valeurNerf;
                 pathEssence = NULL;
-                /*NO path available ahead: skip a beat. TODO: Recalcul the position and speed et recalcule speed + essence path*/
+
                 if(path[0] == NULL){
-                    fprintf(stderr,"------------------cant find da wai: JUST PAUSE FOR A WHILE-----------------\n");
                     repeat = TRUE;
                     sprintf(action, "%d %d", 0, 0);
                     fprintf(stdout, "%s", action);
@@ -194,17 +171,10 @@ int main() {
                     continue;
                 }
                 reversePath(path);
-                /*display_node_map(mapNodes, mapWidth, mapHeight, path);*/
-
-                fprintf(stderr,"------------------END CROSSROAD-----------------\n");
             }
 
-        /*Calculer le path essence en decalage pour meilleur perf
-        Peut faire mieux
-        Mettre dans une fonction
-        Split to avoid timeout*/
+        /*Calcule du path-essence*/
         if (round == 1 && pathEssence == NULL && onPeutFinir == FALSE) {
-            fprintf(stderr, "===================START CHECK ESSESNCE===================\n");
             i = 0;
             while (path[i] != NULL) {
                 i++;
@@ -212,45 +182,38 @@ int main() {
             conso = 0;
 
             consoPathDUtilseEssence = calculConsommationEssenceSurTrajet(path,round,i);
-            fprintf(stderr,"consoPathD: %d %d %d\n", consoPathD, gaslevel, conso);
             i-=2;
             
-            /*On skipera si on a assez pour faire un tour complet*/
             while (gaslevel - consoPathDUtilseEssence - conso < lastFart && i > 0) {
                 end = clock();
                 cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC;
-                if(cpu_time_used > 0.90){
+                if(cpu_time_used > 0.90){ /*pour éviter les timeout si le calcul prend trop de temps, 0.9 car la suite du code met en moyenne 0.065 sec à s'éxecuter*/
                     PATH_ESSENCE_GENERATED = FALSE;
                     break;
                 }
                 pathEssence = get_path_essence(mapNodes, mapWidth, mapHeight, path[i], &conso);
                 consoPathDUtilseEssence = calculConsommationEssenceSurTrajet(path, round, i+1);
-                fprintf(stderr,"consoPathD: %d %d %d\n", consoPathDUtilseEssence, gaslevel, conso);
                 i--;
                 PATH_ESSENCE_GENERATED = TRUE;
             }
 
             if(pathEssence != NULL){
                 reversePath(pathEssence);
-                /*display_node_map(mapNodes, mapWidth, mapHeight, pathEssence);*/
             }else{
-                fprintf(stderr,"ON PEUT GAS JUSQU'AU BOUT \n");
                 CHECK_NERF = FALSE;
                 onPeutFinir = TRUE;
             }
-            fprintf(stderr, "===================FIN CHECK ESSESNCE===================\n");
         }
 
-        /*Quand on arrive au meme point sur la route on swap de path vers pathEssence*/
+        /*Quand on arrive au meme point sur la route on échange le A* avec le de path de pathEssence*/
         if (pathEssence != NULL && player1Position.x == pathEssence[0]->x && player1Position.y == pathEssence[0]->y) {
-            fprintf(stderr, "===================SWAP TO ESSENCE===================\n");
             round = 0;
             path = pathEssence;
         }
 
+        /*On check si limiter la vitesse maximale est plus rentable*/
         if(round == 2 && CHECK_NERF == TRUE){
-            if(PATH_ESSENCE_GENERATED == FALSE){ /*si le path-essence est pas généré, cela veut dire que l'on freine méga tôt dans le circuit*/
-                fprintf(stderr,"------------------nerf + 1-----------------\n");
+            if(PATH_ESSENCE_GENERATED == FALSE){ /*si le path-essence est pas généré, cela veut dire que l'on devrait freiner très tôt dans le circuit*/
                 valeurNerf++;
                 onPeutFinir = FALSE;
                 nodeStart = path[round];
@@ -259,7 +222,6 @@ int main() {
                 pathEssence = NULL;
 
                 if(path[0] == NULL){
-                    fprintf(stderr,"------------------cant find da wai: JUST PAUSE FOR A WHILE-----------------\n");
                     repeat = TRUE;
                     sprintf(action, "%d %d", 0, 0);
                     fprintf(stdout, "%s", action);
@@ -267,29 +229,21 @@ int main() {
                     continue;
                 }
                 reversePath(path);
+
             } else {
-                fprintf(stderr,"\n------------------check nerf-----------------\n");
                 consoPathNerf = 0;
                 pathNerf = get_path(mapNodes, mapWidth, mapHeight, path[round], &consoPathNerf,valeurNerf+1);
 
-                fprintf(stderr,"\n------------------path nerf trouvé-----------------\n");
-
                 if(pathNerf[0] != NULL){
-                    fprintf(stderr,"\n------------------path nerf != NULL-----------------\n");
                     tailleE = 0;
                     tailleN = 0;
-                    /* regarder si le pthNerf + path Essence associé est plus rentable que celui actuel*/
-                    fprintf(stderr,"\n------------------tailleN-----------------\n");
                     while (pathNerf[tailleN] != NULL) {
                         tailleN++;
                     }
-                    fprintf(stderr,"\n------------------tailleE-----------------\n");
                     while (pathEssence[tailleE] != NULL) {
                         tailleE++;
                     }
-                    fprintf(stderr,"\ni: %d d: %d e: %d n: %d\n",i,tailleD,tailleE,tailleN);
-                    if(i + tailleE > tailleN && consoPathNerf-gaslevel < conso){ /*utiliser essence*/
-                        /*Jusque là à changer*/
+                    if(i + tailleE > tailleN && consoPathNerf-gaslevel < conso){
                         valeurNerf++;
                         onPeutFinir = FALSE;
                         nodeStart = path[round];
@@ -301,7 +255,6 @@ int main() {
                         CHECK_NERF = FALSE;
                     }
                 } else {
-                    fprintf(stderr,"------------------path nerf impossible-----------------\n");
                     CHECK_NERF = FALSE;
                 }
             }
@@ -310,19 +263,12 @@ int main() {
         acceleration = nextAcceleration(path, NULL, &speed, round + 1);
         round++;
 
-        fflush(stderr);
-
         end = clock();
         cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC;
-        fprintf(stderr, "\nTemps utilisé: %f \n\n", cpu_time_used);
-        fprintf(stderr, "\n valeur du nerf %d \n\n", valeurNerf);
-
         sprintf(action, "%d %d", acceleration.x, acceleration.y);
         gaslevel -= gasConsumption(acceleration.x,acceleration.y,path[round-1]->speedX,path[round-1]->speedY,path[round-1]->sable);
         fprintf(stdout, "%s", action);
         fflush(stdout); /* CAUTION : This is necessary  */
-        fprintf(stderr, "    Action: %s   Gas remaining: %d\n\n", action, 0);
-        fprintf(stderr, "\nSENT\n\n");
         fprintf(stderr, "%s", ansiFegts);
         fflush(stderr);
     }

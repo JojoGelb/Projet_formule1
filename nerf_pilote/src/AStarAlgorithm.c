@@ -13,7 +13,6 @@ NODE *createNode() {
     return node;
 }
 
-/** Trouve pour une vitesse sa position dans le tableau tab*/
 int findIndex(VECT2D *tab, char speedX, char speedY) {
     int i;
     for (i = 0; i < NUMBER_OF_SPEED; i++) {
@@ -24,7 +23,6 @@ int findIndex(VECT2D *tab, char speedX, char speedY) {
     return -1;
 }
 
-/** Genrere une liste avec toutes les combinaisons de vitesses possible*/
 VECT2D *generateListIndex() {
     int index, i, j;
     VECT2D *result;
@@ -57,7 +55,6 @@ NODE ***createNodeMap(int width, int height) {
     return nodes;
 }
 
-/**alloue les 81 vitesses possibles pour un Node normal*/
 void allocationSpeedForNormalNode(NODE ***nodes, VECT2D *tab, int width, int x, int y) {
     int i;
     for (i = 0; i < NUMBER_OF_SPEED; i++) {
@@ -103,10 +100,6 @@ void allocationSpeedForEndNode(NODE ***nodes, VECT2D *tab, int width, int x, int
     }
 }
 
-/**
- * @brief trouve tous les voisins d'un noeud ensablé
- * @TODO on peut facilement simplifier l'algo
- */
 void findNeighbourForSandNode(NODE ***nodes, VECT2D *tab, int width, int height, int x, int y) {
 
     int findex;
@@ -125,7 +118,6 @@ void findNeighbourForSandNode(NODE ***nodes, VECT2D *tab, int width, int height,
 
         norm = abs(nodes[y * width + x][i]->speedX) + abs(nodes[y * width + x][i]->speedY);
 
-        /* Speed == 0*/
         if (norm == 0) {
             /* UP*/
             if (y > 0 && nodes[(y_prime - 1) * width + (x_prime + 0)] != NULL) {
@@ -162,7 +154,7 @@ void findNeighbourForSandNode(NODE ***nodes, VECT2D *tab, int width, int height,
                     num_neigh++;
                 }
             }
-        } else if (norm == 1) { /* Speed x = 1 or -1 || Speed y = -1 or 1*/
+        } else if (norm == 1) {
             /* Slow down on every sides: CENTER POSITION*/
             nodes[y * width + x][i]->vecNeighbours[num_neigh] = nodes[y * width + x][findIndex(tab, 0, 0)];
             num_neigh++;
@@ -253,10 +245,6 @@ void findNeighbourForSandNode(NODE ***nodes, VECT2D *tab, int width, int height,
     }
 }
 
-/**
- * @brief trouve tous les voisins d'un noeud
- * @TODO on peut facilement simplifier l'algo
- */
 void findNeighbourForNormalNode(NODE ***nodes, VECT2D *tab, int width, int height, int x, int y) {
 
     bool_t x_in, y_in;
@@ -354,9 +342,6 @@ void findNeighbourForNormalNode(NODE ***nodes, VECT2D *tab, int width, int heigh
     }
 }
 
-/*
-Calcule si la voiture tape un mur lors d'un deplacement
-*/
 int hit_a_wall(NODE ***nodeMap, int width, NODE *start, NODE *stop) {
     {
         InfoLine vline;
@@ -371,8 +356,6 @@ int hit_a_wall(NODE ***nodeMap, int width, NODE *start, NODE *stop) {
     }
 }
 
-/** Affiche la map.
- * si path est != de null: affiche la route emprunté représenté par des $ */
 void display_node_map(NODE ***map, int width, int height, NODE **path) {
 
     int i, x, y;
@@ -407,7 +390,6 @@ void display_node_map(NODE ***map, int width, int height, NODE **path) {
     }
 }
 
-/** Affiche position x y stocké dans path*/
 void display_vector(NODE **path) {
     int i;
     fprintf(stderr, "START PATH \n");
@@ -419,10 +401,6 @@ void display_vector(NODE **path) {
     fprintf(stderr, "\nEND PATH \n");
 }
 
-/**
- * Detecte si un noeud est dans la list
- * smaller: si -1 ne regarde pas le cout, sinon return true si le coup est plus petit que celui de searched
- */
 int contain(NODE **list, int lastIndex, NODE *searched, int smaller) {
     int i;
     for (i = 0; i < lastIndex; i++) {
@@ -434,14 +412,6 @@ int contain(NODE **list, int lastIndex, NODE *searched, int smaller) {
     return 0;
 }
 
-/**
- * @brief Solve pathfinding problem
- *
- * @param nodes List2D de pointeur :[position x,y][vitesse]
- * @param width largeur map
- * @param height longueur map
- * @param nodeStart
- */
 NODE *Solve_AStar(NODE ***nodes, int width, int height, NODE *nodeStart, char slowDown) {
     int i, x, y, openLastPushIndex, heur,cout;
     QUEUE *q;
@@ -497,7 +467,6 @@ NODE *Solve_AStar(NODE ***nodes, int width, int height, NODE *nodeStart, char sl
                 }
 
                 if (current->value->vecNeighbours[i]->end == TRUE) {
-                    fprintf(stderr, "END: %d %d - %d %d\n", current->value->vecNeighbours[i]->x, current->value->vecNeighbours[i]->y, current->value->vecNeighbours[i]->speedX, current->value->vecNeighbours[i]->speedY);
                     current->value->vecNeighbours[i]->parent = current->value;
                     return current->value->vecNeighbours[i];
                 }
@@ -531,22 +500,15 @@ NODE *Solve_AStar(NODE ***nodes, int width, int height, NODE *nodeStart, char sl
     return NULL;
 }
 
-/** Le cout d'un deplacement: pour le moment une distance*/
 float distance(NODE *nodeA, NODE *nodeB) {
-    /* distance euclidenne avec et sans vitesse
-    sqrtf((nodeA->x - nodeB->x + nodeB->speedX)*(nodeA->x - nodeB->x + nodeB->speedX) + ((nodeA->y - nodeB->y + nodeB->speedY)*(nodeA->y - nodeB->y + nodeB->speedY)));
-    return sqrtf((nodeA->x - nodeB->x)*(nodeA->x - nodeB->x) + ((nodeA->y - nodeB->y)*(nodeA->y - nodeB->y)));*/
-
     /* Distance de manhatan*/
     return abs(abs(nodeB->x - nodeA->x - nodeA->speedX) + abs(nodeB->y - nodeA->y - nodeA->speedY));
 }
 
-/** Sert à influer la progression de l'algorithme*/
 float heuristic(NODE *nodeA) {
-    return nodeA->distanceToEnd; /* abs(nodeB->x - nodeA->x) + abs(nodeB->x - nodeA->x);*/
+    return nodeA->distanceToEnd;
 }
 
-/** Tri une liste de noeuds selon le global goal*/
 void sort_nodes_list(NODE **list, int last_push, int *lastBigNumber) {
     int i, j;
 
@@ -567,7 +529,6 @@ void sort_nodes_list(NODE **list, int last_push, int *lastBigNumber) {
     }
 }
 
-/** Depile l'element le plus à gauche d'une liste*/
 void shift_left(NODE **list, int last_push) {
     int i;
     for (i = 1; i < last_push; i++) {
@@ -592,7 +553,6 @@ NODE **get_path(NODE ***nodes, int width, int height, NODE *nodeStart, int* autr
     p = Solve_AStar(nodes, width, height, nodeStart, slowDown);
     i = 0;
     while (p != NULL) {
-        fprintf(stderr, "%d %d - ", p->x, p->y);
         path[i] = p;
         if (p->parent != NULL) {
             consoEssence += gasConsumption(p->x - p->parent->x - p->parent->speedX, p->y - p->parent->y - p->parent->speedY, p->parent->speedX, p->parent->speedY, p->parent->sable); 
@@ -614,9 +574,6 @@ VECT2D *create_vector(int x, int y) {
     return vect;
 }
 
-/** Inverse le tableau de vect2d donné en parametre
- *  dernier elem = premier ...
- */
 void reversePath(NODE **path) {
     int n, low, high;
     for (n = 0; n < 800; n++) {
@@ -631,7 +588,6 @@ void reversePath(NODE **path) {
     }
 }
 
-/** Calcule et retourne la prochaine acceleration à prendre selon la vitesse et la position*/
 VECT2D nextAcceleration(NODE **path, VECT2D *position, VECT2D *lastSpeed, int index) {
 
     VECT2D newAcceleration;
@@ -639,7 +595,6 @@ VECT2D nextAcceleration(NODE **path, VECT2D *position, VECT2D *lastSpeed, int in
     if (path[index] == NULL) {
         newAcceleration.x = 0;
         newAcceleration.y = 0;
-        fprintf(stderr, "LAST Acceleration %d %d, Speed %d %d\n", newAcceleration.x, newAcceleration.y, lastSpeed->x, lastSpeed->y);
         return newAcceleration;
     }
 
@@ -647,15 +602,12 @@ VECT2D nextAcceleration(NODE **path, VECT2D *position, VECT2D *lastSpeed, int in
         newAcceleration.x = (path[index]->x - position->x);
         newAcceleration.y = path[index]->y - position->y;
     } else {
-        fprintf(stderr, "CALCUL: H%d %d - B%d %d - S%d %d", path[index]->x, path[index]->y, path[index - 1]->x, path[index - 1]->y, lastSpeed->x, lastSpeed->y);
         newAcceleration.x = (path[index]->x - path[index - 1]->x) - path[index - 1]->speedX;
         newAcceleration.y = (path[index]->y - path[index - 1]->y) - path[index - 1]->speedY;
     }
 
     lastSpeed->x += newAcceleration.x;
     lastSpeed->y += newAcceleration.y;
-
-    fprintf(stderr, "Acceleration %d %d, Speed %d %d\n", newAcceleration.x, newAcceleration.y, lastSpeed->x, lastSpeed->y);
 
     return newAcceleration;
 }
@@ -712,7 +664,6 @@ void generate_heat_map(NODE ***nodes, int width, int height, NODE *start) {
         }
 
         if (current->value->distanceToEnd == INT_MAX) {
-            fprintf(stderr, "WEIRD came out too soon of the heat map algorithm\n");
             break;
         }
 
@@ -800,14 +751,6 @@ void display_heat_map(NODE ***map, int width, int height) {
     }
 }
 
-/**
- * @brief Solve avec carburant en principal
- *
- * @param nodes List2D de pointeur :[position x,y][vitesse]
- * @param width largeur map
- * @param height longueur map
- * @param nodeStart
- */
 NODE *Solve_AStar_Essence(NODE ***nodes, int width, int height, NODE *nodeStart) {
     int i, x, y, openLastPushIndex;
     QUEUE *q;
@@ -831,8 +774,7 @@ NODE *Solve_AStar_Essence(NODE ***nodes, int width, int height, NODE *nodeStart)
     nodeStart->fGlobalGoal = 0;
     openLastPushIndex = 1;
     current = NULL;
-
-    fprintf(stderr, "START: %d %d\n", nodeStart->x, nodeStart->y);
+    
     enqueue(nodeStart, q);
 
     while (!is_empty(q)) {
@@ -848,16 +790,15 @@ NODE *Solve_AStar_Essence(NODE ***nodes, int width, int height, NODE *nodeStart)
         }
 
         if (current->value->end == TRUE) {
-            fprintf(stderr, "END: %d %d - %d %d\n", current->value->x, current->value->y, current->value->speedX, current->value->speedY);
             return current->value;
         }
 
         for (i = 0; i < current->value->numberOfNeighbours; i++) {
             if (!(hit_a_wall(nodes, width, current->value, current->value->vecNeighbours[i]) ||
-                  current->value->vecNeighbours[i]->bVisited ||
-                  (find(current->value->vecNeighbours[i], q) != NULL && current->value->vecNeighbours[i]->fLocalGoal < current->value->fLocalGoal))) {
+                    current->value->vecNeighbours[i]->bVisited ||
+                    (find(current->value->vecNeighbours[i], q) != NULL && current->value->vecNeighbours[i]->fLocalGoal < current->value->fLocalGoal))) {
 
-                float cout = current->value->fLocalGoal + gasConsumption(current->value->vecNeighbours[i]->x - current->value->x - current->value->speedX, current->value->vecNeighbours[i]->y - current->value->y - current->value->speedY, current->value->speedX, current->value->speedY, current->value->sable) /*distance(current->value, current->value->vecNeighbours[i])*/;
+                float cout = current->value->fLocalGoal + gasConsumption(current->value->vecNeighbours[i]->x - current->value->x - current->value->speedX, current->value->vecNeighbours[i]->y - current->value->y - current->value->speedY, current->value->speedX, current->value->speedY, current->value->sable);
                 float heur = cout + heuristic(nodes[current->value->vecNeighbours[i]->y * width + current->value->vecNeighbours[i]->x][0]);
 
                 current->value->vecNeighbours[i]->fLocalGoal = cout;
@@ -878,13 +819,9 @@ NODE *Solve_AStar_Essence(NODE ***nodes, int width, int height, NODE *nodeStart)
         current->value->bVisited = TRUE;
         free(current);
     }
-    fprintf(stderr, "CANT FIND DA WEI\n");
     return NULL;
 }
 
-/** Retourne le trajet à suivre par le pilote
- *  Résoud le A star puis stocke le résultat dans un tableau de pointeur de vecteur 2d (position à suivre)
- */
 NODE **get_path_essence(NODE ***nodes, int width, int height, NODE *nodeStart, int *carburant) {
     NODE **path = malloc(800 * sizeof(NODE));
     NODE *p;
@@ -899,7 +836,6 @@ NODE **get_path_essence(NODE ***nodes, int width, int height, NODE *nodeStart, i
     }
 
     while (p != NULL) {
-        /*fprintf(stderr, "%d %d - ", p->x, p->y);*/
         path[i] = p;
         if (p->parent != NULL) {
             consomation_essence += gasConsumption(p->x - p->parent->x - p->parent->speedX, p->y - p->parent->y - p->parent->speedY, p->parent->speedX, p->parent->speedY, p->parent->sable);
@@ -924,7 +860,6 @@ int calculConsommationEssenceSurTrajet(NODE **path, int indexDebut, int indexFin
     return consommation;
 }
 
-/** Set a node to null if another player on it and keep trace of it to restore it next round*/
 void resetMapPlayersPosition(NODE ***mapNodes, int mapWidth, NODE ***lastP2Position, NODE ***lastP3Position, VECT2D player2Position, VECT2D player3Position) {
     if (*lastP2Position != NULL) {
         mapNodes[(*lastP2Position)[0]->y * mapWidth + (*lastP2Position)[0]->x] = *lastP2Position;
