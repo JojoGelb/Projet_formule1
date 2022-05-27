@@ -34,7 +34,7 @@ int main() {
     NODE *nodeEnd;
     NODE *nodeStart;
 
-    int mapWidth, mapHeight, gaslevel, i, conso, consoPathD, consoPathDUtilseEssence, consoPathNerf, y, x, round, valeurNerf, tailleD, tailleE, tailleN, lastFart;
+    int mapWidth, mapHeight, gaslevel, i, conso, consoPathD, consoPathDUtilseEssence, consoPathNerf, y, x, round, valeurNerf, tailleE, tailleN, lastFart;
 
     char action[100];
     char line_buffer[MAX_LINE_LENGTH];
@@ -145,11 +145,12 @@ int main() {
             path = get_path(mapNodes, mapWidth, mapHeight, nodeStart, &consoPathD,valeurNerf);
 
             if(path[0] == NULL){
-                    repeat = TRUE;
-                    sprintf(action, "%d %d", 0, 0);
-                    fprintf(stdout, "%s", action);
-                    fflush(stdout); /* CAUTION : This is necessary  */
-                    continue;
+                round = 0;
+                repeat = TRUE;
+                sprintf(action, "%d %d", 0, 0);
+                fprintf(stdout, "%s", action);
+                fflush(stdout); /* CAUTION : This is necessary  */
+                continue;
             }
             reversePath(path);
         }
@@ -265,7 +266,7 @@ int main() {
 
         end = clock();
         cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC;
-        sprintf(action, "%d %d", acceleration.x, acceleration.y);
+        sprintf(action, "%d %d\n", acceleration.x, acceleration.y);
         gaslevel -= gasConsumption(acceleration.x,acceleration.y,path[round-1]->speedX,path[round-1]->speedY,path[round-1]->sable);
         fprintf(stdout, "%s", action);
         fflush(stdout); /* CAUTION : This is necessary  */
