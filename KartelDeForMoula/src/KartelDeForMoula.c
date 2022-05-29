@@ -38,7 +38,6 @@ int main() {
 
     char action[100];
     char line_buffer[MAX_LINE_LENGTH];
-    char *ansiFegts;
 
     cpu_time_used = -1;
     start = clock();
@@ -58,7 +57,7 @@ int main() {
     
 
     /* PARTIE LECTURE DES INFOS DE LA COURSE*/
-    ansiFegts = fgets(line_buffer, MAX_LINE_LENGTH, stdin); /* Read gas level at Start */
+    fgets(line_buffer, MAX_LINE_LENGTH, stdin); /* Read gas level at Start */
     sscanf(line_buffer, "%d %d %d", &mapWidth, &mapHeight, &gaslevel);
 
     /*=========================PATHFINDING=============================*/
@@ -69,7 +68,7 @@ int main() {
     nodeStart = NULL;
 
     for (y = 0; y < mapHeight; ++y) { /* Read map data, line per line */
-        ansiFegts = fgets(line_buffer, MAX_LINE_LENGTH, stdin);
+        fgets(line_buffer, MAX_LINE_LENGTH, stdin);
         x = 0;
         while (line_buffer[x] != '\0') {
             if (line_buffer[x] == '.' || line_buffer[x] == '~') {
@@ -109,13 +108,16 @@ int main() {
     lastP3Position = NULL;
 
     while (!feof(stdin)) {
+
         if (cpu_time_used != -1) {
             start = clock();
         }
 
-        fprintf(stderr,"GETS\n");
-        ansiFegts = fgets(line_buffer, MAX_LINE_LENGTH, stdin); /* Read positions of pilots*/
-        fprintf(stderr,"SCAN\n");
+        /*Le fgets reste coincé parfois à cause d'une bug du GDC*/
+        /*fprintf(stderr,"BEFORE GETS\n");*/
+        fgets(line_buffer, MAX_LINE_LENGTH, stdin); /* Read positions of pilots*/
+        /*fprintf(stderr,"AFTER GETS\n");*/
+        fflush(stderr);
 
         sscanf(line_buffer, "%d %d %d %d %d %d",
                 &player1Position.x, &player1Position.y,
@@ -264,14 +266,17 @@ int main() {
         acceleration = nextAcceleration(path, NULL, &speed, round + 1);
         round++;
 
+        gaslevel -= gasConsumption(acceleration.x,acceleration.y,path[round-1]->speedX,path[round-1]->speedY,path[round-1]->sable);
+
         end = clock();
         cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC;
+
         sprintf(action, "%d %d\n", acceleration.x, acceleration.y);
-        gaslevel -= gasConsumption(acceleration.x,acceleration.y,path[round-1]->speedX,path[round-1]->speedY,path[round-1]->sable);
+
         fprintf(stdout, "%s", action);
         fflush(stdout); /* CAUTION : This is necessary  */
-        fprintf(stderr, "%s", ansiFegts);
         fflush(stderr);
+        
     }
 
     return EXIT_SUCCESS;

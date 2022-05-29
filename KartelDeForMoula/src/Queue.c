@@ -99,7 +99,6 @@ void trierElemDistance(QNODE* elem, QUEUE * f, int lastSorted){
         }
         current = current->next;
     }
-    fprintf(stderr,"NO CHANGE %d\n",elem->value->distanceToEnd);
 }
 
 /*
