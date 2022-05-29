@@ -49,7 +49,7 @@ int main() {
     speed.x = 0;
     speed.y = 0;
     round = 0;
-    lastFart = 1;
+    lastFart = 8;
     i = 0;
     repeat = FALSE;
     PATH_ESSENCE_GENERATED = TRUE;
@@ -161,7 +161,7 @@ int main() {
                 nodeStart = path[round];
                 path = get_path(mapNodes, mapWidth, mapHeight, path[round],&consoPathD,valeurNerf);
                 round = 0;
-                lastFart += 5-valeurNerf;
+                /*lastFart = 8-valeurNerf;*/
                 pathEssence = NULL;
 
                 if(path[0] == NULL){
