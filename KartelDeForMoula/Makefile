@@ -5,7 +5,7 @@ SRC = ./src/
 HEADER = ./include/
 BIN = ./bin/
 CC = gcc
-CFLAGS = -Wall -Wextra -ansi -pedantic -Wpedantic -g -O3 -I $(HEADER)
+CFLAGS = -Wall -Wextra -ansi -pedantic -Wpedantic -O3 -I $(HEADER)
 LDLIBS = -lm
 DRIVERS_PATH = ../drivers
 
