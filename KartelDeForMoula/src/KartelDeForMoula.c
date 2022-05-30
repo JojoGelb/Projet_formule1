@@ -35,13 +35,13 @@ int main() {
     NODE *nodeStart;
 
     int mapWidth, mapHeight, gaslevel, i, conso, consoPathD, consoPathDUtilseEssence, consoPathNerf, y, x, round, valeurNerf, tailleE, tailleN, lastFart;
-
+    char * ansiCheck;
     char action[100];
     char line_buffer[MAX_LINE_LENGTH];
 
     cpu_time_used = -1;
     start = clock();
-
+    
     valeurNerf = 0;
     acceleration.x = 0;
     acceleration.y = 0;
@@ -57,7 +57,7 @@ int main() {
     
 
     /* PARTIE LECTURE DES INFOS DE LA COURSE*/
-    fgets(line_buffer, MAX_LINE_LENGTH, stdin); /* Read gas level at Start */
+    ansiCheck = fgets(line_buffer, MAX_LINE_LENGTH, stdin); /* Read gas level at Start */
     sscanf(line_buffer, "%d %d %d", &mapWidth, &mapHeight, &gaslevel);
 
     /*=========================PATHFINDING=============================*/
@@ -68,7 +68,7 @@ int main() {
     nodeStart = NULL;
 
     for (y = 0; y < mapHeight; ++y) { /* Read map data, line per line */
-        fgets(line_buffer, MAX_LINE_LENGTH, stdin);
+        ansiCheck = fgets(line_buffer, MAX_LINE_LENGTH, stdin);
         x = 0;
         while (line_buffer[x] != '\0') {
             if (line_buffer[x] == '.' || line_buffer[x] == '~') {
@@ -115,7 +115,7 @@ int main() {
 
         /*Le fgets reste coincé parfois à cause d'une bug du GDC*/
         /*fprintf(stderr,"BEFORE GETS\n");*/
-        fgets(line_buffer, MAX_LINE_LENGTH, stdin); /* Read positions of pilots*/
+        ansiCheck = fgets(line_buffer, MAX_LINE_LENGTH, stdin); /* Read positions of pilots*/
         /*fprintf(stderr,"AFTER GETS\n");*/
         fflush(stderr);
 
@@ -272,7 +272,7 @@ int main() {
         cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC;
 
         sprintf(action, "%d %d\n", acceleration.x, acceleration.y);
-
+        ansiCheck = ansiCheck;
         fprintf(stdout, "%s", action);
         fflush(stdout); /* CAUTION : This is necessary  */
         fflush(stderr);
